@@ -25,10 +25,9 @@
   "plugins": ["react", "@typescript-eslint", "prettier"],
   "rules": {
     "prettier/prettier": "error",
-    "react/jsx-filename-extension": [
-      1,
-      { "extensions": [".js", ".jsx", ".ts", ".tsx"] }
-    ],
-    "react/react-in-jsx-scope": "off"
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
+    "react/react-in-jsx-scope": "off",
+    "jsx-a11y/click-events-have-key-events": "off",
+    "jsx-a11y/no-static-element-interactions": "off"
   }
 }
