@@ -1,88 +1,61 @@
-import { FC } from 'react';
+import { FunctionComponent } from 'react';
 import { GetStaticProps, GetStaticPaths } from 'next';
-import axios from 'axios';
-import { promises as fs } from 'fs';
-import path from 'path';
+import { useRouter } from 'next/dist/client/router';
+import { animeQuery, Anime } from '../../api/anime';
+import dataFs from '../../scrap/fsData';
 
-// ****** TS ******
-interface MediaListEntry {
-  id: number;
-}
+// ******************************* TYPE DEFINITION *******************************
+type IndexComponent = FunctionComponent<{ anime: Anime }>;
 
-interface Media {
-  id: number;
-  title: {
-    romaji: string;
-    english: string;
-    native: string;
-    userPreferred: string;
-  };
-  description: string;
-}
+// ******************************* REACT COMPONENT *******************************
+const Index: IndexComponent = ({ anime }) => {
+  const router = useRouter();
 
-interface AnilistQueryAll {
-  data: {
-    Page: {
-      media: MediaListEntry[];
-    };
-  };
-}
+  if (router.isFallback) {
+    return <div>loading</div>;
+  }
 
-interface AnilistQueryOne {
-  data: {
-    Media: Media;
-  };
-}
-
-// ****** React Component ******
-const Index: FC<{ anime: Media }> = ({ anime }) => {
-  return <div>{anime.description}</div>;
+  return (
+    <div>
+      <div>{anime.title.romaji}</div>
+      <div>{anime.title.english}</div>
+      <div>{anime.title.native}</div>
+      <div>{anime.title.userPreferred}</div>
+      <div>{anime.description}</div>
+      <div>{anime.episodes}</div>
+      <div>{anime.id}</div>
+    </div>
+  );
 };
 
 export default Index;
 
-// ****** SSR ******
-export const getStaticProps: GetStaticProps<{ anime: Media }, { id: string }> = async ({ params }) => {
-  const query = `query {
-      Media(id:${params?.id}) {
-        id
-        title {
-          romaji
-          english
-          native
-          userPreferred
-        }
-        description(asHtml: false)
-      }
-    }`;
+// ******************************* SSR *******************************
+export const getStaticProps: GetStaticProps<{ anime: Anime } | {}, { id: string }> = async ({ params }) => {
+  if (params) {
+    let animeProps: Anime;
+    const animesBulk = await dataFs.getData();
 
-  const graphqlQuery = await axios.post<AnilistQueryOne>('https://graphql.anilist.co', {
-    query,
-  });
+    const fsMedia = animesBulk.find((anime) => anime.id === Number(params.id));
 
-  return { props: { anime: graphqlQuery.data.data.Media } };
+    if (fsMedia) {
+      animeProps = fsMedia;
+    } else {
+      animeProps = await animeQuery(params?.id);
+    }
+
+    return { props: { anime: animeProps } };
+  }
+
+  return { props: {} };
 };
 
 export const getStaticPaths: GetStaticPaths<{ id: string }> = async () => {
-  const readQuery = await fs.readFile(path.join(process.cwd(), '/scrap/data.json'));
-  const doc = JSON.parse(readQuery.toString());
-  console.log(doc.length);
+  const animesBulk = await dataFs.getData();
 
-  const query = `query {
-    Page(page:1, perPage:1){
-      media(type:MANGA) {
-        id
-      }
-    }
-  }`;
-
-  const graphqlQuery = await axios.post<AnilistQueryAll>('https://graphql.anilist.co', {
-    query,
+  const paramsList = animesBulk.map((anime) => {
+    return { params: { id: String(anime.id) } };
   });
 
-  const animeList = graphqlQuery.data.data.Page.media.map((media) => {
-    return { params: { id: String(media.id) } };
-  });
-
-  return { paths: animeList, fallback: false };
+  return { paths: paramsList, fallback: true };
 };
