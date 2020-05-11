@@ -1,8 +1,13 @@
+// ******************************* IMPORT *******************************
 import { FunctionComponent } from 'react';
 import { GetStaticProps, GetStaticPaths } from 'next';
+import Link from 'next/link';
 import { useRouter } from 'next/dist/client/router';
+import useSWR from 'swr';
+
 import { animeQuery, Anime } from '../../api/anime';
 import dataFs from '../../scrap/fsData';
+import { reviewQuery, Review } from '../../api/reviews';
 
 // ******************************* TYPE DEFINITION *******************************
 type IndexComponent = FunctionComponent<{ anime: Anime }>;
@@ -10,28 +15,57 @@ type IndexComponent = FunctionComponent<{ anime: Anime }>;
 // ******************************* REACT COMPONENT *******************************
 const Index: IndexComponent = ({ anime }) => {
   const router = useRouter();
+  const { id } = router.query;
 
-  if (router.isFallback) {
-    return <div>loading</div>;
+  const { data } = useSWR<Review[]>(['review', id], reviewQuery);
+
+  const loadingComponent = <div>loading</div>;
+  let indexComponent = loadingComponent;
+  let Reviews = loadingComponent;
+
+  if (data) {
+    Reviews = (
+      <div>
+        {data.map((review) => {
+          return <div>{review.summary}</div>;
+        })}
+      </div>
+    );
   }
 
-  return (
-    <div>
-      <div>{anime.title.romaji}</div>
-      <div>{anime.title.english}</div>
-      <div>{anime.title.native}</div>
-      <div>{anime.title.userPreferred}</div>
-      <div>{anime.description}</div>
-      <div>{anime.episodes}</div>
-      <div>{anime.id}</div>
-    </div>
-  );
+  if (!router.isFallback) {
+    const characters = anime.characters.nodes.map((character) => {
+      return (
+        <Link href="/characters/[id]" as={`/characters/${character.id}`}>
+          {character.name.native}
+        </Link>
+      );
+    });
+
+    indexComponent = (
+      <div>
+        <div>{anime.title.romaji}</div>
+        <div>{anime.title.english}</div>
+        <div>{anime.title.native}</div>
+        <div>{anime.title.userPreferred}</div>
+        <div>{anime.description}</div>
+        <div>{anime.episodes}</div>
+        <div>{anime.id}</div>
+        <div>{Reviews}</div>
+        <div>{characters}</div>
+      </div>
+    );
+  }
+
+  return indexComponent;
 };
 
 export default Index;
 
 // ******************************* SSR *******************************
-export const getStaticProps: GetStaticProps<{ anime: Anime } | {}, { id: string }> = async ({ params }) => {
+export const getStaticProps: GetStaticProps<{ anime: Anime } | {}, { id: string }> = async ({
+  params,
+}) => {
   if (params) {
     let animeProps: Anime;
     const animesBulk = await dataFs.getData();

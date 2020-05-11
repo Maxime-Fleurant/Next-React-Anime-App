@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-// ****** TYPES DECLARATION ******
+// ******************************* TYPE DEFINITION *******************************
 export interface AnimeLight {
   id: number;
   title: {
@@ -34,7 +34,7 @@ interface AnilistQueryMulti {
 
 type AnimeQuery = () => Promise<AnimeLight[]>;
 
-// ****** IMPLEMENTATION ******
+// ******************************* IMPLEMENTATION *******************************
 export const animeListQuery: AnimeQuery = async () => {
   const query = `query {
     Page(page:1, perPage:50){
@@ -66,6 +66,6 @@ export const animeListQuery: AnimeQuery = async () => {
   const graphqlQuery = await axios.post<AnilistQueryMulti>('https://graphql.anilist.co', {
     query,
   });
-  console.log(graphqlQuery.data.data);
+
   return graphqlQuery.data.data.Page.media;
 };

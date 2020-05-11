@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-// ****** TYPES DECLARATION ******
+// ******************************* TYPE DEFINITION *******************************
 export interface Anime {
   id: number;
   title: {
@@ -53,7 +53,7 @@ interface AnilistQueryOne {
 
 type AnimeQuery = (id: string) => Promise<Anime>;
 
-// ****** IMPLEMENTATION ******
+// ******************************* IMPLEMENTATION *******************************
 export const animeQuery: AnimeQuery = async (id) => {
   const query = `query {
     Media(id: ${id}, type:ANIME) {

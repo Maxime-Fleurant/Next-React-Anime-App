@@ -1,12 +1,11 @@
 import { FC } from 'react';
 import Link from 'next/link';
-import { GetStaticProps } from 'next';
+import Form from '../components/form';
 
 const Index: FC = () => {
   return (
     <div>
-      <Link href="/animes">animes</Link>
-      <Link href="/animes/1">animes/1</Link>
+      <Form />
     </div>
   );
 };
