@@ -1,5 +1,5 @@
 // ******************************* IMPORT *******************************
-import { FunctionComponent } from 'react';
+import { FunctionComponent, useEffect } from 'react';
 import { GetStaticProps, GetStaticPaths } from 'next';
 import Link from 'next/link';
 import { useRouter } from 'next/dist/client/router';
@@ -14,6 +14,10 @@ type IndexComponent = FunctionComponent<{ anime: Anime }>;
 
 // ******************************* REACT COMPONENT *******************************
 const Index: IndexComponent = ({ anime }) => {
+  useEffect(() => {
+    console.log('mount here');
+  }, []);
+
   const router = useRouter();
   const { id } = router.query;
 
@@ -37,7 +41,7 @@ const Index: IndexComponent = ({ anime }) => {
     const characters = anime.characters.nodes.map((character) => {
       return (
         <Link href="/characters/[id]" as={`/characters/${character.id}`}>
-          {character.name.native}
+          <a>{character.name.native}</a>
         </Link>
       );
     });
@@ -66,6 +70,7 @@ export default Index;
 export const getStaticProps: GetStaticProps<{ anime: Anime } | {}, { id: string }> = async ({
   params,
 }) => {
+  console.log('props');
   if (params) {
     let animeProps: Anime;
     const animesBulk = await dataFs.getData();
@@ -85,6 +90,7 @@ export const getStaticProps: GetStaticProps<{ anime: Anime } | {}, { id: string 
 };
 
 export const getStaticPaths: GetStaticPaths<{ id: string }> = async () => {
+  console.log('path');
   const animesBulk = await dataFs.getData();
 
   const paramsList = animesBulk.map((anime) => {
