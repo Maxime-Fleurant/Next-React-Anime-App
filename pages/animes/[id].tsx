@@ -4,6 +4,8 @@ import { GetStaticProps, GetStaticPaths } from 'next';
 import Link from 'next/link';
 import { useRouter } from 'next/dist/client/router';
 import useSWR from 'swr';
+import gql from 'graphql-tag';
+import { useQuery } from '@apollo/react-hooks';
 
 import { animeQuery, Anime } from '../../api/anime';
 import dataFs from '../../scrap/fsData';
@@ -14,6 +16,14 @@ type IndexComponent = FunctionComponent<{ anime: Anime }>;
 
 // ******************************* REACT COMPONENT *******************************
 const Index: IndexComponent = ({ anime }) => {
+  const { loading, error, data: apolloData } = useQuery(gql`
+    {
+      test
+    }
+  `);
+
+  console.log(loading, apolloData);
+
   useEffect(() => {
     console.log('mount here');
   }, []);
@@ -31,7 +41,7 @@ const Index: IndexComponent = ({ anime }) => {
     Reviews = (
       <div>
         {data.map((review) => {
-          return <div>{review.summary}</div>;
+          return <div key={review.id}>{review.summary}</div>;
         })}
       </div>
     );
@@ -40,7 +50,7 @@ const Index: IndexComponent = ({ anime }) => {
   if (!router.isFallback) {
     const characters = anime.characters.nodes.map((character) => {
       return (
-        <Link href="/characters/[id]" as={`/characters/${character.id}`}>
+        <Link key={character.id} href="/characters/[id]" as={`/characters/${character.id}`}>
           <a>{character.name.native}</a>
         </Link>
       );

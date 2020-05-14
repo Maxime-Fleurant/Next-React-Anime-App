@@ -1,17 +1,12 @@
 import { AppProps } from 'next/app';
-import { useEffect } from 'react';
 import { ApolloProvider } from '@apollo/react-hooks';
 
 import Layout from '../components/layout';
-import { client } from '../apollo';
+import { ssrClient } from '../apollo';
 
 function MyApp({ Component, pageProps }: AppProps) {
-  useEffect(() => {
-    console.log('mount');
-  }, []);
-
   return (
-    <ApolloProvider client={client}>
+    <ApolloProvider client={ssrClient()}>
       <Layout>
         <Component {...pageProps} />
       </Layout>

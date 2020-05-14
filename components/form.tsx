@@ -6,9 +6,7 @@ export type FormComponent = FunctionComponent<{}>;
 
 // ******************************* REACT COMPONENT *******************************
 const Form: FormComponent = () => {
-  const [test1, setText1] = useState('fl');
-  console.log(test1);
-  return <div>ds</div>;
+  return <div>form </div>;
 };
 
 export default Form;
