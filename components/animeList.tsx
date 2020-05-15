@@ -1,20 +1,33 @@
 // ******************************* IMPORT *******************************
-import { FunctionComponent, useState } from 'react';
+import { FunctionComponent, useState, useEffect } from 'react';
+import { useQuery } from '@apollo/react-hooks';
+import { LOCAL_SEARCHANIME_QUERY } from '../api/graphql-query';
 
 // ******************************* TYPE DEFINITION *******************************
-export type FormComponent = FunctionComponent<{ animeList: any[] }>;
+export type FormComponent = FunctionComponent;
 
 // ******************************* REACT COMPONENT *******************************
-const AnimeList: FormComponent = ({ animeList }) => {
-  const animeArray = animeList.map((anime) => {
-    return (
-      <div key={anime.id}>
-        {anime.id} <br />{' '}
-      </div>
-    );
+const AnimeList: FormComponent = () => {
+  useEffect(() => {
+    console.log('animeList mount');
+  }, []);
+  useEffect(() => {
+    console.log('animeList update');
   });
 
-  return <div>{animeArray}</div>;
+  const { data, loading, error } = useQuery(LOCAL_SEARCHANIME_QUERY);
+
+  console.log(data, loading, error);
+
+  // const animeArray = animeList.map((anime) => {
+  //   return (
+  //     <div key={anime.title.english}>
+  //       {anime.id} <br />{' '}
+  //     </div>
+  //   );
+  // });
+
+  return <div>animelist</div>;
 };
 
 export default AnimeList;

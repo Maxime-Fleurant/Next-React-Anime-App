@@ -1,5 +1,5 @@
 // React
-import { FunctionComponent } from 'react';
+import { FunctionComponent, useState, useEffect } from 'react';
 // Next
 import { GetStaticProps } from 'next';
 import { useRouter } from 'next/dist/client/router';
@@ -10,7 +10,7 @@ import gql from 'graphql-tag';
 import Form from '../../components/form';
 import AnimeList from '../../components/animeList';
 // Misc
-import { FIRST_QUERY } from '../../api/graphql-query';
+import { FIRST_QUERY, SEARCH_ANIME } from '../../api/graphql-query';
 import { ssrClient } from '../../apollo';
 
 // TYPE DEFINITION
@@ -18,12 +18,17 @@ type IndexComponent = FunctionComponent<{ animeList: any[] }>;
 
 // REACT COMPONENT
 const Index: IndexComponent = ({ animeList }) => {
-  const router = useRouter();
+  useEffect(() => {
+    console.log('index mount');
+  }, []);
+  useEffect(() => {
+    console.log('index update');
+  });
 
   return (
     <div>
       <Form />
-      <AnimeList animeList={animeList} />
+      <AnimeList />
     </div>
   );
 };
