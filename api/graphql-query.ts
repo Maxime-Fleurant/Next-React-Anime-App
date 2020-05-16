@@ -73,8 +73,28 @@ export const SEARCH_ANIME = gql`
 
 export const LOCAL_SEARCHANIME_QUERY = gql`
   {
-    searchAnime {
-      query
+    state @client {
+      searchAnime {
+        query {
+          genres
+          tags
+          text
+          format
+          status
+        }
+      }
     }
+  }
+`;
+
+export const MUTATE_SEARCH_ANIME_QUERY = gql`
+  mutation {
+    updateSearchAnimeQuery @client
+  }
+`;
+
+export const TEST_MUTATE = gql`
+  mutation {
+    testMutation @client
   }
 `;

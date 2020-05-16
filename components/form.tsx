@@ -1,6 +1,7 @@
 // ******************************* IMPORT *******************************
-import React, { FunctionComponent, useState, useEffect, Dispatch } from 'react';
-import { useApolloClient } from '@apollo/react-hooks';
+import React, { FunctionComponent, useEffect } from 'react';
+import { useMutation } from '@apollo/react-hooks';
+import { MUTATE_SEARCH_ANIME_QUERY, TEST_MUTATE } from '../api/graphql-query';
 
 // ******************************* TYPE DEFINITION *******************************
 export type FormComponent = FunctionComponent;
@@ -14,19 +15,15 @@ const Form: FormComponent = () => {
     console.log('form update');
   });
 
-  const client = useApolloClient();
-
-  const updateSearchAnimeQueyr = () => {
-    client.writeData({ data: { searchAnime: { query: 'mecha' } } });
-  };
-
+  const [updateSearchAnimeQuery, { error, loading }] = useMutation(MUTATE_SEARCH_ANIME_QUERY);
+  console.log(error, loading);
   return (
     <div>
       form{' '}
       <button
         type="button"
         onClick={() => {
-          updateSearchAnimeQueyr();
+          updateSearchAnimeQuery();
         }}
       >
         click

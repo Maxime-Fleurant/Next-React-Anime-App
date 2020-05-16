@@ -1,7 +1,8 @@
 // ******************************* IMPORT *******************************
 import { FunctionComponent, useState, useEffect } from 'react';
-import { useQuery } from '@apollo/react-hooks';
-import { LOCAL_SEARCHANIME_QUERY } from '../api/graphql-query';
+import { useQuery, useMutation, useApolloClient } from '@apollo/react-hooks';
+import { LOCAL_SEARCHANIME_QUERY, SEARCH_ANIME, FIRST_QUERY } from '../api/graphql-query';
+import gql from 'graphql-tag';
 
 // ******************************* TYPE DEFINITION *******************************
 export type FormComponent = FunctionComponent;
@@ -15,19 +16,24 @@ const AnimeList: FormComponent = () => {
     console.log('animeList update');
   });
 
-  const { data, loading, error } = useQuery(LOCAL_SEARCHANIME_QUERY);
+  const { data, loading } = useQuery(
+    gql`
+      {
+        searchAnimeQuery @client {
+          genres
+          tags
+          tags
+          text
+          format
+          status
+        }
+      }
+    `
+  );
 
-  console.log(data, loading, error);
+  console.log(data, 'data');
 
-  // const animeArray = animeList.map((anime) => {
-  //   return (
-  //     <div key={anime.title.english}>
-  //       {anime.id} <br />{' '}
-  //     </div>
-  //   );
-  // });
-
-  return <div>animelist</div>;
+  return <div>ff</div>;
 };
 
 export default AnimeList;
