@@ -1,40 +1,5 @@
 import gql from 'graphql-tag';
 
-export const FIRST_QUERY = gql`
-  {
-    Page(page: 1, perPage: 50) {
-      media(
-        type: ANIME
-        sort: POPULARITY_DESC
-        format: TV
-        isAdult: false
-        popularity_greater: 7000
-      ) {
-        id
-        title {
-          romaji
-          english
-          native
-          userPreferred
-        }
-        coverImage {
-          extraLarge
-          large
-          medium
-          color
-        }
-        genres
-        tags {
-          id
-          name
-          description
-          rank
-        }
-      }
-    }
-  }
-`;
-
 export const SEARCH_ANIME = gql`
   query searchAnime($genre: String) {
     Page(page: 1, perPage: 50) {
@@ -84,17 +49,5 @@ export const LOCAL_SEARCHANIME_QUERY = gql`
         }
       }
     }
-  }
-`;
-
-export const MUTATE_SEARCH_ANIME_QUERY = gql`
-  mutation {
-    updateSearchAnimeQuery @client
-  }
-`;
-
-export const TEST_MUTATE = gql`
-  mutation {
-    testMutation @client
   }
 `;

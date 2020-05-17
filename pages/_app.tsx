@@ -1,5 +1,6 @@
 import { AppProps } from 'next/app';
 import { ApolloProvider } from '@apollo/react-hooks';
+import 'antd/dist/antd.css';
 
 import Layout from '../components/layout';
 import { ssrClient } from '../apollo';
