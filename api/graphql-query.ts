@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
 
 export const SEARCH_ANIME = gql`
-  query searchAnime($genre: String) {
+  query searchAnime($genre_in: [String]) {
     Page(page: 1, perPage: 50) {
       media(
         type: ANIME
@@ -9,7 +9,7 @@ export const SEARCH_ANIME = gql`
         format: TV
         isAdult: false
         popularity_greater: 7000
-        genre_in: [$genre]
+        genre_in: $genre_in
       ) {
         id
         title {
@@ -30,22 +30,6 @@ export const SEARCH_ANIME = gql`
           name
           description
           rank
-        }
-      }
-    }
-  }
-`;
-
-export const LOCAL_SEARCHANIME_QUERY = gql`
-  {
-    state @client {
-      searchAnime {
-        query {
-          genres
-          tags
-          text
-          format
-          status
         }
       }
     }

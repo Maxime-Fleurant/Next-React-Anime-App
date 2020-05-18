@@ -1,101 +1,79 @@
 // IMPORT
-import React, { FunctionComponent, useEffect, Dispatch, SetStateAction } from 'react';
-import { useForm, Controller } from 'react-hook-form';
-import { Select, Input } from 'antd';
+import _ from 'lodash';
+import React, { FunctionComponent } from 'react';
+import { Select, Input, Form } from 'antd';
+import { FormProps } from 'antd/lib/form/Form';
 import { tags, genres, formats, status } from '../scrap/const';
 
 // TYPE DEFINITION
 export type TsearchAnimeForm = FunctionComponent<{
-  submitAction: (formData: {}) => void;
+  submitAction: (formData: Record<string, any>) => void;
 }>;
+
+type IselectOptionsHelper = (items: string[]) => JSX.Element[];
 
 // REACT
 const SearchAnimeForm: TsearchAnimeForm = ({ submitAction }) => {
   const { Option } = Select;
+  const { Item } = Form;
+  const [form] = Form.useForm();
 
-  const { register, handleSubmit, errors, triggerValidation, formState, control } = useForm({
-    mode: 'onBlur',
-  });
-
-  console.log(formState.isValid);
-
-  const sub = (fData: {}) => {
-    console.log('submit');
-    console.log(fData);
+  const change: FormProps['onValuesChange'] = (changedValue, allVallues) => {
+    submitAction(_.mapValues(allVallues, (value) => (value.length ? value : undefined)));
   };
 
-  const tagsSelect = (
-    <Select
-      mode="tags"
-      style={{ width: '10%' }}
-      placeholder="Select Genres"
-      allowClear
-      maxTagCount={1}
-      maxTagTextLength={3}
-    >
-      {tags.map((tag) => {
-        return (
-          <Option value={tag.name} key={tag.name}>
-            {tag.name}
-          </Option>
-        );
-      })}
-    </Select>
-  );
-
-  const genresSelect = (
-    <Select
-      mode="tags"
-      style={{ width: '10%' }}
-      placeholder="Select Tags"
-      allowClear
-      maxTagCount={1}
-      maxTagTextLength={3}
-    >
-      {genres.map((genre) => {
-        return (
-          <Option value={genre} key={genre}>
-            {genre}
-          </Option>
-        );
-      })}
-    </Select>
-  );
-
-  const formatsSelect = (
-    <Select style={{ width: '15%' }} allowClear>
-      {formats.map((format) => {
-        return (
-          <Option value={format} key={format}>
-            {format}
-          </Option>
-        );
-      })}
-    </Select>
-  );
-
-  const statusSelect = (
-    <Select style={{ width: '15%' }} allowClear>
-      {status.map((statu) => {
-        return (
-          <Option value={statu} key={statu}>
-            {statu}
-          </Option>
-        );
-      })}
-    </Select>
-  );
+  const selectOptionsHelper: IselectOptionsHelper = (items) => {
+    return items.map((item) => {
+      return (
+        <Option value={item} key={item}>
+          {item}
+        </Option>
+      );
+    });
+  };
 
   return (
-    <div>
-      <Controller as={tagsSelect} name="tag_in" control={control} />
-      <Controller as={genresSelect} name="genre_in" control={control} />
-      <Controller as={statusSelect} name="status" control={control} />
-      <Controller as={formatsSelect} name="format" control={control} />
-      <Controller as={<Input style={{ width: '15%' }} />} name="text" control={control} />
-
-      <input type="button" onClick={handleSubmit(sub)} />
-    </div>
+    <Form form={form} name="animeSearchForm" onValuesChange={change} layout="inline">
+      <Item name="text" style={{ width: '18%' }}>
+        <Input placeholder="Search" />
+      </Item>
+      <Item name="genre_in" style={{ width: '18%' }}>
+        <Select
+          mode="multiple"
+          placeholder="Genres"
+          allowClear
+          maxTagCount={1}
+          maxTagTextLength={3}
+          showArrow
+        >
+          {selectOptionsHelper(genres)}
+        </Select>
+      </Item>
+      <Item name="tag_in" style={{ width: '18%' }}>
+        <Select
+          mode="multiple"
+          placeholder="Tags"
+          allowClear
+          maxTagCount={1}
+          maxTagTextLength={3}
+          showArrow
+        >
+          {tags.map((tag) => {
+            return (
+              <Option value={tag.name} key={tag.name}>
+                {tag.name}
+              </Option>
+            );
+          })}
+        </Select>
+      </Item>
+      <Item name="format" style={{ width: '18%' }}>
+        <Select allowClear>{selectOptionsHelper(formats)}</Select>
+      </Item>
+      <Item name="status" style={{ width: '18%' }}>
+        <Select allowClear>{selectOptionsHelper(status)}</Select>
+      </Item>
+    </Form>
   );
 };
 
