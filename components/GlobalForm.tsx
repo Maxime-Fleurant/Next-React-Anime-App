@@ -3,27 +3,36 @@ import _ from 'lodash';
 import React, { FunctionComponent, useEffect } from 'react';
 import { Select, Input, Form } from 'antd';
 import { FormProps } from 'antd/lib/form/Form';
+import { useMutation } from '@apollo/react-hooks';
+import gql from 'graphql-tag';
 import { tags, genres, formats, status } from '../scrap/const';
 
 // TYPE DEFINITION
-export type TsearchAnimeForm = FunctionComponent<{
-  submitAction: (formData: Record<string, any>) => void;
-}>;
+type TsearchAnimeForm = FunctionComponent;
 
 type IselectOptionsHelper = (items: string[]) => JSX.Element[];
 
 // REACT
-const SearchAnimeForm: TsearchAnimeForm = ({ submitAction }) => {
+const GlobalForm: TsearchAnimeForm = () => {
   useEffect(() => {
     console.log('FORM update or mount');
   });
+
+  const [toggleTodo] = useMutation(
+    gql`
+      mutation {
+        testMut @client
+      }
+    `
+  );
 
   const { Option } = Select;
   const { Item } = Form;
   const [form] = Form.useForm();
 
   const change: FormProps['onValuesChange'] = (changedValue, allVallues) => {
-    submitAction(_.mapValues(allVallues, (value) => (value && value.length ? value : undefined)));
+    toggleTodo();
+    console.log('change');
   };
 
   const selectOptionsHelper: IselectOptionsHelper = (items) => {
@@ -85,4 +94,4 @@ const SearchAnimeForm: TsearchAnimeForm = ({ submitAction }) => {
   );
 };
 
-export default React.memo(SearchAnimeForm);
+export default GlobalForm;

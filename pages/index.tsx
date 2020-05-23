@@ -15,6 +15,10 @@ const Index: FC = () => {
       <Link href="/animes">
         <a>animes</a>
       </Link>
+
+      <Link href="/globalanimes">
+        <a>global</a>
+      </Link>
     </div>
   );
 };

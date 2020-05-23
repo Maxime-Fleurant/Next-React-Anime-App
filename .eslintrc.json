@@ -4,8 +4,8 @@
     "es6": true
   },
   "extends": [
-    "plugin:react/recommended",
     "airbnb",
+    "plugin:react/recommended",
     "plugin:prettier/recommended",
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended"
@@ -35,6 +35,8 @@
     "import/extensions": "off",
     "import/no-unresolved": "off",
     "jsx-a11y/anchor-is-valid": "off",
-    "@typescript-eslint/camelcase": "off"
+    "@typescript-eslint/camelcase": "off",
+    "import/no-extraneous-dependencies": "off",
+    "react/jsx-curly-newline": "off"
   }
 }

@@ -1147,6 +1147,6 @@ export const genres = [
   'Thriller',
 ];
 
-export const formats = ['TV', 'TV_SHORT', 'MOVIE', 'SPECIAL', 'OVA', 'ONA'];
+export const formats = ['TV', 'TV_SHORT', 'MOVIE'];
 
 export const status = ['FINISHED', 'RELEASING', 'NOT_YET_RELEASED', 'CANCELLED'];
