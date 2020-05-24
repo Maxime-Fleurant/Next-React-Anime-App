@@ -26,15 +26,21 @@ export const ssrClient = () => {
     resolvers: {
       Mutation: {
         testMut: (root, variables, { cache, getCacheKey }) => {
+          console.log(variables, 'variables');
           cache.writeFragment({
             id: 'searchObj:1',
             fragment: gql`
-              fragment myName on searchObj {
+              fragment searchFragment on searchObj {
                 __typename
+                text
+                tag_in
+                genre_in
+                format
+                status
                 text
               }
             `,
-            data: { text: '2', __typename: 'searchObj', id: 1 },
+            data: { ...variables.searchObj, __typename: 'searchObj', id: 1 },
           });
         },
       },

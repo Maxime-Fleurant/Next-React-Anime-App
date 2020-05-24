@@ -20,10 +20,11 @@ const GlobalForm: TsearchAnimeForm = () => {
 
   const [toggleTodo] = useMutation(
     gql`
-      mutation {
-        testMut @client
+      mutation($searchObj: string) {
+        testMut(searchObj: $searchObj) @client
       }
-    `
+    `,
+    { variables: { searchObj: {} } }
   );
 
   const { Option } = Select;
@@ -31,8 +32,12 @@ const GlobalForm: TsearchAnimeForm = () => {
   const [form] = Form.useForm();
 
   const change: FormProps['onValuesChange'] = (changedValue, allVallues) => {
-    toggleTodo();
     console.log('change');
+    toggleTodo({
+      variables: {
+        searchObj: _.mapValues(allVallues, (value) => (value && value.length ? value : undefined)),
+      },
+    });
   };
 
   const selectOptionsHelper: IselectOptionsHelper = (items) => {

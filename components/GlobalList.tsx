@@ -13,6 +13,12 @@ const GlobalList: FormComponent = () => {
       searchAnimePage @client {
         searchObj {
           text
+          tag_in
+          genre_in
+          format
+          status
+          text
+          page
         }
       }
     }
