@@ -1,11 +1,12 @@
 // IMPORT
-import _ from 'lodash';
+import lodash from 'lodash';
 import React, { FunctionComponent, useEffect } from 'react';
 import { Select, Input, Form } from 'antd';
 import { FormProps } from 'antd/lib/form/Form';
-import { useMutation } from '@apollo/react-hooks';
-import gql from 'graphql-tag';
+import { useApolloClient } from '@apollo/react-hooks';
 import { tags, genres, formats, status } from '../scrap/const';
+import { searchObjFragment } from '../store/localQuery';
+import { searchObj } from '../store/initial-state';
 
 // TYPE DEFINITION
 type TsearchAnimeForm = FunctionComponent;
@@ -18,25 +19,17 @@ const GlobalForm: TsearchAnimeForm = () => {
     console.log('FORM update or mount');
   });
 
-  const [toggleTodo] = useMutation(
-    gql`
-      mutation($searchObj: string) {
-        testMut(searchObj: $searchObj) @client
-      }
-    `,
-    { variables: { searchObj: {} } }
-  );
-
   const { Option } = Select;
   const { Item } = Form;
   const [form] = Form.useForm();
 
+  const apolloClient = useApolloClient();
+
   const change: FormProps['onValuesChange'] = (changedValue, allVallues) => {
-    console.log('change');
-    toggleTodo({
-      variables: {
-        searchObj: _.mapValues(allVallues, (value) => (value && value.length ? value : undefined)),
-      },
+    apolloClient.writeFragment({
+      id: 'searchObj:1',
+      fragment: searchObjFragment,
+      data: { ...searchObj, ...lodash.pickBy(allVallues, lodash.identity) },
     });
   };
 

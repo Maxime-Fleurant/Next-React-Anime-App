@@ -1,36 +1,44 @@
-// ******************************* IMPORT *******************************
+// IMPORT
+import lodash from 'lodash';
 import React, { FunctionComponent, useEffect } from 'react';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery, useLazyQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
+import { searchObjFragment } from '../store/localQuery';
+import { SEARCH_ANIME } from '../api/graphql-query';
 
-// ******************************* TYPE DEFINITION *******************************
+// TYPE DEFINITION
 export type FormComponent = FunctionComponent;
 
-// ******************************* REACT COMPONENT *******************************
+// REACT
 const GlobalList: FormComponent = () => {
-  const query = gql`
+  const searchObjStateQuery = gql`
     query {
-      searchAnimePage @client {
+      searchAnimePage {
         searchObj {
-          text
-          tag_in
-          genre_in
-          format
-          status
-          text
-          page
+          ...searchObjFragment
         }
       }
     }
+    ${searchObjFragment}
   `;
 
-  const { data } = useQuery(query, { fetchPolicy: 'network-only' });
-
-  console.log(data, 'client');
+  const { data: searchObjQueryResult } = useQuery(searchObjStateQuery);
+  const [searchAnimeQuery, { data: searchAnimeQueryResult }] = useLazyQuery(SEARCH_ANIME);
 
   useEffect(() => {
     console.log('ANIMELIST update or mount');
   });
+
+  useEffect(() => {
+    console.log(searchObjQueryResult.searchAnimePage.searchObj, 'fdlfkdl');
+    searchAnimeQuery({
+      variables: {
+        ...lodash.pickBy(searchObjQueryResult.searchAnimePage.searchObj, lodash.identity),
+      },
+    });
+  }, [searchObjQueryResult]);
+
+  const animeList = [];
 
   return <div>animeList</div>;
 };

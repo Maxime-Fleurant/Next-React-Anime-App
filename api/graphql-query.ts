@@ -5,7 +5,7 @@ export const SEARCH_ANIME = gql`
     $genre_in: [String]
     $tag_in: [String]
     $text: String
-    $format: MediaFormat
+    $format: MediaFormat = TV
     $status: MediaStatus
     $page: Int = 1
   ) {
