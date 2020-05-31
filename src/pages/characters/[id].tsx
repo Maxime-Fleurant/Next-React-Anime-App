@@ -1,6 +1,6 @@
 import { FunctionComponent } from 'react';
 import { GetServerSideProps } from 'next';
-import { characterQuery, Character } from '../../api/character';
+import { characterQuery, Character } from '../../common/api/character';
 
 // ******************************* TYPE DEFINITION *******************************
 type IndexComponent = FunctionComponent<{ character: Character }>;

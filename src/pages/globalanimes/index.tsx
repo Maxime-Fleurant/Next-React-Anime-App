@@ -1,7 +1,7 @@
 // IMPORT
 import { FunctionComponent, useEffect } from 'react';
-import GlobalForm from '../../components/GlobalForm';
-import GlobalList from '../../components/GlobalList';
+import GlobalForm from '../../common/components/GlobalForm';
+import GlobalList from '../../common/components/GlobalList';
 
 // TYPE DEFINITION
 type IndexComponent = FunctionComponent<{ animeList: any[] }>;

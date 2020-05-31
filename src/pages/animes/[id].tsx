@@ -5,25 +5,16 @@ import Link from 'next/link';
 import { useRouter } from 'next/dist/client/router';
 import useSWR from 'swr';
 import gql from 'graphql-tag';
-import { useQuery } from '@apollo/react-hooks';
 
-import { animeQuery, Anime } from '../../api/anime';
-import dataFs from '../../scrap/fsData';
-import { reviewQuery, Review } from '../../api/reviews';
+import { animeQuery, Anime } from '../../common/api/anime';
+import dataFs from '../../common/scrap/fsData';
+import { reviewQuery, Review } from '../../common/api/reviews';
 
 // ******************************* TYPE DEFINITION *******************************
 type IndexComponent = FunctionComponent<{ anime: Anime }>;
 
 // ******************************* REACT COMPONENT *******************************
 const Index: IndexComponent = ({ anime }) => {
-  const { loading, error, data: apolloData } = useQuery(gql`
-    {
-      test
-    }
-  `);
-
-  console.log(loading, apolloData);
-
   useEffect(() => {
     console.log('mount here');
   }, []);
