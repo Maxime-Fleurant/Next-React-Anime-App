@@ -4,20 +4,16 @@ import Link from 'next/link';
 const Index: FC = () => {
   return (
     <div>
-      <Link href="/animes/[id]" as="/animes/16498">
-        <a>msdl</a>
-      </Link>
-
-      <Link href="/animes/[id]" as="/animes/118465">
-        <a>rr</a>
-      </Link>
-
-      <Link href="/animes">
-        <a>animes</a>
-      </Link>
-
       <Link href="/globalanimes">
         <a>global</a>
+      </Link>
+
+      <Link href="/test1">
+        <a>test1</a>
+      </Link>
+
+      <Link href="/test2">
+        <a>test2</a>
       </Link>
     </div>
   );

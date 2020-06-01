@@ -37,6 +37,7 @@
     "jsx-a11y/anchor-is-valid": "off",
     "@typescript-eslint/camelcase": "off",
     "import/no-extraneous-dependencies": "off",
-    "react/jsx-curly-newline": "off"
+    "react/jsx-curly-newline": "off",
+    "@typescript-eslint/interface-name-prefix": "off"
   }
 }

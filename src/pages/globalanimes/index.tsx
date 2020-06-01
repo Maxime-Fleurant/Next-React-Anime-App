@@ -1,7 +1,7 @@
 // IMPORT
 import { FunctionComponent, useEffect } from 'react';
-import GlobalForm from '../../common/components/GlobalForm';
-import GlobalList from '../../common/components/GlobalList';
+
+import ListContainer from '../../features/anime/animeList/ListContainer';
 
 // TYPE DEFINITION
 type IndexComponent = FunctionComponent<{ animeList: any[] }>;
@@ -14,8 +14,7 @@ const GlobalAnimePage: IndexComponent = () => {
 
   return (
     <div>
-      <GlobalForm />
-      <GlobalList />
+      <ListContainer />
     </div>
   );
 };
