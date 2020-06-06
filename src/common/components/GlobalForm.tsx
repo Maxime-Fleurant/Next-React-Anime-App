@@ -3,25 +3,28 @@
 import React, { FunctionComponent, useEffect } from 'react';
 import { Select, Input, Form } from 'antd';
 import { FormProps } from 'antd/lib/form/Form';
+import _ from 'lodash';
 
 import { tags, genres, formats, status } from '../scrap/const';
 
 // TYPE DEFINITION
-type TsearchAnimeForm = FunctionComponent;
+type TsearchAnimeForm = FunctionComponent<{ changeHandler: (values: any) => void }>;
 
 type IselectOptionsHelper = (items: string[]) => JSX.Element[];
 
 // REACT
-const GlobalForm: TsearchAnimeForm = () => {
+const GlobalForm: TsearchAnimeForm = ({ changeHandler }) => {
   useEffect(() => {
     console.log('FORM update or mount');
   });
-  console.log('global form');
+
   const { Option } = Select;
   const { Item } = Form;
   const [form] = Form.useForm();
 
-  const change: FormProps['onValuesChange'] = (changedValue, allVallues) => {};
+  const change: FormProps['onValuesChange'] = (changedValue, allVallues) => {
+    changeHandler(allVallues);
+  };
 
   const selectOptionsHelper: IselectOptionsHelper = (items) => {
     return items.map((item) => {

@@ -2,6 +2,7 @@
 import { FunctionComponent, useEffect } from 'react';
 
 import ListContainer from '../../features/anime/animeList/ListContainer';
+import FormContainer from '../../features/anime/animeList/FormContainer';
 
 // TYPE DEFINITION
 type IndexComponent = FunctionComponent<{ animeList: any[] }>;
@@ -14,6 +15,7 @@ const GlobalAnimePage: IndexComponent = () => {
 
   return (
     <div>
+      <FormContainer />
       <ListContainer />
     </div>
   );

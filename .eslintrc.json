@@ -38,6 +38,7 @@
     "@typescript-eslint/camelcase": "off",
     "import/no-extraneous-dependencies": "off",
     "react/jsx-curly-newline": "off",
-    "@typescript-eslint/interface-name-prefix": "off"
+    "@typescript-eslint/interface-name-prefix": "off",
+    "no-underscore-dangle": "off"
   }
 }

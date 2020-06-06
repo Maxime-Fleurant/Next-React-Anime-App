@@ -3,45 +3,31 @@ import React, { useEffect, ReactElement, PropsWithChildren } from 'react';
 import { Row, Col, Pagination } from 'antd';
 
 // TYPE DEFINITION
-interface Ientity {
-  label: string;
-  img: string;
+export interface IEntity {
+  label: string | null | undefined;
+  img: string | null | undefined;
   id: number;
-  desc?: string;
+  desc: string | null | undefined;
 }
 
-function GenericList(
+type TGenericList = (
   props: PropsWithChildren<{
-    entityList: Ientity[];
-    loading?: boolean;
-    infinite: boolean;
-  }>
-): ReactElement;
-
-function GenericList(
-  props: PropsWithChildren<{
-    entityList: Ientity[];
-    loading?: boolean;
+    entityList: IEntity[];
+    loading: boolean;
     pageHandler: (pageNumber: number) => void;
+    infinite?: boolean;
+    total?: number;
   }>
-): ReactElement;
+) => ReactElement;
 
 // REACT COMPONENT
-function GenericList({
+const GenericList: TGenericList = ({
   infinite = false,
   entityList,
   pageHandler,
   loading,
-}: PropsWithChildren<{
-  entityList: Ientity[];
-  infinite?: boolean;
-  loading?: boolean;
-  pageHandler?: (pageNumber: number) => void;
-}>): ReactElement {
-  useEffect(() => {
-    console.log('GenericList update');
-  });
-
+  total,
+}) => {
   const entityJsx = entityList.map((entity) => {
     return (
       <Col span={6} key={entity.id}>
@@ -53,9 +39,9 @@ function GenericList({
   return (
     <Row>
       {entityJsx}
-      <Pagination total={entityList.length} pageSize={2} onChange={pageHandler} />
+      <Pagination total={total} pageSize={50} onChange={pageHandler} />
     </Row>
   );
-}
+};
 
 export default GenericList;
