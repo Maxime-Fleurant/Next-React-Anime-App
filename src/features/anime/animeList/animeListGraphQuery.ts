@@ -11,9 +11,8 @@ export const ANIME_LIST = gql`
   ) {
     Page(page: $page, perPage: 50) {
       pageInfo {
-        total
-        currentPage
         hasNextPage
+        currentPage
       }
       media(
         type: ANIME

@@ -1,12 +1,12 @@
 // IMPORT
-import { FunctionComponent, useEffect, useState } from 'react';
+import { FunctionComponent, useState, useEffect } from 'react';
 import { useQuery, useLazyQuery } from '@apollo/react-hooks';
 import lodash from 'lodash';
-import { connect, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import { ANIME_LIST } from './animeListGraphQuery';
 import GenericList, { IEntity } from '../../../common/components/GenericList';
-import { Page, Media, Maybe, PageInfo } from '../../../../api';
+import { Media } from '../../../../api';
 import { TStore } from '../../../app/store';
 
 // TYPE DEFINITION
@@ -18,49 +18,56 @@ const ListContainer: TListContainer = () => {
     (state: TStore) => state.animeListPageReducers.formSelection
   );
 
-  const { data: fetchAnimePageResult, fetchMore, loading, error } = useQuery<{
-    Page: { media: Media[]; pageInfo: PageInfo };
-  }>(ANIME_LIST, {
-    notifyOnNetworkStatusChange: true,
-    variables: stateFormSelection,
-  });
+  const [fetchAnime, { data: fetchAnimePageResult, loading, error }] = useLazyQuery<{
+    Page: { media: Media[]; pageInfo: { hasNextPage: boolean; currentPage: number } };
+  }>(ANIME_LIST, { fetchPolicy: 'no-cache' });
 
-  let formatedAnimeList: IEntity[] = [];
-  const totalItem = fetchAnimePageResult ? (fetchAnimePageResult.Page.pageInfo.total as number) : 0;
+  const [formatedAnimeList, updateFormatedAnimeList] = useState<IEntity[]>([]);
 
-  // const pageHandler = (pageNumber: number) =>
-  //   fetchMore({
-  //     variables: { page: pageNumber },
-  //     updateQuery: (prevResult, { fetchMoreResult }) => {
-  //       return fetchMoreResult || prevResult;
-  //     },
-  //   });
-
-  if (fetchAnimePageResult) {
-    const fetchAnimeList = lodash.get(fetchAnimePageResult, ['Page', 'media'], [] as Media[]);
-
-    formatedAnimeList = fetchAnimeList.map((anime) => {
-      return {
-        label: anime.title ? anime.title.romaji : null,
-        img: anime.coverImage ? anime.coverImage?.large : null,
-        id: anime.id,
-        desc: anime.description,
-      };
+  useEffect(() => {
+    fetchAnime({
+      variables: stateFormSelection,
     });
-  }
-  console.log(
-    fetchAnimePageResult?.Page.media,
-    fetchAnimePageResult?.Page.pageInfo,
+  }, [stateFormSelection]);
 
-    'fdlk'
-  );
+  useEffect(() => {
+    if (fetchAnimePageResult) {
+      const fetchAnimeList = lodash.get(fetchAnimePageResult, ['Page', 'media'], [] as Media[]);
+
+      let newFormatedList = fetchAnimeList.map((anime) => {
+        return {
+          label: anime.title ? anime.title.romaji : null,
+          img: anime.coverImage ? anime.coverImage?.large : null,
+          id: anime.id,
+        };
+      });
+
+      if (fetchAnimePageResult.Page.pageInfo.currentPage > 1) {
+        newFormatedList = [...formatedAnimeList, ...newFormatedList];
+      }
+
+      updateFormatedAnimeList(newFormatedList);
+    }
+  }, [fetchAnimePageResult]);
+
+  const pageHandler = () => {
+    if (fetchAnimePageResult?.Page.pageInfo.hasNextPage) {
+      fetchAnime({
+        variables: {
+          ...stateFormSelection,
+          page: fetchAnimePageResult?.Page.pageInfo.currentPage + 1,
+        },
+      });
+    }
+  };
+
   return (
     <div>
       <GenericList
         entityList={formatedAnimeList}
-        pageHandler={console.log}
+        pageHandler={pageHandler}
         loading={loading}
-        total={totalItem}
+        infinite
       />
     </div>
   );

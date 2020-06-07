@@ -1,5 +1,5 @@
 // IMPORT
-import React, { useEffect, ReactElement, PropsWithChildren } from 'react';
+import React, { useEffect, ReactElement, PropsWithChildren, memo } from 'react';
 import { Row, Col, Pagination } from 'antd';
 
 // TYPE DEFINITION
@@ -7,14 +7,13 @@ export interface IEntity {
   label: string | null | undefined;
   img: string | null | undefined;
   id: number;
-  desc: string | null | undefined;
 }
 
 type TGenericList = (
   props: PropsWithChildren<{
     entityList: IEntity[];
     loading: boolean;
-    pageHandler: (pageNumber: number) => void;
+    pageHandler: () => void;
     infinite?: boolean;
     total?: number;
   }>
@@ -28,6 +27,8 @@ const GenericList: TGenericList = ({
   loading,
   total,
 }) => {
+  let pagination: JSX.Element | null = null;
+  console.log('list render');
   const entityJsx = entityList.map((entity) => {
     return (
       <Col span={6} key={entity.id}>
@@ -36,12 +37,20 @@ const GenericList: TGenericList = ({
     );
   });
 
+  if (!infinite) {
+    pagination = <Pagination total={total} pageSize={50} onChange={pageHandler} />;
+  }
+
   return (
     <Row>
       {entityJsx}
-      <Pagination total={total} pageSize={50} onChange={pageHandler} />
+      <div>{loading ? 'loading' : 'loaded'}</div>
+      <button type="button" onClick={pageHandler}>
+        ff
+      </button>
+      {pagination}
     </Row>
   );
 };
 
-export default GenericList;
+export default memo(GenericList);

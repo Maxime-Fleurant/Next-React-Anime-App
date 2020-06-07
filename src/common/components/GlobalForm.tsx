@@ -10,8 +10,6 @@ import { tags, genres, formats, status } from '../scrap/const';
 // TYPE DEFINITION
 type TsearchAnimeForm = FunctionComponent<{ changeHandler: (values: any) => void }>;
 
-type IselectOptionsHelper = (items: string[]) => JSX.Element[];
-
 // REACT
 const GlobalForm: TsearchAnimeForm = ({ changeHandler }) => {
   useEffect(() => {
@@ -22,11 +20,20 @@ const GlobalForm: TsearchAnimeForm = ({ changeHandler }) => {
   const { Item } = Form;
   const [form] = Form.useForm();
 
+  let timeOut: any;
+
   const change: FormProps['onValuesChange'] = (changedValue, allVallues) => {
-    changeHandler(allVallues);
+    if (changedValue.text) {
+      clearTimeout(timeOut);
+      timeOut = setTimeout(() => {
+        changeHandler(allVallues);
+      }, 1000);
+    } else {
+      changeHandler(allVallues);
+    }
   };
 
-  const selectOptionsHelper: IselectOptionsHelper = (items) => {
+  const selectOptionsHelper = (items: string[]) => {
     return items.map((item) => {
       return (
         <Option value={item} key={item}>

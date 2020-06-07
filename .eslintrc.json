@@ -39,6 +39,8 @@
     "import/no-extraneous-dependencies": "off",
     "react/jsx-curly-newline": "off",
     "@typescript-eslint/interface-name-prefix": "off",
-    "no-underscore-dangle": "off"
+    "no-underscore-dangle": "off",
+    "prefer-template": "off",
+    "no-param-reassign": "off"
   }
 }
