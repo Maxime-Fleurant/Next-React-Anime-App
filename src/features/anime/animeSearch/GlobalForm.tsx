@@ -5,7 +5,7 @@ import { Select, Input, Form } from 'antd';
 import { FormProps } from 'antd/lib/form/Form';
 import _ from 'lodash';
 
-import { tags, genres, formats, status } from '../scrap/const';
+import { tags, genres, formats, status } from '../../../common/scrap/const';
 
 // TYPE DEFINITION
 type TsearchAnimeForm = FunctionComponent<{ changeHandler: (values: any) => void }>;

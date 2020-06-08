@@ -1,20 +1,17 @@
 // IMPORT
-import { FunctionComponent, useEffect } from 'react';
-import SearchAnimeContainer from '../../containers/SearchAnimeContainer';
+import { FunctionComponent } from 'react';
+import AnimeSearch from '../../features/anime/animeSearch';
 
 // TYPE DEFINITION
-type IndexComponent = FunctionComponent<{ animeList: any[] }>;
+type IndexComponent = FunctionComponent;
 
 // REACT COMPONENT
-const AnimePage: IndexComponent = () => {
-  useEffect(() => {
-    console.log('PAGE update or mount');
-  });
+const GlobalAnimePage: IndexComponent = () => {
   return (
     <div>
-      <SearchAnimeContainer />
+      <AnimeSearch />
     </div>
   );
 };
 
-export default AnimePage;
+export default GlobalAnimePage;

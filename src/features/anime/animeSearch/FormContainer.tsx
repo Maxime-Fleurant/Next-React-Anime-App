@@ -3,7 +3,7 @@ import { FunctionComponent, useEffect } from 'react';
 import { connect, useDispatch } from 'react-redux';
 import { updateFormSelection } from './animeListSlice';
 
-import GlobalForm from '../../../common/components/GlobalForm';
+import GlobalForm from './GlobalForm';
 
 // TYPE DEFINITION
 type TListContainer = FunctionComponent;

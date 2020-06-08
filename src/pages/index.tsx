@@ -1,20 +1,12 @@
-import { FC } from 'react';
-import Link from 'next/link';
+import { FunctionComponent } from 'react';
+import SplashBanner from '../features/splash/splashBanner';
+import AnimeSearch from '../features/anime/animeSearch';
 
-const Index: FC = () => {
+const Index: FunctionComponent = () => {
   return (
     <div>
-      <Link href="/globalanimes">
-        <a>global</a>
-      </Link>
-
-      <Link href="/test1">
-        <a>test1</a>
-      </Link>
-
-      <Link href="/test2">
-        <a>test2</a>
-      </Link>
+      <SplashBanner />
+      <AnimeSearch />
     </div>
   );
 };

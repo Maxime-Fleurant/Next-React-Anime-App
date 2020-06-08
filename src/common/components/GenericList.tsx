@@ -1,6 +1,7 @@
 // IMPORT
-import React, { useEffect, ReactElement, PropsWithChildren, memo } from 'react';
+import React, { ReactElement, PropsWithChildren, memo } from 'react';
 import { Row, Col, Pagination } from 'antd';
+import Link from 'next/link';
 
 // TYPE DEFINITION
 export interface IEntity {
@@ -28,11 +29,13 @@ const GenericList: TGenericList = ({
   total,
 }) => {
   let pagination: JSX.Element | null = null;
-  console.log('list render');
+
   const entityJsx = entityList.map((entity) => {
     return (
-      <Col span={6} key={entity.id}>
-        {entity.label}
+      <Col span={6} key={entity.id} style={{ border: '1px solid black' }}>
+        <Link href="/animes/[id]" as={`/animes/${entity.id}`}>
+          <a>{entity.label}</a>
+        </Link>
       </Col>
     );
   });

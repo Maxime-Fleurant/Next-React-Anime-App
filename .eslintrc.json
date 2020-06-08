@@ -41,6 +41,7 @@
     "@typescript-eslint/interface-name-prefix": "off",
     "no-underscore-dangle": "off",
     "prefer-template": "off",
-    "no-param-reassign": "off"
+    "no-param-reassign": "off",
+    "react/display-name": "off"
   }
 }

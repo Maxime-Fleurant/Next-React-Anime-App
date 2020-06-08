@@ -1,13 +1,14 @@
 // ******************************* IMPORT *******************************
-import { FunctionComponent, useEffect } from 'react';
+import { FunctionComponent } from 'react';
 import { GetStaticProps, GetStaticPaths } from 'next';
 import Link from 'next/link';
 import { useRouter } from 'next/dist/client/router';
-import useSWR from 'swr';
+import gql from 'graphql-tag';
+
+import { useQuery } from '@apollo/react-hooks';
 
 import { animeQuery, Anime } from '../../common/api/anime';
-import dataFs from '../../common/scrap/fsData';
-import { reviewQuery, Review } from '../../common/api/reviews';
+import withApollo from '../../app/apolloClient';
 
 // ******************************* TYPE DEFINITION *******************************
 type IndexComponent = FunctionComponent<{ anime: Anime }>;
@@ -17,7 +18,16 @@ const Index: IndexComponent = ({ anime }) => {
   const router = useRouter();
   const { id } = router.query;
 
-  const { data } = useSWR<Review[]>(['review', id], reviewQuery);
+  const { data } = useQuery<{ Page: { reviews: any[] } }>(gql`query {
+    Page(page:1, perPage:8){
+      reviews(mediaId:${id}, sort:	SCORE_DESC) {
+        id
+        summary
+        body(asHtml:false)
+        score
+      }
+    }
+  }`);
 
   const loadingComponent = <div>loading</div>;
   let indexComponent = loadingComponent;
@@ -26,7 +36,7 @@ const Index: IndexComponent = ({ anime }) => {
   if (data) {
     Reviews = (
       <div>
-        {data.map((review) => {
+        {data.Page.reviews.map((review: any) => {
           return <div key={review.id}>{review.summary}</div>;
         })}
       </div>
@@ -60,36 +70,81 @@ const Index: IndexComponent = ({ anime }) => {
   return indexComponent;
 };
 
-export default Index;
+export default withApollo(Index);
 
 // ******************************* SSR *******************************
-export const getStaticProps: GetStaticProps<{ anime: Anime } | {}, { id: string }> = async ({
-  params,
-}) => {
-  if (params) {
-    let animeProps: Anime;
-    const animesBulk = await dataFs.getData();
+export const getStaticProps: GetStaticProps<
+  { anime: Anime } | {},
+  { id: string; apolloClient: any }
+> = async ({ params, apolloClient }) => {
+  const anime = await apolloClient.query({
+    query: gql`
+      query test($id: string) {
+        Media(id: $id, type: ANIME) {
+          id
+          title {
+            romaji
+            english
+            native
+            userPreferred
+          }
+          description
+          episodes
+          trailer {
+            id
+            site
+          }
+          coverImage {
+            extraLarge
+            large
+            medium
+            color
+          }
+          genres
+          tags {
+            id
+            name
+            description
+            rank
+          }
+          characters(sort: FAVOURITES_DESC, perPage: 10) {
+            nodes {
+              id
+              name {
+                first
+                last
+                full
+                native
+              }
+              image {
+                large
+                medium
+              }
+            }
+          }
+        }
+      }
+    `,
+    variables: { id: params?.id },
+  });
 
-    const fsMedia = animesBulk.find((anime) => anime.id === Number(params.id));
+  console.log(anime);
+  return {
+    props: {
+      initialApolloState: apolloClient.cache.extract(),
+      anime,
+    },
+  };
 
-    if (fsMedia) {
-      animeProps = fsMedia;
-    } else {
-      animeProps = await animeQuery(params?.id);
-    }
+  // if (params) {
+  //   const animeProps = await animeQuery(params?.id);
 
-    return { props: { anime: animeProps } };
-  }
+  //   return { props: { anime: animeProps } };
+  // }
 
-  return { props: {} };
+  // return { props: {} };
 };
 
 export const getStaticPaths: GetStaticPaths<{ id: string }> = async () => {
-  const animesBulk = await dataFs.getData();
-
-  const paramsList = animesBulk.map((anime) => {
-    return { params: { id: String(anime.id) } };
-  });
-
-  return { paths: paramsList, fallback: true };
+  return { paths: [], fallback: true };
 };
