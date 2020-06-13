@@ -1,17 +1,18 @@
 // IMPORT
 import { FunctionComponent, useEffect } from 'react';
-import { connect, useDispatch } from 'react-redux';
+import { connect, useDispatch, useSelector } from 'react-redux';
 import { updateFormSelection } from './animeListSlice';
 
 import GlobalForm from './GlobalForm';
+import { TStore } from '../../../app/store';
 
 // TYPE DEFINITION
 type TListContainer = FunctionComponent;
 
 // REACT COMPONENT
 const FormContainer: TListContainer = () => {
-  useEffect(() => {
-    console.log('FormContainer Update');
+  const stateFormSelection = useSelector((state: TStore) => {
+    return state.animeListPageReducers.formSelection;
   });
 
   const dispacth = useDispatch();
@@ -21,7 +22,7 @@ const FormContainer: TListContainer = () => {
 
   return (
     <div>
-      <GlobalForm changeHandler={changeHandler} />
+      <GlobalForm changeHandler={changeHandler} initialForm={stateFormSelection} />
     </div>
   );
 };

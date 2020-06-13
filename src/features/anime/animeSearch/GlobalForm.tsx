@@ -8,14 +8,13 @@ import _ from 'lodash';
 import { tags, genres, formats, status } from '../../../common/scrap/const';
 
 // TYPE DEFINITION
-type TsearchAnimeForm = FunctionComponent<{ changeHandler: (values: any) => void }>;
+type TsearchAnimeForm = FunctionComponent<{
+  changeHandler: (values: any) => void;
+  initialForm?: any;
+}>;
 
 // REACT
-const GlobalForm: TsearchAnimeForm = ({ changeHandler }) => {
-  useEffect(() => {
-    console.log('FORM update or mount');
-  });
-
+const GlobalForm: TsearchAnimeForm = ({ changeHandler, initialForm }) => {
   const { Option } = Select;
   const { Item } = Form;
   const [form] = Form.useForm();
@@ -45,10 +44,10 @@ const GlobalForm: TsearchAnimeForm = ({ changeHandler }) => {
 
   return (
     <Form form={form} name="animeSearchForm" onValuesChange={change} layout="inline">
-      <Item name="text" style={{ width: '18%' }}>
+      <Item name="text" style={{ width: '18%' }} initialValue={initialForm.text}>
         <Input.Search placeholder="Search" />
       </Item>
-      <Item name="genre_in" style={{ width: '18%' }}>
+      <Item name="genre_in" style={{ width: '18%' }} initialValue={initialForm.genre_in}>
         <Select
           mode="multiple"
           placeholder="Genres"
@@ -60,7 +59,7 @@ const GlobalForm: TsearchAnimeForm = ({ changeHandler }) => {
           {selectOptionsHelper(genres)}
         </Select>
       </Item>
-      <Item name="tag_in" style={{ width: '18%' }}>
+      <Item name="tag_in" style={{ width: '18%' }} initialValue={initialForm.tag_in}>
         <Select
           mode="multiple"
           placeholder="Tags"
@@ -78,12 +77,12 @@ const GlobalForm: TsearchAnimeForm = ({ changeHandler }) => {
           })}
         </Select>
       </Item>
-      <Item name="format" style={{ width: '18%' }}>
+      <Item name="format" style={{ width: '18%' }} initialValue={initialForm.format}>
         <Select placeholder="Format" allowClear>
           {selectOptionsHelper(formats)}
         </Select>
       </Item>
-      <Item name="status" style={{ width: '18%' }}>
+      <Item name="status" style={{ width: '18%' }} initialValue={initialForm.status}>
         <Select placeholder="Status" allowClear>
           {selectOptionsHelper(status)}
         </Select>

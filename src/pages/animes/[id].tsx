@@ -1,14 +1,13 @@
 // ******************************* IMPORT *******************************
 import { FunctionComponent } from 'react';
 import { GetStaticProps, GetStaticPaths } from 'next';
+import { useQuery } from '@apollo/react-hooks';
 import Link from 'next/link';
 import { useRouter } from 'next/dist/client/router';
 import gql from 'graphql-tag';
-
-import { useQuery } from '@apollo/react-hooks';
+import { initializeApollo } from '../../app/apolloClient';
 
 import { animeQuery, Anime } from '../../common/api/anime';
-import withApollo from '../../app/apolloClient';
 
 // ******************************* TYPE DEFINITION *******************************
 type IndexComponent = FunctionComponent<{ anime: Anime }>;
@@ -17,7 +16,7 @@ type IndexComponent = FunctionComponent<{ anime: Anime }>;
 const Index: IndexComponent = ({ anime }) => {
   const router = useRouter();
   const { id } = router.query;
-
+  console.log(anime, 'fmldk');
   const { data } = useQuery<{ Page: { reviews: any[] } }>(gql`query {
     Page(page:1, perPage:8){
       reviews(mediaId:${id}, sort:	SCORE_DESC) {
@@ -70,16 +69,16 @@ const Index: IndexComponent = ({ anime }) => {
   return indexComponent;
 };
 
-export default withApollo(Index);
+export default Index;
 
 // ******************************* SSR *******************************
-export const getStaticProps: GetStaticProps<
-  { anime: Anime } | {},
-  { id: string; apolloClient: any }
-> = async ({ params, apolloClient }) => {
+export const getStaticProps: GetStaticProps<{ anime: Anime } | {}> = async ({ params }) => {
+  const apolloClient = initializeApollo();
+  console.log(params, 'fdlfkdl');
+
   const anime = await apolloClient.query({
     query: gql`
-      query test($id: string) {
+      query test($id: Int) {
         Media(id: $id, type: ANIME) {
           id
           title {
@@ -128,21 +127,11 @@ export const getStaticProps: GetStaticProps<
     variables: { id: params?.id },
   });
 
-  console.log(anime);
   return {
     props: {
-      initialApolloState: apolloClient.cache.extract(),
-      anime,
+      anime: anime.data.Media,
     },
   };
-
-  // if (params) {
-  //   const animeProps = await animeQuery(params?.id);
-
-  //   return { props: { anime: animeProps } };
-  // }
-
-  // return { props: {} };
 };
 
 export const getStaticPaths: GetStaticPaths<{ id: string }> = async () => {
