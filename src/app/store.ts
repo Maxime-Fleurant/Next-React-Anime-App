@@ -1,5 +1,5 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
-import { animeListPageReducers } from '../features/anime/animeSearch/animeListSlice';
+import { animeListPageReducers } from '../features/anime/animeSearch/redux/animeListSlice';
 
 const reducer = combineReducers({ animeListPageReducers });
 

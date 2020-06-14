@@ -14,9 +14,10 @@ type TGenericList = (
   props: PropsWithChildren<{
     entityList: IEntity[];
     loading: boolean;
-    pageHandler: () => void;
+    pageHandler?: () => void;
     infinite?: boolean;
     total?: number;
+    url: string;
   }>
 ) => ReactElement;
 
@@ -27,13 +28,14 @@ const GenericList: TGenericList = ({
   pageHandler,
   loading,
   total,
+  url,
 }) => {
   let pagination: JSX.Element | null = null;
 
   const entityJsx = entityList.map((entity) => {
     return (
       <Col span={6} key={entity.id} style={{ border: '1px solid black' }}>
-        <Link href="/animes/[id]" as={`/animes/${entity.id}`}>
+        <Link href={`${url}[id]`} as={`${url}${entity.id}`}>
           <a>{entity.label}</a>
         </Link>
       </Col>

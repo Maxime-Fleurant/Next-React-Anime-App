@@ -4,14 +4,16 @@ import { Provider } from 'react-redux';
 import { ApolloProvider } from '@apollo/react-hooks';
 import Layout from '../features/layout';
 import 'antd/dist/antd.css';
-import { store } from '../app/store';
+
 import { useApollo } from '../app/apolloClient';
+import { useStore } from '../app/redux';
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   const apolloClient = useApollo(pageProps.initialApolloState);
+  const reduxStore = useStore();
 
   return (
-    <Provider store={store}>
+    <Provider store={reduxStore}>
       <ApolloProvider client={apolloClient}>
         <Layout>
           <Component {...pageProps} />

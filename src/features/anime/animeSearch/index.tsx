@@ -1,8 +1,8 @@
 // IMPORT
 import { FunctionComponent, useEffect } from 'react';
 
-import ListContainer from './ListContainer';
-import FormContainer from './FormContainer';
+import ListContainer from './container/ListContainer';
+import FormContainer from './container/FormContainer';
 
 // TYPE DEFINITION
 type IndexComponent = FunctionComponent;
