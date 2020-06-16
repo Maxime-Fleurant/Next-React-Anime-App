@@ -2,6 +2,7 @@
 import React, { ReactElement, PropsWithChildren, memo } from 'react';
 import { Row, Col, Pagination } from 'antd';
 import Link from 'next/link';
+import { jsx } from '@emotion/core';
 
 // TYPE DEFINITION
 export interface IEntity {
@@ -36,7 +37,7 @@ const GenericList: TGenericList = ({
     return (
       <Col span={6} key={entity.id} style={{ border: '1px solid black' }}>
         <Link href={`${url}[id]`} as={`${url}${entity.id}`}>
-          <a>{entity.label}</a>
+          <a css={{ color: 'red' }}>{entity.label}</a>
         </Link>
       </Col>
     );

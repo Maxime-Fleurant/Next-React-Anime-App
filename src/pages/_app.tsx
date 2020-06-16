@@ -2,6 +2,8 @@ import { AppProps } from 'next/app';
 
 import { Provider } from 'react-redux';
 import { ApolloProvider } from '@apollo/react-hooks';
+import { CacheProvider } from '@emotion/core';
+import { cache } from 'emotion';
 import Layout from '../features/layout';
 import 'antd/dist/antd.css';
 
@@ -15,9 +17,9 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   return (
     <Provider store={reduxStore}>
       <ApolloProvider client={apolloClient}>
-        <Layout>
+        <CacheProvider value={cache}>
           <Component {...pageProps} />
-        </Layout>
+        </CacheProvider>
       </ApolloProvider>
     </Provider>
   );
