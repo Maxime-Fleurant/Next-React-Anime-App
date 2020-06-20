@@ -27,7 +27,7 @@ export default class MyDocument extends Document {
            {
             font-size: 1.25vw;
             @media (max-width: 1023px) {
-              font-size: 16px;
+              font-size: 20px;
             }
           }
         `}

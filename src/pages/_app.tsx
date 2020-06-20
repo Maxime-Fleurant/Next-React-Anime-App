@@ -18,7 +18,9 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
     <Provider store={reduxStore}>
       <ApolloProvider client={apolloClient}>
         <CacheProvider value={cache}>
-          <Component {...pageProps} />
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
         </CacheProvider>
       </ApolloProvider>
     </Provider>
