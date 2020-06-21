@@ -15,10 +15,10 @@ const Layout: FunctionComponent = ({ children }) => {
       <div css={navCss}>
         <span css={navSpanCss}>
           <span>
-            <Link href="/animes">LinDesign</Link>
+            <Link href="/animes">Design</Link>
           </span>
           <span>
-            <Link href="/grid">LinDesign</Link>
+            <Link href="/grid">Compute</Link>
           </span>
           <span>Project</span>
           <span>Life</span>
