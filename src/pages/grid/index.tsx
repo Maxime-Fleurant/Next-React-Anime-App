@@ -22,7 +22,7 @@ const Grid = () => {
       <Cell
         deskPos={{ rowStart: 8, rowEnd: 12, columnStart: 1, columnEnd: 13 }}
         tabPos={{ rowStart: 8, rowEnd: 9, columnStart: 1, columnEnd: 25 }}
-        extraCss={[regularText]}
+        extraCss={[...regularText]}
       >
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi lacinia massa eget malesuada
         consequat. Nam molestie eros non neque condimentum euismod eget id lectus. Proin vel ex
@@ -35,7 +35,7 @@ const Grid = () => {
       <Cell
         deskPos={{ rowStart: 12, rowEnd: 14, columnStart: 13, columnEnd: 25 }}
         tabPos={{ rowStart: 10, rowEnd: 11, columnStart: 1, columnEnd: 25 }}
-        extraCss={[regularText]}
+        extraCss={[...regularText]}
       >
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi lacinia massa eget malesuada
         consequat. Nam molestie eros non neque condimentum euismod eget id lectus. Proin vel ex

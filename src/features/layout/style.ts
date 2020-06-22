@@ -1,4 +1,6 @@
 import { css } from '@emotion/core';
+import { findLastIndex } from 'lodash';
+import { backgroundColor900, baseColor900 } from '../../common/globalStyle';
 
 export const gridCss = css`
   display: grid;
@@ -7,29 +9,31 @@ export const gridCss = css`
   grid-auto-rows: ${(76 - 23 * 1.4) / 24}rem;
 
   font-family: helvetica neue;
-  margin: 0 2rem;
+  margin: 1rem 2rem;
 
   @media (max-width: 1023px) {
     grid-auto-rows: auto;
+    // grid-template-columns: repeat(12, 1fr);
   }
 `;
 
-export const item = css`
-  grid-area: 1 / 1 / 3 / 4;
-  font-size: 1.666rem;
-  line-height: 1;
-  align-self: center;
-  margin: 1rem 0;
-`;
+export const nav = css({
+  gridArea: '1 / 1 / 3 / 25',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  borderBottom: `0.08rem solid ${baseColor900}`,
+});
 
-export const topBorder = css`
-  grid-area: 1 / 1 / 3 / 25;
-  border-bottom: 0.12rem solid black;
+export const navTab = css`
+  @media (max-width: 1023px) {
+    grid-area: 1 / 1 / 3 / 13;
+  }
 `;
 
 export const navCss = css`
-  grid-area: 1 / 4 / 3 / 25;
-  place-self: center right;
+  display: flex;
+  align-items: center;
 `;
 
 export const navSpanCss = css`

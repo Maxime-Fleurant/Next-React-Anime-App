@@ -1,6 +1,6 @@
 // IMPORT
 
-import React, { FunctionComponent, useEffect } from 'react';
+import React, { FunctionComponent } from 'react';
 import { Select, Input, Form } from 'antd';
 import { FormProps } from 'antd/lib/form/Form';
 import _ from 'lodash';

@@ -1,6 +1,7 @@
 import Document, { Head, Main, NextScript } from 'next/document';
 import { extractCritical } from 'emotion-server';
 import { css } from '@emotion/core';
+import { backgroundColor100 } from '../common/globalStyle';
 
 export default class MyDocument extends Document {
   static async getInitialProps(ctx: any) {
@@ -23,17 +24,20 @@ export default class MyDocument extends Document {
   render() {
     return (
       <html
-        css={css`
-           {
-            font-size: 1.25vw;
-            @media (max-width: 1023px) {
-              font-size: 20px;
+        css={[
+          css`
+             {
+              font-size: 1.25vw;
+              @media (max-width: 1023px) {
+                font-size: 20px;
+              }
             }
-          }
-        `}
+          `,
+          backgroundColor100,
+        ]}
       >
         <Head />
-        <body>
+        <body css={backgroundColor100}>
           <Main />
           <NextScript />
         </body>
