@@ -2,7 +2,7 @@ import { FunctionComponent } from 'react';
 import Link from 'next/link';
 import { css } from '@emotion/core';
 
-import { gridCss, navCss, nav, navTab } from './style';
+import { gridCss, navCss, nav, navTab, logo } from './style';
 import {
   font64,
   font20,
@@ -11,6 +11,7 @@ import {
   textColor900,
   switchButton,
   helveticaRegular,
+  titleLineHeight,
 } from '../../common/globalStyle';
 
 const Layout: FunctionComponent = ({ children }) => {
@@ -18,24 +19,24 @@ const Layout: FunctionComponent = ({ children }) => {
     <div css={gridCss}>
       <div css={[nav]}>
         <Link href="/">
-          <span css={[font64, helveticaMedium, textColor900]}>
+          <span css={[font64, helveticaMedium, textColor900, titleLineHeight, logo]}>
             {'Anime '}
             <span css={font20}>アニメ</span>
           </span>
         </Link>
-        <div css={navCss}>
+        <span css={navCss}>
           <Link href="/animes">
-            <div css={[font40, helveticaRegular, textColor900, css({ marginRight: '2rem' })]}>
+            <span css={[font40, helveticaRegular, textColor900, css({ marginRight: '2rem' })]}>
               {'Browse '}
               <span css={font20}>ブラウズ</span>
-            </div>
+            </span>
           </Link>
 
           <label css={switchButton}>
             <input type="checkbox" id="fldk" />
             <div className="tt" />
           </label>
-        </div>
+        </span>
       </div>
 
       {children}

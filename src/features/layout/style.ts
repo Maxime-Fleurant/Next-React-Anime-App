@@ -1,6 +1,5 @@
 import { css } from '@emotion/core';
-import { findLastIndex } from 'lodash';
-import { backgroundColor900, baseColor900 } from '../../common/globalStyle';
+import { baseColor900 } from '../../common/globalStyle';
 
 export const gridCss = css`
   display: grid;
@@ -13,16 +12,19 @@ export const gridCss = css`
 
   @media (max-width: 1023px) {
     grid-auto-rows: auto;
-    // grid-template-columns: repeat(12, 1fr);
   }
 `;
 
 export const nav = css({
   gridArea: '1 / 1 / 3 / 25',
   display: 'flex',
-  alignItems: 'center',
+  alignItems: 'baseline',
   justifyContent: 'space-between',
   borderBottom: `0.08rem solid ${baseColor900}`,
+});
+
+export const logo = css({
+  margin: '1rem 0',
 });
 
 export const navTab = css`

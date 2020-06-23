@@ -15,15 +15,25 @@ type TCell = FunctionComponent<{
   mobilPos?: IPos;
   ratio?: number;
   extraCss?: SerializedStyles[];
+  backgroundImg?: string;
 }>;
 
 // REACT
-export const Cell: TCell = ({ deskPos, tabPos, mobilPos, ratio, children, extraCss = [] }) => {
+export const Cell: TCell = ({
+  deskPos,
+  tabPos,
+  mobilPos,
+  ratio,
+  children,
+  extraCss = [],
+  backgroundImg,
+}) => {
   const component = useRef<HTMLDivElement>(null);
   const [componentWidth, updatecomponentWidth] = useState(0);
 
   let withRatioCss = css``;
   let withtabPos = css``;
+  let withBackground = css``;
 
   const handleResize = (): void => {
     if (component && component.current) {
@@ -57,6 +67,15 @@ export const Cell: TCell = ({ deskPos, tabPos, mobilPos, ratio, children, extraC
     `;
   }
 
+  if (backgroundImg) {
+    withBackground = css({
+      backgroundImage: `url("${backgroundImg}")`,
+      backgroundSize: 'cover',
+      backgroundRepeat: 'no-repeat',
+      backgroundPosition: 'center',
+    });
+  }
+
   useEffect(() => {
     if (component && component.current) {
       updatecomponentWidth(component.current.offsetWidth);
@@ -70,7 +89,10 @@ export const Cell: TCell = ({ deskPos, tabPos, mobilPos, ratio, children, extraC
   }, []);
 
   return (
-    <div ref={component} css={[componentCss, withRatioCss, withtabPos, ...extraCss]}>
+    <div
+      ref={component}
+      css={[componentCss, withRatioCss, withtabPos, withBackground, ...extraCss]}
+    >
       {children}
     </div>
   );

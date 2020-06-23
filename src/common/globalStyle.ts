@@ -11,6 +11,15 @@ export const baseColor300 = '#C6CBD2';
 export const baseColor200 = '#E2E5E9';
 export const baseColor100 = '#F0F2F4';
 
+export const pointSize24 = '1rem';
+export const pointSize20 = '0.8rem';
+export const pointSize32 = '1.333rem';
+export const pointSize40 = '1.666rem';
+export const pointSize48 = '2rem';
+export const pointSize56 = '2.333rem';
+export const pointSize64 = '2.666rem';
+export const pointSize120 = '5rem';
+
 export const textColor1000 = css({ color: baseColor1000 });
 export const textColor900 = css({ color: baseColor900 });
 export const textColor800 = css({ color: baseColor800 });
@@ -36,15 +45,15 @@ export const backgroundColor100 = css({ backgroundColor: baseColor100 });
 export const textLineHeight = css({ lineHeight: 1.4 });
 export const titleLineHeight = css({ lineHeight: 1 });
 
-export const regularText = [css({ fontSize: '1rem', textAlign: 'justify' }), textLineHeight];
-export const fontRegular = css({ fontSize: '1rem' });
-export const font20 = css({ fontSize: '0.8rem' });
-export const font32 = css({ fontSize: '1.333rem' });
-export const font40 = css({ fontSize: '1.666rem' });
-export const font48 = css({ fontSize: '2rem' });
-export const font56 = css({ fontSize: '2.333rem' });
-export const font64 = css({ fontSize: '2.666rem' });
-export const font120 = css({ fontSize: '5rem' });
+export const regularText = [css({ fontSize: pointSize24, textAlign: 'justify' }), textLineHeight];
+export const fontRegular = css({ fontSize: pointSize24 });
+export const font20 = css({ fontSize: pointSize20 });
+export const font32 = css({ fontSize: pointSize32 });
+export const font40 = css({ fontSize: pointSize40 });
+export const font48 = css({ fontSize: pointSize48 });
+export const font56 = css({ fontSize: pointSize56 });
+export const font64 = css({ fontSize: pointSize64 });
+export const font120 = css({ fontSize: pointSize120 });
 
 export const helveticaMedium = css({
   fontFamily:
@@ -53,8 +62,12 @@ export const helveticaMedium = css({
 
 export const helveticaRegular = css({
   fontFamily:
-    'font-family: "HelveticaNeue", "Helvetica Neue", "HelveticaNeueRoman", "HelveticaNeue-Roman", "Helvetica Neue Roman", "TeXGyreHerosRegular", "Helvetica", "Tahoma", "Geneva", "Arial", sans-serif; font-weight:400; font-stretch:normal;',
+    ' HelveticaNeue, Helvetica Neue, HelveticaNeueRoman, HelveticaNeue-Roman, Helvetica Neue Roman, TeXGyreHerosRegular, Helvetica, Tahoma, Geneva, Arial, sans-serif; font-weight:400; font-stretch:normal;',
 });
+
+const flexElement = css({ display: 'flex' });
+
+export const centerContent = [flexElement, css({ justifyContent: 'center', alignItems: 'center' })];
 
 export const imgFit = css({
   width: '100%',
