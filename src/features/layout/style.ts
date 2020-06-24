@@ -15,6 +15,19 @@ export const gridCss = css`
   }
 `;
 
+export const subGrid = css`
+  display: grid;
+  grid-template-columns: repeat(24, 1fr);
+  grid-gap: 1.4rem;
+  grid-auto-rows: ${(76 - 23 * 1.4) / 24}rem;
+
+  font-family: helvetica neue;
+
+  @media (max-width: 1023px) {
+    grid-auto-rows: auto;
+  }
+`;
+
 export const nav = css({
   gridArea: '1 / 1 / 3 / 25',
   display: 'flex',

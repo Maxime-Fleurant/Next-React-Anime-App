@@ -1,6 +1,6 @@
 import { FunctionComponent } from 'react';
 import Link from 'next/link';
-import { css } from '@emotion/core';
+import { css, Global } from '@emotion/core';
 
 import { gridCss, navCss, nav, navTab, logo } from './style';
 import {

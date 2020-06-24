@@ -1,4 +1,6 @@
-import { FunctionComponent } from 'react';
+import { FunctionComponent, useState } from 'react';
+import Youtube from 'react-youtube';
+import { css } from '@emotion/core';
 
 import { ReviewList } from './component/reviewList';
 import GenericList from '../../../common/components/GenericList';
@@ -14,11 +16,10 @@ import {
   textColor400,
   regularText,
   font20,
-  fontRegular,
-  textLineHeight,
+  font48,
 } from '../../../common/globalStyle';
 import { Cell } from '../../../common/components/cell';
-import { titleMargin } from './style';
+import { titleMargin, cellVideo, youtubeContainer, playerButton, cellButton } from './style';
 
 // TYPE
 type TAnimeDetail = FunctionComponent<{ anime: any }>;
@@ -26,6 +27,19 @@ type TAnimeDetail = FunctionComponent<{ anime: any }>;
 // REACT
 export const AnimeDetail: TAnimeDetail = ({ anime }) => {
   let indexComponent = <div>loading</div>;
+  let youtubePlayer: any;
+  const [videoState, updateVideoState] = useState(false);
+
+  const playerReady = (event: any) => {
+    youtubePlayer = event.target;
+  };
+
+  const click = (): void => {
+    if (youtubePlayer) {
+      updateVideoState(true);
+      youtubePlayer.playVideo();
+    }
+  };
 
   if (anime) {
     const characters = anime.characters.nodes.map((character: any) => {
@@ -60,7 +74,6 @@ export const AnimeDetail: TAnimeDetail = ({ anime }) => {
         backgroundImg="/img/akira.jpg"
         ratio={0.7}
       />
-
       <Cell
         deskPos={{ rowStart: 4, rowEnd: 7, columnStart: 7, columnEnd: 13 }}
         tabPos={{ rowStart: 4, rowEnd: 8, columnStart: 11, columnEnd: 25 }}
@@ -77,7 +90,6 @@ export const AnimeDetail: TAnimeDetail = ({ anime }) => {
           </div>
         </div>
       </Cell>
-
       <Cell
         deskPos={{ rowStart: 7, rowEnd: 12, columnStart: 7, columnEnd: 16 }}
         tabPos={{ rowStart: 8, rowEnd: 12, columnStart: 11, columnEnd: 25 }}
@@ -92,7 +104,6 @@ export const AnimeDetail: TAnimeDetail = ({ anime }) => {
           something horrific as the city walls are destroyed by a colossal titan.
         </div>
       </Cell>
-
       <Cell
         deskPos={{ rowStart: 7, rowEnd: 11, columnStart: 16, columnEnd: 19 }}
         tabPos={{ rowStart: 12, rowEnd: 13, columnStart: 13, columnEnd: 17 }}
@@ -100,7 +111,6 @@ export const AnimeDetail: TAnimeDetail = ({ anime }) => {
         backgroundImg="/img/girl2.jpg"
         ratio={0.7}
       />
-
       <Cell
         deskPos={{ rowStart: 7, rowEnd: 11, columnStart: 19, columnEnd: 22 }}
         tabPos={{ rowStart: 12, rowEnd: 13, columnStart: 17, columnEnd: 21 }}
@@ -108,7 +118,6 @@ export const AnimeDetail: TAnimeDetail = ({ anime }) => {
         backgroundImg="/img/girl2.jpg"
         ratio={0.7}
       />
-
       <Cell
         deskPos={{ rowStart: 7, rowEnd: 11, columnStart: 22, columnEnd: 25 }}
         tabPos={{ rowStart: 12, rowEnd: 13, columnStart: 21, columnEnd: 25 }}
@@ -116,7 +125,6 @@ export const AnimeDetail: TAnimeDetail = ({ anime }) => {
         backgroundImg="/img/girl2.jpg"
         ratio={0.7}
       />
-
       <Cell
         deskPos={{ rowStart: 11, rowEnd: 15, columnStart: 16, columnEnd: 19 }}
         tabPos={{ rowStart: 13, rowEnd: 14, columnStart: 13, columnEnd: 17 }}
@@ -124,7 +132,6 @@ export const AnimeDetail: TAnimeDetail = ({ anime }) => {
         backgroundImg="/img/girl2.jpg"
         ratio={0.7}
       />
-
       <Cell
         deskPos={{ rowStart: 11, rowEnd: 15, columnStart: 19, columnEnd: 22 }}
         tabPos={{ rowStart: 13, rowEnd: 14, columnStart: 17, columnEnd: 21 }}
@@ -132,7 +139,6 @@ export const AnimeDetail: TAnimeDetail = ({ anime }) => {
         backgroundImg="/img/girl2.jpg"
         ratio={0.7}
       />
-
       <Cell
         deskPos={{ rowStart: 11, rowEnd: 15, columnStart: 22, columnEnd: 25 }}
         tabPos={{ rowStart: 13, rowEnd: 14, columnStart: 21, columnEnd: 25 }}
@@ -140,7 +146,6 @@ export const AnimeDetail: TAnimeDetail = ({ anime }) => {
         backgroundImg="/img/girl2.jpg"
         ratio={0.7}
       />
-
       <Cell
         deskPos={{ rowStart: 15, rowEnd: 19, columnStart: 16, columnEnd: 19 }}
         tabPos={{ rowStart: 14, rowEnd: 15, columnStart: 13, columnEnd: 17 }}
@@ -148,7 +153,6 @@ export const AnimeDetail: TAnimeDetail = ({ anime }) => {
         backgroundImg="/img/girl2.jpg"
         ratio={0.7}
       />
-
       <Cell
         deskPos={{ rowStart: 15, rowEnd: 19, columnStart: 19, columnEnd: 22 }}
         tabPos={{ rowStart: 14, rowEnd: 15, columnStart: 17, columnEnd: 21 }}
@@ -156,7 +160,6 @@ export const AnimeDetail: TAnimeDetail = ({ anime }) => {
         backgroundImg="/img/girl2.jpg"
         ratio={0.7}
       />
-
       <Cell
         deskPos={{ rowStart: 15, rowEnd: 19, columnStart: 22, columnEnd: 25 }}
         tabPos={{ rowStart: 14, rowEnd: 15, columnStart: 21, columnEnd: 25 }}
@@ -168,10 +171,33 @@ export const AnimeDetail: TAnimeDetail = ({ anime }) => {
       <Cell
         deskPos={{ rowStart: 12, rowEnd: 21, columnStart: 1, columnEnd: 16 }}
         tabPos={{ rowStart: 12, rowEnd: 14, columnStart: 1, columnEnd: 13 }}
-        extraCss={[imgBorder]}
-        backgroundImg="/img/girl2.jpg"
-        ratio={1.7}
+        ratio={1.77}
+        extraCss={[imgBorder, cellVideo, css({ display: videoState ? 'none' : 'block' })]}
+        backgroundImg="/img/banner6.jpg"
       />
+
+      <Cell
+        deskPos={{ rowStart: 12, rowEnd: 21, columnStart: 1, columnEnd: 16 }}
+        tabPos={{ rowStart: 12, rowEnd: 14, columnStart: 1, columnEnd: 13 }}
+        ratio={1.77}
+        extraCss={[imgBorder, cellButton, css({ display: videoState ? 'none' : 'flex' })]}
+        onClick={click}
+      >
+        <span css={[font48, titleLineHeight, textColor900, playerButton]}>Trailer</span>
+      </Cell>
+
+      <Cell
+        deskPos={{ rowStart: 12, rowEnd: 21, columnStart: 1, columnEnd: 16 }}
+        tabPos={{ rowStart: 12, rowEnd: 14, columnStart: 1, columnEnd: 13 }}
+        ratio={1.77}
+        extraCss={[imgBorder, youtubeContainer]}
+      >
+        <Youtube
+          videoId="KKzmOh4SuBc"
+          opts={{ width: '100%', height: '100%' }}
+          onReady={playerReady}
+        />
+      </Cell>
 
       <Cell
         deskPos={{ rowStart: 21, rowEnd: 22, columnStart: 1, columnEnd: 25 }}
@@ -182,7 +208,6 @@ export const AnimeDetail: TAnimeDetail = ({ anime }) => {
           <span css={[helveticaRegular, font20, titleLineHeight]}>レビュー</span>
         </div>
       </Cell>
-
       <Cell
         deskPos={{ rowStart: 22, rowEnd: 26, columnStart: 1, columnEnd: 9 }}
         tabPos={{ rowStart: 16, rowEnd: 17, columnStart: 1, columnEnd: 13 }}
@@ -199,7 +224,6 @@ export const AnimeDetail: TAnimeDetail = ({ anime }) => {
           </span>
         </div>
       </Cell>
-
       <Cell
         deskPos={{ rowStart: 22, rowEnd: 26, columnStart: 9, columnEnd: 17 }}
         tabPos={{ rowStart: 16, rowEnd: 17, columnStart: 13, columnEnd: 25 }}
@@ -216,7 +240,6 @@ export const AnimeDetail: TAnimeDetail = ({ anime }) => {
           </span>
         </div>
       </Cell>
-
       <Cell
         deskPos={{ rowStart: 22, rowEnd: 26, columnStart: 17, columnEnd: 25 }}
         tabPos={{ rowStart: 17, rowEnd: 18, columnStart: 1, columnEnd: 13 }}
@@ -233,7 +256,6 @@ export const AnimeDetail: TAnimeDetail = ({ anime }) => {
           </span>
         </div>
       </Cell>
-
       <Cell
         deskPos={{ rowStart: 26, rowEnd: 27, columnStart: 1, columnEnd: 9 }}
         tabPos={{ rowStart: 17, rowEnd: 18, columnStart: 13, columnEnd: 25 }}
@@ -250,7 +272,6 @@ export const AnimeDetail: TAnimeDetail = ({ anime }) => {
           </span>
         </div>
       </Cell>
-
       <Cell
         deskPos={{ rowStart: 26, rowEnd: 27, columnStart: 9, columnEnd: 17 }}
         tabPos={{ rowStart: 18, rowEnd: 19, columnStart: 13, columnEnd: 25 }}
@@ -267,7 +288,6 @@ export const AnimeDetail: TAnimeDetail = ({ anime }) => {
           </span>
         </div>
       </Cell>
-
       <Cell
         deskPos={{ rowStart: 26, rowEnd: 27, columnStart: 17, columnEnd: 25 }}
         tabPos={{ rowStart: 18, rowEnd: 19, columnStart: 1, columnEnd: 13 }}

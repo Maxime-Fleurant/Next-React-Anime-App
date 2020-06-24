@@ -1,4 +1,4 @@
-import { FunctionComponent, useRef, useState, useEffect } from 'react';
+import { FunctionComponent, useRef, useState, useEffect, MouseEventHandler } from 'react';
 import { css, SerializedStyles } from '@emotion/core';
 
 // TYPE
@@ -16,6 +16,7 @@ type TCell = FunctionComponent<{
   ratio?: number;
   extraCss?: SerializedStyles[];
   backgroundImg?: string;
+  onClick?: MouseEventHandler;
 }>;
 
 // REACT
@@ -27,6 +28,7 @@ export const Cell: TCell = ({
   children,
   extraCss = [],
   backgroundImg,
+  onClick,
 }) => {
   const component = useRef<HTMLDivElement>(null);
   const [componentWidth, updatecomponentWidth] = useState(0);
@@ -90,6 +92,7 @@ export const Cell: TCell = ({
 
   return (
     <div
+      onClick={onClick}
       ref={component}
       css={[componentCss, withRatioCss, withtabPos, withBackground, ...extraCss]}
     >

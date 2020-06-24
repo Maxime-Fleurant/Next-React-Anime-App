@@ -20,11 +20,7 @@ const FormContainer: TListContainer = () => {
     dispacth(updateFormSelection(values));
   };
 
-  return (
-    <div>
-      <GlobalForm changeHandler={changeHandler} initialForm={stateFormSelection} />
-    </div>
-  );
+  return <GlobalForm changeHandler={changeHandler} initialForm={stateFormSelection} />;
 };
 
 export default FormContainer;

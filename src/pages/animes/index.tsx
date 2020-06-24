@@ -7,11 +7,7 @@ type IndexComponent = FunctionComponent;
 
 // REACT COMPONENT
 const GlobalAnimePage: IndexComponent = () => {
-  return (
-    <div>
-      <AnimeSearch />
-    </div>
-  );
+  return <AnimeSearch />;
 };
 
 export default GlobalAnimePage;

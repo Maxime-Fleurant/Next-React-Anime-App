@@ -1,4 +1,5 @@
 import Document, { Head, Main, NextScript } from 'next/document';
+
 import { extractCritical } from 'emotion-server';
 import { css } from '@emotion/core';
 import { backgroundColor100 } from '../common/globalStyle';

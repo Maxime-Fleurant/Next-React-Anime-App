@@ -11,6 +11,11 @@ export const baseColor300 = '#C6CBD2';
 export const baseColor200 = '#E2E5E9';
 export const baseColor100 = '#F0F2F4';
 
+export const baseHelveticaRegular =
+  ' HelveticaNeue, Helvetica Neue, HelveticaNeueRoman, HelveticaNeue-Roman, Helvetica Neue Roman, TeXGyreHerosRegular, Helvetica, Tahoma, Geneva, Arial, sans-serif; font-weight:400; font-stretch:normal;';
+
+export const pointSize1 = '0.04rem';
+export const pointSize4 = '0.16rem';
 export const pointSize24 = '1rem';
 export const pointSize20 = '0.8rem';
 export const pointSize32 = '1.333rem';
@@ -61,8 +66,7 @@ export const helveticaMedium = css({
 });
 
 export const helveticaRegular = css({
-  fontFamily:
-    ' HelveticaNeue, Helvetica Neue, HelveticaNeueRoman, HelveticaNeue-Roman, Helvetica Neue Roman, TeXGyreHerosRegular, Helvetica, Tahoma, Geneva, Arial, sans-serif; font-weight:400; font-stretch:normal;',
+  fontFamily: baseHelveticaRegular,
 });
 
 const flexElement = css({ display: 'flex' });
