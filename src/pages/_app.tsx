@@ -9,8 +9,7 @@ import Layout from '../features/layout';
 
 import { useApollo } from '../app/apolloClient';
 import { useStore } from '../app/redux';
-import { normalize } from './normalize';
-import 'antd/dist/antd.css';
+import { normalize } from '../features/splash/normalize';
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   const apolloClient = useApollo(pageProps.initialApolloState);
@@ -25,7 +24,6 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
               ${normalize}
             `}
           />
-
           <Layout>
             <Component {...pageProps} />
           </Layout>

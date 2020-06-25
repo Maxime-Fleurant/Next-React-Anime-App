@@ -24,7 +24,7 @@ import {
   font20,
   helveticaRegular,
 } from '../../../../common/globalStyle';
-import { itemSelect, selectAnt, globalAnt } from './style';
+import { inputText, selectStyle } from './style';
 
 // TYPE DEFINITION
 type TsearchAnimeForm = FunctionComponent<{
@@ -63,15 +63,14 @@ const GlobalForm: TsearchAnimeForm = ({ changeHandler, initialForm }) => {
 
   return (
     <>
-      <Global styles={globalAnt} />
       <Cell
         deskPos={{ rowStart: 4, rowEnd: 6, columnStart: 1, columnEnd: 25 }}
-        tabPos={{ rowStart: 4, rowEnd: 12, columnStart: 1, columnEnd: 11 }}
+        tabPos={{ rowStart: 4, rowEnd: 6, columnStart: 1, columnEnd: 25 }}
       >
         <Form form={form} name="animeSearchForm" onValuesChange={change} css={subGrid}>
           <Cell
-            deskPos={{ rowStart: 1, rowEnd: 2, columnStart: 1, columnEnd: 7 }}
-            tabPos={{ rowStart: 4, rowEnd: 12, columnStart: 1, columnEnd: 11 }}
+            deskPos={{ rowStart: 1, rowEnd: 2, columnStart: 1, columnEnd: 5 }}
+            tabPos={{ rowStart: 1, rowEnd: 2, columnStart: 1, columnEnd: 25 }}
             extraCss={[font40, titleLineHeight, helveticaMedium]}
           >
             Title&nbsp;
@@ -79,44 +78,90 @@ const GlobalForm: TsearchAnimeForm = ({ changeHandler, initialForm }) => {
           </Cell>
 
           <Cell
-            deskPos={{ rowStart: 2, rowEnd: 3, columnStart: 1, columnEnd: 7 }}
-            tabPos={{ rowStart: 4, rowEnd: 12, columnStart: 1, columnEnd: 11 }}
+            deskPos={{ rowStart: 2, rowEnd: 3, columnStart: 1, columnEnd: 5 }}
+            tabPos={{ rowStart: 2, rowEnd: 3, columnStart: 1, columnEnd: 25 }}
           >
-            <Item
-              name="genre_in"
-              initialValue={initialForm.genre_in}
-              css={[itemSelect, css('ant-input{font-size: 1rem}')]}
-            >
-              <Input.Search placeholder="Search" css={css('ant-input{font-size: 1rem}')} />
-            </Item>
+            <input type="text" placeholder="Search Title" css={inputText} />
           </Cell>
 
           <Cell
-            deskPos={{ rowStart: 1, rowEnd: 2, columnStart: 7, columnEnd: 11 }}
-            tabPos={{ rowStart: 4, rowEnd: 12, columnStart: 1, columnEnd: 11 }}
+            deskPos={{ rowStart: 1, rowEnd: 2, columnStart: 6, columnEnd: 10 }}
+            tabPos={{ rowStart: 3, rowEnd: 4, columnStart: 1, columnEnd: 25 }}
             extraCss={[font40, titleLineHeight, helveticaMedium]}
           >
-            Title&nbsp;
-            <span css={css([font20, titleLineHeight, helveticaRegular])}>題名</span>
+            Genre&nbsp;
+            <span css={css([font20, titleLineHeight, helveticaRegular])}>カテゴリ</span>
           </Cell>
 
           <Cell
-            deskPos={{ rowStart: 2, rowEnd: 3, columnStart: 7, columnEnd: 11 }}
-            tabPos={{ rowStart: 4, rowEnd: 12, columnStart: 1, columnEnd: 11 }}
+            deskPos={{ rowStart: 2, rowEnd: 3, columnStart: 6, columnEnd: 10 }}
+            tabPos={{ rowStart: 4, rowEnd: 5, columnStart: 1, columnEnd: 25 }}
           >
-            <Item name="genre_in" initialValue={initialForm.genre_in} css={[itemSelect]}>
-              <Select
-                mode="multiple"
-                placeholder="Genres"
-                allowClear
-                maxTagCount={1}
-                maxTagTextLength={3}
-                showArrow
-                css={selectAnt}
-              >
-                {selectOptionsHelper(genres)}
-              </Select>
-            </Item>
+            <select name="" id="" css={selectStyle}>
+              <option value="">Select Genre</option>
+              <option value="">fldk</option>
+              <option value="">fldk</option>
+            </select>
+          </Cell>
+
+          <Cell
+            deskPos={{ rowStart: 1, rowEnd: 2, columnStart: 11, columnEnd: 15 }}
+            tabPos={{ rowStart: 5, rowEnd: 6, columnStart: 1, columnEnd: 25 }}
+            extraCss={[font40, titleLineHeight, helveticaMedium]}
+          >
+            Tag&nbsp;
+            <span css={css([font20, titleLineHeight, helveticaRegular])}>付箋</span>
+          </Cell>
+
+          <Cell
+            deskPos={{ rowStart: 2, rowEnd: 3, columnStart: 11, columnEnd: 15 }}
+            tabPos={{ rowStart: 6, rowEnd: 7, columnStart: 1, columnEnd: 25 }}
+          >
+            <select name="" id="" css={selectStyle}>
+              <option value="">Select Tag</option>
+              <option value="">fldk</option>
+              <option value="">fldk</option>
+            </select>
+          </Cell>
+
+          <Cell
+            deskPos={{ rowStart: 1, rowEnd: 2, columnStart: 16, columnEnd: 20 }}
+            tabPos={{ rowStart: 7, rowEnd: 8, columnStart: 1, columnEnd: 25 }}
+            extraCss={[font40, titleLineHeight, helveticaMedium]}
+          >
+            Format&nbsp;
+            <span css={css([font20, titleLineHeight, helveticaRegular])}>体裁</span>
+          </Cell>
+
+          <Cell
+            deskPos={{ rowStart: 2, rowEnd: 3, columnStart: 16, columnEnd: 20 }}
+            tabPos={{ rowStart: 8, rowEnd: 9, columnStart: 1, columnEnd: 25 }}
+          >
+            <select name="" id="" css={selectStyle}>
+              <option value="">Select Format</option>
+              <option value="">fldk</option>
+              <option value="">fldk</option>
+            </select>
+          </Cell>
+
+          <Cell
+            deskPos={{ rowStart: 1, rowEnd: 2, columnStart: 21, columnEnd: 25 }}
+            tabPos={{ rowStart: 9, rowEnd: 10, columnStart: 1, columnEnd: 25 }}
+            extraCss={[font40, titleLineHeight, helveticaMedium]}
+          >
+            Status&nbsp;
+            <span css={css([font20, titleLineHeight, helveticaRegular])}>分</span>
+          </Cell>
+
+          <Cell
+            deskPos={{ rowStart: 2, rowEnd: 3, columnStart: 21, columnEnd: 25 }}
+            tabPos={{ rowStart: 10, rowEnd: 11, columnStart: 1, columnEnd: 25 }}
+          >
+            <select name="" id="" css={selectStyle} placeholder="any">
+              <option value="">Select Status</option>
+              <option value="">fldk</option>
+              <option value="">fldk</option>
+            </select>
           </Cell>
         </Form>
       </Cell>

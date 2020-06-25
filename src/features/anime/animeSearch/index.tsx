@@ -10,7 +10,12 @@ type IndexComponent = FunctionComponent;
 // REACT COMPONENT
 const AnimeSearch: IndexComponent = () => {
   console.log('animeSearch');
-  return <FormContainer />;
+  return (
+    <>
+      <FormContainer />
+      <ListContainer />
+    </>
+  );
 };
 
 export default AnimeSearch;

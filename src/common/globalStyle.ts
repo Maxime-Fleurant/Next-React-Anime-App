@@ -16,6 +16,8 @@ export const baseHelveticaRegular =
 
 export const pointSize1 = '0.04rem';
 export const pointSize4 = '0.16rem';
+export const pointSize8 = '0.32rem';
+export const pointSize16 = '0.64rem';
 export const pointSize24 = '1rem';
 export const pointSize20 = '0.8rem';
 export const pointSize32 = '1.333rem';

@@ -62,15 +62,13 @@ const ListContainer: TListContainer = () => {
   }, [fetchAnimePageResult]);
 
   return (
-    <div>
-      <GenericList
-        entityList={formatedAnimeList}
-        pageHandler={pageHandler}
-        loading={loading}
-        infinite
-        url="/animes/"
-      />
-    </div>
+    <GenericList
+      entityList={formatedAnimeList}
+      pageHandler={pageHandler}
+      loading={loading}
+      infinite
+      url="/animes/"
+    />
   );
 };
 

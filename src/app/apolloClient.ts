@@ -11,11 +11,11 @@ function createApolloClient() {
     ssrMode: typeof window === 'undefined',
     connectToDevTools: true,
     cache: new InMemoryCache({}),
-    link: new HttpLink({ fetch, uri: 'https://graphql.anilist.co' }),
+    link: new HttpLink({ fetch, uri: 'http://localhost:4000/graphql' }),
   });
 }
 
-export function initializeApollo(initialState = null) {
+export function initializeApollo(initialState = null): ApolloClient<{}> {
   const _apolloClient = apolloClient ?? createApolloClient();
 
   if (initialState) {

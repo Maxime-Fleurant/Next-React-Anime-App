@@ -15,7 +15,7 @@ type TCell = FunctionComponent<{
   mobilPos?: IPos;
   ratio?: number;
   extraCss?: SerializedStyles[];
-  backgroundImg?: string;
+  backgroundImg?: string | null;
   onClick?: MouseEventHandler;
 }>;
 

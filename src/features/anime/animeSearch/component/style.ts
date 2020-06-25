@@ -4,6 +4,14 @@ import {
   pointSize4,
   baseHelveticaRegular,
   baseColor200,
+  helveticaRegular,
+  pointSize20,
+  pointSize16,
+  backgroundColor200,
+  backgroundColor100,
+  pointSize1,
+  baseColor900,
+  textColor900,
 } from '../../../../common/globalStyle';
 
 export const itemSelect = css`
@@ -27,25 +35,31 @@ export const selectAnt = css`
   }
 `;
 
-export const globalAnt = css`
-  .ant-select-item-option-content {
-    font-size: 1rem;
-    font-family: ${baseHelveticaRegular};
-  }
-  .ant-select:not(.ant-select-disabled):hover .ant-select-selector {
-    border: none;
-    box-shadow: none;
-  }
+export const inputText = [
+  css({
+    fontSize: '1rem',
+    outline: 'none',
+    border: 'none',
+    fontFamily: baseHelveticaRegular,
+    width: '100%',
+    height: '100%',
+    padding: `0  `,
+    boxSizing: 'border-box',
+    borderBottom: `${pointSize1} solid ${baseColor900}`,
+  }),
+  backgroundColor100,
+  textColor900,
+];
 
-  .ant-select-multiple .ant-select-selector::after {
-    line-height: 1rem;
-  }
-
-  .ant-select-item-option-active: not(.ant-select-item-option-disabled) {
-    background-color: ${baseColor200};
-  }
-
-  .ant-select-item-option-selected:not(.ant-select-item-option-disabled) {
-    background-color: ${baseColor200};
-  }
-`;
+export const selectStyle = [
+  css({
+    fontSize: '1rem',
+    height: '100%',
+    outline: 'none',
+    border: 'none',
+    width: '100%',
+    fontFamily: baseHelveticaRegular,
+  }),
+  backgroundColor100,
+  textColor900,
+];
