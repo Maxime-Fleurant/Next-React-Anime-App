@@ -12,6 +12,10 @@ export const ANIME = gql`
       bannerImage
       largeCoverImage
       xLargeCoverImage
+      reviews {
+        body
+        summary
+      }
       characters {
         id
         name

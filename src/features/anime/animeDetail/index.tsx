@@ -2,8 +2,6 @@ import { FunctionComponent, useState } from 'react';
 import Youtube from 'react-youtube';
 import { css } from '@emotion/core';
 
-import { ReviewList } from './component/reviewList';
-import GenericList from '../../../common/components/GenericList';
 import {
   imgBorder,
   titleLineHeight,
@@ -11,16 +9,18 @@ import {
   helveticaMedium,
   textColor900,
   font32,
-  textColor600,
   helveticaRegular,
-  textColor400,
   regularText,
   font20,
   font48,
+  textColor800,
+  textColor500,
 } from '../../../common/globalStyle';
 import { Cell } from '../../../common/components/cell';
-import { titleMargin, cellVideo, youtubeContainer, playerButton, cellButton } from './style';
+import { titleMargin, cellVideo, youtubeContainer, playerButton, cellButton, desc } from './style';
 import { Anime } from '../../../common/graphqlType';
+import { DetailCharacterList } from './component/characterList';
+import { ReviewList } from './component/reviewList';
 
 // TYPE
 type TAnimeDetail = FunctionComponent<{ anime: Anime }>;
@@ -43,9 +43,17 @@ export const AnimeDetail: TAnimeDetail = ({ anime }) => {
   };
 
   if (anime) {
-    console.log(anime);
+    const regex = /\\n/g;
+    let formatedText = '';
+
+    if (anime.desciption) {
+      formatedText = anime.desciption.replace(regex, '');
+    }
+
     const testLayout = (
       <>
+        <DetailCharacterList characterList={anime.characters} />
+        <ReviewList reviewList={anime.reviews} />
         <Cell
           deskPos={{ rowStart: 4, rowEnd: 12, columnStart: 1, columnEnd: 7 }}
           tabPos={{ rowStart: 4, rowEnd: 12, columnStart: 1, columnEnd: 11 }}
@@ -61,10 +69,10 @@ export const AnimeDetail: TAnimeDetail = ({ anime }) => {
             <div css={[titleLineHeight, font40, helveticaMedium, textColor900]}>
               {anime.romajiTitle}
             </div>
-            <div css={[titleMargin, titleLineHeight, font32, helveticaRegular, textColor600]}>
+            <div css={[titleMargin, titleLineHeight, font32, helveticaRegular, textColor800]}>
               {anime.englishTitle}
             </div>
-            <div css={[titleMargin, titleLineHeight, font32, helveticaRegular, textColor400]}>
+            <div css={[titleMargin, titleLineHeight, font32, helveticaRegular, textColor500]}>
               {anime.nativeTitle}
             </div>
           </div>
@@ -72,100 +80,40 @@ export const AnimeDetail: TAnimeDetail = ({ anime }) => {
         <Cell
           deskPos={{ rowStart: 7, rowEnd: 12, columnStart: 7, columnEnd: 16 }}
           tabPos={{ rowStart: 8, rowEnd: 12, columnStart: 11, columnEnd: 25 }}
-          extraCss={regularText}
+          extraCss={[...regularText, ...desc]}
         >
-          {anime.desciption as string}
+          <div dangerouslySetInnerHTML={{ __html: formatedText as string }} />
+          {/* {anime.desciption as string} */}
         </Cell>
-        <Cell
-          deskPos={{ rowStart: 7, rowEnd: 11, columnStart: 16, columnEnd: 19 }}
-          tabPos={{ rowStart: 12, rowEnd: 13, columnStart: 13, columnEnd: 17 }}
-          extraCss={[imgBorder]}
-          backgroundImg="/img/girl2.jpg"
-          ratio={0.7}
-        />
-        <Cell
-          deskPos={{ rowStart: 7, rowEnd: 11, columnStart: 19, columnEnd: 22 }}
-          tabPos={{ rowStart: 12, rowEnd: 13, columnStart: 17, columnEnd: 21 }}
-          extraCss={[imgBorder]}
-          backgroundImg="/img/girl2.jpg"
-          ratio={0.7}
-        />
-        <Cell
-          deskPos={{ rowStart: 7, rowEnd: 11, columnStart: 22, columnEnd: 25 }}
-          tabPos={{ rowStart: 12, rowEnd: 13, columnStart: 21, columnEnd: 25 }}
-          extraCss={[imgBorder]}
-          backgroundImg="/img/girl2.jpg"
-          ratio={0.7}
-        />
-        <Cell
-          deskPos={{ rowStart: 11, rowEnd: 15, columnStart: 16, columnEnd: 19 }}
-          tabPos={{ rowStart: 13, rowEnd: 14, columnStart: 13, columnEnd: 17 }}
-          extraCss={[imgBorder]}
-          backgroundImg="/img/girl2.jpg"
-          ratio={0.7}
-        />
-        <Cell
-          deskPos={{ rowStart: 11, rowEnd: 15, columnStart: 19, columnEnd: 22 }}
-          tabPos={{ rowStart: 13, rowEnd: 14, columnStart: 17, columnEnd: 21 }}
-          extraCss={[imgBorder]}
-          backgroundImg="/img/girl2.jpg"
-          ratio={0.7}
-        />
-        <Cell
-          deskPos={{ rowStart: 11, rowEnd: 15, columnStart: 22, columnEnd: 25 }}
-          tabPos={{ rowStart: 13, rowEnd: 14, columnStart: 21, columnEnd: 25 }}
-          extraCss={[imgBorder]}
-          backgroundImg="/img/girl2.jpg"
-          ratio={0.7}
-        />
-        <Cell
-          deskPos={{ rowStart: 15, rowEnd: 19, columnStart: 16, columnEnd: 19 }}
-          tabPos={{ rowStart: 14, rowEnd: 15, columnStart: 13, columnEnd: 17 }}
-          extraCss={[imgBorder]}
-          backgroundImg="/img/girl2.jpg"
-          ratio={0.7}
-        />
-        <Cell
-          deskPos={{ rowStart: 15, rowEnd: 19, columnStart: 19, columnEnd: 22 }}
-          tabPos={{ rowStart: 14, rowEnd: 15, columnStart: 17, columnEnd: 21 }}
-          extraCss={[imgBorder]}
-          backgroundImg="/img/girl2.jpg"
-          ratio={0.7}
-        />
-        <Cell
-          deskPos={{ rowStart: 15, rowEnd: 19, columnStart: 22, columnEnd: 25 }}
-          tabPos={{ rowStart: 14, rowEnd: 15, columnStart: 21, columnEnd: 25 }}
-          extraCss={[imgBorder]}
-          backgroundImg="/img/girl2.jpg"
-          ratio={0.7}
-        />
 
         <Cell
           deskPos={{ rowStart: 12, rowEnd: 21, columnStart: 1, columnEnd: 16 }}
-          tabPos={{ rowStart: 12, rowEnd: 14, columnStart: 1, columnEnd: 13 }}
+          tabPos={{ rowStart: 12, rowEnd: 13, columnStart: 1, columnEnd: 25 }}
           ratio={1.77}
           extraCss={[imgBorder, cellVideo, css({ display: videoState ? 'none' : 'block' })]}
-          backgroundImg="/img/banner6.jpg"
+          backgroundImg={anime.bannerImage}
         />
 
         <Cell
           deskPos={{ rowStart: 12, rowEnd: 21, columnStart: 1, columnEnd: 16 }}
-          tabPos={{ rowStart: 12, rowEnd: 14, columnStart: 1, columnEnd: 13 }}
+          tabPos={{ rowStart: 12, rowEnd: 13, columnStart: 1, columnEnd: 25 }}
           ratio={1.77}
           extraCss={[imgBorder, cellButton, css({ display: videoState ? 'none' : 'flex' })]}
           onClick={click}
         >
-          <span css={[font48, titleLineHeight, textColor900, playerButton]}>Trailer</span>
+          <span css={[font48, titleLineHeight, textColor900, playerButton, helveticaRegular]}>
+            Trailer
+          </span>
         </Cell>
 
         <Cell
           deskPos={{ rowStart: 12, rowEnd: 21, columnStart: 1, columnEnd: 16 }}
-          tabPos={{ rowStart: 12, rowEnd: 14, columnStart: 1, columnEnd: 13 }}
+          tabPos={{ rowStart: 12, rowEnd: 13, columnStart: 1, columnEnd: 25 }}
           ratio={1.77}
           extraCss={[imgBorder, youtubeContainer]}
         >
           <Youtube
-            videoId="KKzmOh4SuBc"
+            videoId={anime.trailer}
             opts={{ width: '100%', height: '100%' }}
             onReady={playerReady}
           />
@@ -173,7 +121,7 @@ export const AnimeDetail: TAnimeDetail = ({ anime }) => {
 
         <Cell
           deskPos={{ rowStart: 21, rowEnd: 22, columnStart: 1, columnEnd: 25 }}
-          tabPos={{ rowStart: 15, rowEnd: 16, columnStart: 1, columnEnd: 25 }}
+          tabPos={{ rowStart: 16, rowEnd: 17, columnStart: 1, columnEnd: 25 }}
         >
           <div css={[helveticaMedium, font40, titleLineHeight]}>
             Reviews
@@ -284,27 +232,3 @@ export const AnimeDetail: TAnimeDetail = ({ anime }) => {
 
   return indexComponent;
 };
-
-// if (anime) {
-//   const characters = anime.characters.nodes.map((character: any) => {
-//     return {
-//       label: character.name.full,
-//       img: character.image.large,
-//       id: character.id,
-//     };
-//   });
-
-//   indexComponent = (
-//     <div>
-//       <div>{anime.title.romaji}</div>
-//       <div>{anime.title.english}</div>
-//       <div>{anime.title.native}</div>
-//       <div>{anime.title.userPreferred}</div>
-//       <div>{anime.description}</div>
-//       <div>{anime.episodes}</div>
-//       <div>{anime.id}</div>
-//       <GenericList entityList={characters} loading={false} url="/characters/" infinite />
-//       <ReviewList reviewList={anime.reviews.nodes} />
-//     </div>
-//   );
-// }

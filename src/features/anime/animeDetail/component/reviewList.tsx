@@ -1,23 +1,9 @@
-import { Col, Row } from 'antd';
 import { FunctionComponent } from 'react';
+import { Review, Maybe } from '../../../../common/graphqlType';
 
-export interface IReview {
-  id: number;
-  summary: string;
-  body: string;
-  score: number;
-}
-
-type TReviewList = FunctionComponent<{ reviewList: IReview[] }>;
+type TReviewList = FunctionComponent<{ reviewList: Maybe<Review>[] }>;
 
 export const ReviewList: TReviewList = ({ reviewList }) => {
-  const jsxReviewList = reviewList.map((review) => {
-    return (
-      <Col span={24} key={review.id} style={{ border: '1px solid black' }}>
-        {review.summary}
-      </Col>
-    );
-  });
-
-  return <Row>{jsxReviewList}</Row>;
+  console.log(reviewList);
+  return <div>ldfk</div>;
 };
