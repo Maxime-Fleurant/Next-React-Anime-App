@@ -5,9 +5,22 @@ import {
   baseColor200,
   pointSize1,
   pointSize64,
+  pointSize24,
+  pointSize16,
+  pointSize8,
+  textLineHeight,
+  font40,
+  textColor900,
+  helveticaMedium,
+  font20,
+  textColor600,
+  fontRegular,
+  font32,
+  titleLineHeight,
+  helveticaRegular,
 } from '../../../common/globalStyle';
 
-export const titleMargin = css({ marginTop: pointSize32 });
+export const titleMargin = css({ marginTop: pointSize16 });
 
 export const cellVideo = css({ filter: 'brightness(0.6)' });
 export const youtubeContainer = css`
@@ -16,6 +29,8 @@ export const youtubeContainer = css`
     height: 100%;
   }
 `;
+
+export const descBlock = css({ marginTop: pointSize16 });
 
 export const cellButton = css({
   zIndex: 200,
@@ -33,9 +48,12 @@ export const playerButton = css({
   padding: `${pointSize32} ${pointSize64}`,
 });
 
+export const allVid = css([{ alignSelf: 'end' }]);
+
 export const desc = [
   css({
     overflowY: 'scroll',
+    borderTop: `${pointSize8} solid ${baseColor900}`,
   }),
   css`
     ::-webkit-scrollbar {
@@ -44,3 +62,57 @@ export const desc = [
     }
   `,
 ];
+
+export const studioCell = css([
+  { textAlign: 'right' },
+  textLineHeight,
+  font32,
+  textColor900,
+  helveticaMedium,
+  css`
+    @media (max-width: 1023px) {
+      align-self: end;
+    }
+  `,
+]);
+
+export const studioQu = css([font20, textLineHeight, textColor600]);
+
+export const externalLinkButton = css([
+  fontRegular,
+  titleLineHeight,
+  {
+    padding: `${pointSize16} 0`,
+    textAlign: 'center',
+    marginTop: pointSize16,
+    border: `${pointSize1} solid ${baseColor900}`,
+    display: 'block',
+    textDecoration: 'none',
+  },
+  helveticaMedium,
+  textColor900,
+]);
+
+export const sideCat = css([
+  font32,
+  textLineHeight,
+  helveticaMedium,
+  textColor900,
+  { marginTop: pointSize32 },
+]);
+
+export const sideInfo = css([font20, textLineHeight, helveticaRegular, textColor600], {
+  marginTop: pointSize16,
+});
+
+export const linkContainer = css`
+  a:first-child {
+    margin-top: 0;
+  }
+`;
+
+export const tabLinkContainer = css`
+  @media (max-width: 1023px) {
+    display: none;
+  }
+`;

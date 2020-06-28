@@ -12,7 +12,24 @@ export const ANIME = gql`
       bannerImage
       largeCoverImage
       xLargeCoverImage
+      status
+      format
+      tags {
+        name
+        id
+      }
+      genres {
+        name
+      }
+      externalLinks {
+        site
+        url
+      }
+      studio {
+        name
+      }
       reviews {
+        id
         body
         summary
       }
