@@ -57,7 +57,7 @@ export const CharacDesc: TCharacDesc = ({ character, onClick, endRowCallback }) 
         autoRow
         tabPos={{
           rowStart: 8,
-          rowEnd: 9,
+          rowEnd: 12,
           columnStart: 15,
           columnEnd: 25,
         }}
@@ -80,10 +80,10 @@ export const CharacDesc: TCharacDesc = ({ character, onClick, endRowCallback }) 
           columnEnd: 18,
         }}
         tabPos={{
-          rowStart: 13,
-          rowEnd: 14,
-          columnStart: 20,
-          columnEnd: 25,
+          rowStart: 9,
+          rowEnd: 10,
+          columnStart: 10,
+          columnEnd: 15,
         }}
         extraCss={[fontRegular, helveticaMedium, textColor900, descBack]}
         onClick={onClick}

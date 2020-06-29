@@ -5,11 +5,9 @@ import {
   baseColor200,
   pointSize1,
   pointSize64,
-  pointSize24,
   pointSize16,
   pointSize8,
   textLineHeight,
-  font40,
   textColor900,
   helveticaMedium,
   font20,
@@ -18,9 +16,8 @@ import {
   font32,
   titleLineHeight,
   helveticaRegular,
-  textColor200,
-  backgroundColor900,
   baseColor100,
+  pointSize120,
 } from '../../../common/globalStyle';
 
 export const titleMargin = css({ marginTop: pointSize16 });
@@ -127,3 +124,5 @@ export const tabLinkContainer = css`
     display: none;
   }
 `;
+
+export const svgButton = css({ width: pointSize120, fill: baseColor200 });

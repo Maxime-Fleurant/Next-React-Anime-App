@@ -1,13 +1,5 @@
-import {
-  FunctionComponent,
-  useRef,
-  useState,
-  useEffect,
-  MouseEventHandler,
-  useLayoutEffect,
-} from 'react';
+import { FunctionComponent, useRef, useState, MouseEventHandler } from 'react';
 import { css, SerializedStyles } from '@emotion/core';
-import { innerDiv } from './cellStyle';
 import useIsomorphicLayoutEffect from '../hooks/isomorphUseLayout';
 
 // TYPE
@@ -54,7 +46,9 @@ export const Cell: TCell = ({
 
   const handleResize = (): void => {
     if (component && component.current) {
-      updatecomponentWidth(component.current.offsetWidth);
+      if (window && window.innerWidth < 1024) {
+        updatecomponentWidth(component.current.offsetWidth);
+      }
 
       if (autoRow && inerComponent && inerComponent.current) {
         const remUnitToPx = (document.body.clientWidth / 100) * 1.25;
@@ -81,14 +75,6 @@ export const Cell: TCell = ({
     grid-column-end: ${deskPos.columnEnd};
   `;
 
-  if (ratio) {
-    withRatioCss = css`
-      @media (max-width: 1023px) {
-        height: ${componentWidth / ratio}px;
-      }
-    `;
-  }
-
   if (tabPos) {
     withtabPos = css`
       @media (max-width: 1023px) {
@@ -96,6 +82,14 @@ export const Cell: TCell = ({
         grid-row-end: ${tabPos.rowEnd || 'initial'};
         grid-column-start: ${tabPos.columnStart};
         grid-column-end: ${tabPos.columnEnd};
+      }
+    `;
+  }
+
+  if (ratio) {
+    withRatioCss = css`
+      @media (max-width: 1023px) {
+        height: ${componentWidth / ratio}px;
       }
     `;
   }
@@ -111,7 +105,9 @@ export const Cell: TCell = ({
 
   useIsomorphicLayoutEffect(() => {
     if (component && component.current) {
-      updatecomponentWidth(component.current.offsetWidth);
+      if (window && window.innerWidth < 1024) {
+        updatecomponentWidth(component.current.offsetWidth);
+      }
     }
 
     if (autoRow && inerComponent && inerComponent.current) {

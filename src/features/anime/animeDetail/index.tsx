@@ -15,7 +15,6 @@ import {
   textLineHeight,
   textColor600,
   textColor400,
-  footer,
 } from '../../../common/globalStyle';
 import { Cell } from '../../../common/components/cell';
 import {
@@ -28,11 +27,12 @@ import {
   descBlock,
   studioCell,
   studioQu,
+  svgButton,
 } from './style';
 import { Anime } from '../../../common/graphqlType';
 import { DetailCharacterList } from './component/characterList';
 import { ExternalLinkList } from './component/externalLinkList';
-import { PlayButton } from '../../../common/icons/play';
+import PlayButton from '../../../common/icons/play-button.svg';
 
 // TYPE
 type TAnimeDetail = FunctionComponent<{ anime: Anime }>;
@@ -68,7 +68,7 @@ export const AnimeDetail: TAnimeDetail = ({ anime }) => {
 
         <Cell
           deskPos={{ rowStart: 12, columnStart: 1, columnEnd: 7 }}
-          tabPos={{ rowStart: 8, rowEnd: 40, columnStart: 1, columnEnd: 10 }}
+          tabPos={{ rowStart: 8, rowEnd: 17, columnStart: 1, columnEnd: 10 }}
           autoRow
           extraCss={[]}
         >
@@ -85,7 +85,7 @@ export const AnimeDetail: TAnimeDetail = ({ anime }) => {
 
         <Cell
           deskPos={{ rowStart: 9, rowEnd: 10, columnStart: 7, columnEnd: 15 }}
-          tabPos={{ rowStart: 8, rowEnd: 9, columnStart: 9, columnEnd: 25 }}
+          tabPos={{ rowStart: 5, rowEnd: 6, columnStart: 9, columnEnd: 25 }}
           extraCss={[studioCell]}
         >
           {anime.studio.name}
@@ -139,9 +139,7 @@ export const AnimeDetail: TAnimeDetail = ({ anime }) => {
           extraCss={[imgBorder, cellButton, css({ display: videoState ? 'none' : 'flex' })]}
           onClick={click}
         >
-          <span css={[font48, titleLineHeight, textColor900, playerButton, helveticaRegular]}>
-            {PlayButton}
-          </span>
+          <PlayButton css={svgButton} />
         </Cell>
 
         <Cell

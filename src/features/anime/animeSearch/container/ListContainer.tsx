@@ -9,10 +9,10 @@ import GenericList, { IEntity } from '../../../../common/components/GenericList'
 import { Media } from '../../../../../api';
 import { TStore } from '../../../../app/store';
 
-// TYPE DEFINITION
+// TYPE
 type TListContainer = FunctionComponent;
 
-// REACT COMPONENT
+// REACT
 const ListContainer: TListContainer = () => {
   const stateFormSelection = useSelector((state: TStore) => {
     return state.animeListPageReducers.formSelection;

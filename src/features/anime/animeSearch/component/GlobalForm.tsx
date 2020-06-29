@@ -1,12 +1,17 @@
 // IMPORT
 
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, ChangeEventHandler, useState, useRef, useEffect } from 'react';
 import { Select, Input, Form } from 'antd';
 import { FormProps } from 'antd/lib/form/Form';
 import _ from 'lodash';
 import { css, Global } from '@emotion/core';
 
-import { tags, genres, formats, status } from '../../../../common/const';
+import {
+  tags as constTags,
+  genres as constGenre,
+  formats,
+  status as statusConst,
+} from '../../../../common/const';
 import { Cell } from '../../../../common/components/cell';
 import { gridCss, subGrid } from '../../../layout/style';
 import {
@@ -23,8 +28,9 @@ import {
   helveticaMedium,
   font20,
   helveticaRegular,
+  font32,
 } from '../../../../common/globalStyle';
-import { inputText, selectStyle } from './style';
+import { inputText, selectStyle, inputLabel } from './style';
 
 // TYPE DEFINITION
 type TsearchAnimeForm = FunctionComponent<{
@@ -32,31 +38,105 @@ type TsearchAnimeForm = FunctionComponent<{
   initialForm?: any;
 }>;
 
+interface IFormState {
+  title?: string;
+  genres?: string;
+  tags?: string;
+  format?: string;
+  status?: string;
+}
+
 // REACT
 const GlobalForm: TsearchAnimeForm = ({ changeHandler, initialForm }) => {
-  const { Option } = Select;
-  const { Item } = Form;
-  const [form] = Form.useForm();
-
   let timeOut: any;
 
-  const change: FormProps['onValuesChange'] = (changedValue, allVallues) => {
-    if (changedValue.text) {
-      clearTimeout(timeOut);
-      timeOut = setTimeout(() => {
-        changeHandler(allVallues);
-      }, 1000);
-    } else {
-      changeHandler(allVallues);
+  const [formState, updateFormState] = useState<IFormState>({});
+
+  useEffect(() => {
+    changeHandler(formState);
+  }, [formState]);
+
+  const inputHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    const targetVal = e.target.value;
+    if (!targetVal) {
+      const { title, ...newFormState } = formState;
+
+      updateFormState(newFormState);
+      return;
+    }
+
+    updateFormState({ ...formState, title: targetVal });
+  };
+
+  const selectHandler = (e: React.ChangeEvent<HTMLSelectElement>): void => {
+    switch (e.target.name) {
+      case 'genre': {
+        const targetVal = e.target.options[e.target.selectedIndex].value;
+
+        if (!targetVal) {
+          const { genres, ...newFormState } = formState;
+
+          updateFormState(newFormState);
+          return;
+        }
+
+        updateFormState({ ...formState, genres: e.target.options[e.target.selectedIndex].value });
+        return;
+      }
+
+      case 'tag': {
+        const targetVal = e.target.options[e.target.selectedIndex].value;
+
+        if (!targetVal) {
+          const { tags, ...newFormState } = formState;
+
+          updateFormState(newFormState);
+          return;
+        }
+
+        updateFormState({ ...formState, tags: e.target.options[e.target.selectedIndex].value });
+        return;
+      }
+
+      case 'format': {
+        const targetVal = e.target.options[e.target.selectedIndex].value;
+
+        if (!targetVal) {
+          const { format, ...newFormState } = formState;
+
+          updateFormState(newFormState);
+          return;
+        }
+
+        updateFormState({ ...formState, format: e.target.options[e.target.selectedIndex].value });
+        return;
+      }
+
+      case 'status': {
+        const targetVal = e.target.options[e.target.selectedIndex].value;
+
+        if (!targetVal) {
+          const { status, ...newFormState } = formState;
+
+          updateFormState(newFormState);
+          return;
+        }
+
+        updateFormState({ ...formState, status: e.target.options[e.target.selectedIndex].value });
+        break;
+      }
+
+      default:
+        break;
     }
   };
 
   const selectOptionsHelper = (items: string[]) => {
     return items.map((item) => {
       return (
-        <Option value={item} key={item}>
+        <option value={item} key={item}>
           {item}
-        </Option>
+        </option>
       );
     });
   };
@@ -67,11 +147,11 @@ const GlobalForm: TsearchAnimeForm = ({ changeHandler, initialForm }) => {
         deskPos={{ rowStart: 4, rowEnd: 6, columnStart: 1, columnEnd: 25 }}
         tabPos={{ rowStart: 4, rowEnd: 6, columnStart: 1, columnEnd: 25 }}
       >
-        <Form form={form} name="animeSearchForm" onValuesChange={change} css={subGrid}>
+        <Form name="animeSearchForm" css={subGrid}>
           <Cell
             deskPos={{ rowStart: 1, rowEnd: 2, columnStart: 1, columnEnd: 5 }}
             tabPos={{ rowStart: 1, rowEnd: 2, columnStart: 1, columnEnd: 25 }}
-            extraCss={[font40, titleLineHeight, helveticaMedium]}
+            extraCss={[inputLabel]}
           >
             Title&nbsp;
             <span css={css([font20, titleLineHeight, helveticaRegular])}>題名</span>
@@ -81,13 +161,20 @@ const GlobalForm: TsearchAnimeForm = ({ changeHandler, initialForm }) => {
             deskPos={{ rowStart: 2, rowEnd: 3, columnStart: 1, columnEnd: 5 }}
             tabPos={{ rowStart: 2, rowEnd: 3, columnStart: 1, columnEnd: 25 }}
           >
-            <input type="text" placeholder="Search Title" css={inputText} />
+            <input
+              value={formState.format}
+              name="title"
+              onChange={inputHandler}
+              type="text"
+              placeholder="Search Title"
+              css={inputText}
+            />
           </Cell>
 
           <Cell
             deskPos={{ rowStart: 1, rowEnd: 2, columnStart: 6, columnEnd: 10 }}
             tabPos={{ rowStart: 3, rowEnd: 4, columnStart: 1, columnEnd: 25 }}
-            extraCss={[font40, titleLineHeight, helveticaMedium]}
+            extraCss={[inputLabel]}
           >
             Genre&nbsp;
             <span css={css([font20, titleLineHeight, helveticaRegular])}>カテゴリ</span>
@@ -97,17 +184,16 @@ const GlobalForm: TsearchAnimeForm = ({ changeHandler, initialForm }) => {
             deskPos={{ rowStart: 2, rowEnd: 3, columnStart: 6, columnEnd: 10 }}
             tabPos={{ rowStart: 4, rowEnd: 5, columnStart: 1, columnEnd: 25 }}
           >
-            <select name="" id="" css={selectStyle}>
+            <select onChange={selectHandler} name="genre" css={selectStyle}>
               <option value="">Select Genre</option>
-              <option value="">fldk</option>
-              <option value="">fldk</option>
+              {selectOptionsHelper(constGenre)}
             </select>
           </Cell>
 
           <Cell
             deskPos={{ rowStart: 1, rowEnd: 2, columnStart: 11, columnEnd: 15 }}
             tabPos={{ rowStart: 5, rowEnd: 6, columnStart: 1, columnEnd: 25 }}
-            extraCss={[font40, titleLineHeight, helveticaMedium]}
+            extraCss={[inputLabel]}
           >
             Tag&nbsp;
             <span css={css([font20, titleLineHeight, helveticaRegular])}>付箋</span>
@@ -117,17 +203,20 @@ const GlobalForm: TsearchAnimeForm = ({ changeHandler, initialForm }) => {
             deskPos={{ rowStart: 2, rowEnd: 3, columnStart: 11, columnEnd: 15 }}
             tabPos={{ rowStart: 6, rowEnd: 7, columnStart: 1, columnEnd: 25 }}
           >
-            <select name="" id="" css={selectStyle}>
+            <select onChange={selectHandler} name="tag" css={selectStyle}>
               <option value="">Select Tag</option>
-              <option value="">fldk</option>
-              <option value="">fldk</option>
+              {selectOptionsHelper(
+                constTags.map((tag) => {
+                  return tag.name;
+                })
+              )}
             </select>
           </Cell>
 
           <Cell
             deskPos={{ rowStart: 1, rowEnd: 2, columnStart: 16, columnEnd: 20 }}
             tabPos={{ rowStart: 7, rowEnd: 8, columnStart: 1, columnEnd: 25 }}
-            extraCss={[font40, titleLineHeight, helveticaMedium]}
+            extraCss={[inputLabel]}
           >
             Format&nbsp;
             <span css={css([font20, titleLineHeight, helveticaRegular])}>体裁</span>
@@ -137,17 +226,16 @@ const GlobalForm: TsearchAnimeForm = ({ changeHandler, initialForm }) => {
             deskPos={{ rowStart: 2, rowEnd: 3, columnStart: 16, columnEnd: 20 }}
             tabPos={{ rowStart: 8, rowEnd: 9, columnStart: 1, columnEnd: 25 }}
           >
-            <select name="" id="" css={selectStyle}>
+            <select onChange={selectHandler} name="format" css={selectStyle}>
               <option value="">Select Format</option>
-              <option value="">fldk</option>
-              <option value="">fldk</option>
+              {selectOptionsHelper(formats)}
             </select>
           </Cell>
 
           <Cell
             deskPos={{ rowStart: 1, rowEnd: 2, columnStart: 21, columnEnd: 25 }}
             tabPos={{ rowStart: 9, rowEnd: 10, columnStart: 1, columnEnd: 25 }}
-            extraCss={[font40, titleLineHeight, helveticaMedium]}
+            extraCss={[inputLabel]}
           >
             Status&nbsp;
             <span css={css([font20, titleLineHeight, helveticaRegular])}>分</span>
@@ -157,10 +245,9 @@ const GlobalForm: TsearchAnimeForm = ({ changeHandler, initialForm }) => {
             deskPos={{ rowStart: 2, rowEnd: 3, columnStart: 21, columnEnd: 25 }}
             tabPos={{ rowStart: 10, rowEnd: 11, columnStart: 1, columnEnd: 25 }}
           >
-            <select name="" id="" css={selectStyle} placeholder="any">
+            <select onChange={selectHandler} name="status" css={selectStyle} placeholder="any">
               <option value="">Select Status</option>
-              <option value="">fldk</option>
-              <option value="">fldk</option>
+              {selectOptionsHelper(statusConst)}
             </select>
           </Cell>
         </Form>
@@ -168,7 +255,6 @@ const GlobalForm: TsearchAnimeForm = ({ changeHandler, initialForm }) => {
     </>
   );
 };
-
 export default GlobalForm;
 
 // <Form form={form} name="animeSearchForm" onValuesChange={change} layout="inline">
@@ -216,3 +302,15 @@ export default GlobalForm;
 //         </Select>
 //       </Item>
 //     </Form>
+
+// const change: FormProps['onValuesChange'] = (changedValue, allVallues) => {
+//   console.log('change');
+//   if (changedValue.text) {
+//     clearTimeout(timeOut);
+//     timeOut = setTimeout(() => {
+//       changeHandler(allVallues);
+//     }, 1000);
+//   } else {
+//     changeHandler(allVallues);
+//   }
+// };

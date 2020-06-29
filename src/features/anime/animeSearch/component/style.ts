@@ -12,6 +12,9 @@ import {
   pointSize1,
   baseColor900,
   textColor900,
+  font32,
+  titleLineHeight,
+  helveticaMedium,
 } from '../../../../common/globalStyle';
 
 export const itemSelect = css`
@@ -63,3 +66,5 @@ export const selectStyle = [
   backgroundColor100,
   textColor900,
 ];
+
+export const inputLabel = css([[font32, titleLineHeight, helveticaMedium, textColor900]]);

@@ -45,6 +45,6 @@
     "react/display-name": "off",
     "jsx-a11y/html-has-lang": "off",
     "react/no-danger": "off",
-    "global-require": "off"
+    "typescript-eslint/no-unused-vars": "off"
   }
 }
