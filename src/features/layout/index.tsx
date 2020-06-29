@@ -12,35 +12,40 @@ import {
   switchButton,
   helveticaRegular,
   titleLineHeight,
+  footer,
 } from '../../common/globalStyle';
 
 const Layout: FunctionComponent = ({ children }) => {
   return (
-    <div css={gridCss}>
-      <div css={[nav]}>
-        <Link href="/">
-          <span css={[font64, helveticaMedium, textColor900, titleLineHeight, logo]}>
-            {'Anime '}
-            <span css={font20}>アニメ</span>
-          </span>
-        </Link>
-        <span css={navCss}>
-          <Link href="/animes">
-            <span css={[font40, helveticaRegular, textColor900, css({ marginRight: '2rem' })]}>
-              {'Browse '}
-              <span css={font20}>ブラウズ</span>
+    <>
+      <div css={gridCss}>
+        <div css={[nav]}>
+          <Link href="/">
+            <span css={[font64, helveticaMedium, textColor900, titleLineHeight, logo]}>
+              {'Anime '}
+              <span css={font20}>アニメ</span>
             </span>
           </Link>
 
-          <label css={switchButton}>
-            <input type="checkbox" id="fldk" />
-            <div className="tt" />
-          </label>
-        </span>
-      </div>
+          <span css={navCss}>
+            <Link href="/animes">
+              <span css={[font40, helveticaRegular, textColor900, css({ marginRight: '2rem' })]}>
+                {'Browse '}
+                <span css={font20}>ブラウズ</span>
+              </span>
+            </Link>
 
-      {children}
-    </div>
+            <label css={switchButton}>
+              <input type="checkbox" id="fldk" />
+              <div className="tt" />
+            </label>
+          </span>
+        </div>
+
+        {children}
+      </div>
+      <div css={footer} />
+    </>
   );
 };
 

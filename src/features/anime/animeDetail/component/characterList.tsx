@@ -1,4 +1,4 @@
-import { FunctionComponent, useState } from 'react';
+import { FunctionComponent, useState, useEffect } from 'react';
 import Maybe from 'graphql/tsutils/Maybe';
 import { Cell } from '../../../../common/components/cell';
 import { imgBorder } from '../../../../common/globalStyle';
@@ -8,12 +8,15 @@ import { picCharact } from './characterListStyle';
 import { CharacDesc } from './characDesc';
 
 // TYPE
-type TDetailCharacterList = FunctionComponent<{ characterList: Maybe<Character>[] }>;
+type TDetailCharacterList = FunctionComponent<{
+  characterList: Maybe<Character>[];
+  endRowCallback?: (endRow: number, reset?: boolean) => void;
+}>;
 
 // REACT
-export const DetailCharacterList: TDetailCharacterList = ({ characterList }) => {
+export const DetailCharacterList: TDetailCharacterList = ({ characterList, endRowCallback }) => {
   let deskColstart = 15;
-  let deskRowStart = 14;
+  let deskRowStart = 10;
   let tabColstart = 10;
   let tabRowStart = 8;
 
@@ -29,8 +32,14 @@ export const DetailCharacterList: TDetailCharacterList = ({ characterList }) => 
     updateFocused(null);
   };
 
+  useEffect(() => {
+    if (endRowCallback && !focused) {
+      endRowCallback(deskRowStart + 2);
+    }
+  });
+
   if (focused) {
-    return <CharacDesc onClick={returnList} character={focused} />;
+    return <CharacDesc endRowCallback={endRowCallback} onClick={returnList} character={focused} />;
   }
 
   const characterJsxList = characterList

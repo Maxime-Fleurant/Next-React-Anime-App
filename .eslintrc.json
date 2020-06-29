@@ -44,6 +44,7 @@
     "no-param-reassign": "off",
     "react/display-name": "off",
     "jsx-a11y/html-has-lang": "off",
-    "react/no-danger": "off"
+    "react/no-danger": "off",
+    "global-require": "off"
   }
 }

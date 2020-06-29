@@ -18,6 +18,7 @@ export default Index;
 
 // SSR
 export const getStaticProps: GetStaticProps<{ anime: Anime } | {}> = async ({ params }) => {
+  console.log('serverside');
   const apolloClient = initializeApollo();
 
   const anime = await apolloClient.query<{ Anime: Anime }>({
@@ -33,5 +34,5 @@ export const getStaticProps: GetStaticProps<{ anime: Anime } | {}> = async ({ pa
 };
 
 export const getStaticPaths: GetStaticPaths<{ id: string }> = async () => {
-  return { paths: [], fallback: true };
+  return { paths: [{ params: { id: '65' } }], fallback: true };
 };

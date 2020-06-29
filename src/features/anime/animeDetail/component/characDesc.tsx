@@ -17,10 +17,14 @@ import {
 import { descBack, charDesc, characterSecondName, returnButton } from './characterListStyle';
 
 // TYPE
-type TCharacDesc = FunctionComponent<{ character: Character; onClick: () => void }>;
+type TCharacDesc = FunctionComponent<{
+  character: Character;
+  onClick: () => void;
+  endRowCallback?: (endRow: number) => void;
+}>;
 
 // REACT
-export const CharacDesc: TCharacDesc = ({ character, onClick }) => {
+export const CharacDesc: TCharacDesc = ({ character, onClick, endRowCallback }) => {
   const regex = /\\n|<br>|<br \/>/g;
   const formatedText = character.description.replace(regex, '');
 
@@ -28,8 +32,8 @@ export const CharacDesc: TCharacDesc = ({ character, onClick }) => {
     <>
       <Cell
         deskPos={{
-          rowStart: 14,
-          rowEnd: 18,
+          rowStart: 10,
+          rowEnd: 14,
           columnStart: 15,
           columnEnd: 18,
         }}
@@ -46,17 +50,18 @@ export const CharacDesc: TCharacDesc = ({ character, onClick }) => {
 
       <Cell
         deskPos={{
-          rowStart: 14,
-          rowEnd: 18,
+          rowStart: 10,
           columnStart: 18,
           columnEnd: 25,
         }}
+        autoRow
         tabPos={{
           rowStart: 8,
           rowEnd: 9,
           columnStart: 15,
           columnEnd: 25,
         }}
+        endRowCallback={endRowCallback}
         extraCss={[font32, helveticaMedium, textColor900, textLineHeight]}
       >
         {character.name}
@@ -69,8 +74,8 @@ export const CharacDesc: TCharacDesc = ({ character, onClick }) => {
 
       <Cell
         deskPos={{
-          rowStart: 18,
-          rowEnd: 20,
+          rowStart: 14,
+          rowEnd: 16,
           columnStart: 15,
           columnEnd: 18,
         }}
@@ -85,24 +90,6 @@ export const CharacDesc: TCharacDesc = ({ character, onClick }) => {
       >
         <div css={returnButton}>Return</div>
       </Cell>
-
-      {/* <Cell
-        deskPos={{
-          rowStart: 18,
-          rowEnd: 22,
-          columnStart: 18,
-          columnEnd: 25,
-        }}
-        tabPos={{
-          rowStart: 15,
-          rowEnd: 16,
-          columnStart: 9,
-          columnEnd: 25,
-        }}
-        extraCss={[...regularText, charDesc]}
-      >
-        <div dangerouslySetInnerHTML={{ __html: formatedText }} />
-      </Cell> */}
     </>
   );
 };

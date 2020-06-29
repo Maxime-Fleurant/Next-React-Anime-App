@@ -124,3 +124,8 @@ export const switchButton = css`
     }
   }
 `;
+
+export const footer = css({
+  borderBottom: `${pointSize1} solid ${baseColor900}`,
+  margin: '6rem 2rem',
+});

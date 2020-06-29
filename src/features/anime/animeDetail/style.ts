@@ -18,6 +18,9 @@ import {
   font32,
   titleLineHeight,
   helveticaRegular,
+  textColor200,
+  backgroundColor900,
+  baseColor100,
 } from '../../../common/globalStyle';
 
 export const titleMargin = css({ marginTop: pointSize16 });
@@ -30,7 +33,10 @@ export const youtubeContainer = css`
   }
 `;
 
-export const descBlock = css({ marginTop: pointSize16 });
+export const descBlock = css({
+  paddingTop: pointSize16,
+  borderTop: `${pointSize8} solid ${baseColor900}`,
+});
 
 export const cellButton = css({
   zIndex: 200,
@@ -53,7 +59,6 @@ export const allVid = css([{ alignSelf: 'end' }]);
 export const desc = [
   css({
     overflowY: 'scroll',
-    borderTop: `${pointSize8} solid ${baseColor900}`,
   }),
   css`
     ::-webkit-scrollbar {
@@ -89,7 +94,13 @@ export const externalLinkButton = css([
     display: 'block',
     textDecoration: 'none',
   },
-  helveticaMedium,
+  css`
+    &:hover {
+      color: ${baseColor100};
+      background-color: ${baseColor900};
+    }
+  `,
+  helveticaRegular,
   textColor900,
 ]);
 
