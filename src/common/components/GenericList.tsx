@@ -52,7 +52,7 @@ const GenericList: TGenericList = ({ entityList = [], loading }) => {
           }}
           tabPos={{ rowStart: 7, rowEnd: 8, columnStart: 9, columnEnd: 17 }}
           extraCss={[imgBorder]}
-          ratio={0.7}
+          ratio={1.3}
           backgroundImg="/img/akira.jpg"
         />
 
@@ -64,6 +64,7 @@ const GenericList: TGenericList = ({ entityList = [], loading }) => {
             columnStart: deskColStart,
             columnEnd: deskColStart + 4,
           }}
+          autoRow
           tabPos={{ rowStart: 8, rowEnd: 9, columnStart: 9, columnEnd: 17 }}
           extraCss={[fontRegular, helveticaRegular, textLineHeight, textColor900]}
         >

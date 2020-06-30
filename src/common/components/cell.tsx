@@ -1,4 +1,4 @@
-import { FunctionComponent, useRef, useState, MouseEventHandler } from 'react';
+import { FunctionComponent, useRef, useState, MouseEventHandler, useEffect } from 'react';
 import { css, SerializedStyles } from '@emotion/core';
 import useIsomorphicLayoutEffect from '../hooks/isomorphUseLayout';
 
@@ -37,8 +37,9 @@ export const Cell: TCell = ({
 }) => {
   const component = useRef<HTMLDivElement>(null);
   const inerComponent = useRef<HTMLDivElement>(null);
-  const [componentWidth, updatecomponentWidth] = useState(0);
+
   const [componentRow, updateComponentRow] = useState(0);
+  const rowRef = useRef(componentRow);
 
   let withRatioCss = css``;
   let withtabPos = css``;
@@ -46,21 +47,22 @@ export const Cell: TCell = ({
 
   const handleResize = (): void => {
     if (component && component.current) {
-      if (window && window.innerWidth < 1024) {
-        updatecomponentWidth(component.current.offsetWidth);
-      }
-
-      if (autoRow && inerComponent && inerComponent.current) {
+      if (
+        autoRow &&
+        inerComponent &&
+        inerComponent.current &&
+        !rowRef.current &&
+        window.innerWidth > 1023
+      ) {
+        window.removeEventListener('resize', handleResize);
         const remUnitToPx = (document.body.clientWidth / 100) * 1.25;
         const cellSideToPx = ((76 - 23 * 1.4) / 24) * remUnitToPx;
         const gapToPx = remUnitToPx * 1.4;
-
         const endRow = Math.ceil(
           (inerComponent.current.offsetHeight + gapToPx) / (cellSideToPx + gapToPx)
         );
-
+        rowRef.current = endRow;
         updateComponentRow(endRow);
-
         if (endRowCallback) {
           endRowCallback(deskPos.rowStart + endRow);
         }
@@ -89,7 +91,7 @@ export const Cell: TCell = ({
   if (ratio) {
     withRatioCss = css`
       @media (max-width: 1023px) {
-        height: ${componentWidth / ratio}px;
+        padding-top: ${100 * ratio}%;
       }
     `;
   }
@@ -104,33 +106,29 @@ export const Cell: TCell = ({
   }
 
   useIsomorphicLayoutEffect(() => {
-    if (component && component.current) {
-      if (window && window.innerWidth < 1024) {
-        updatecomponentWidth(component.current.offsetWidth);
-      }
-    }
-
     if (autoRow && inerComponent && inerComponent.current) {
-      const remUnitToPx = (document.body.clientWidth / 100) * 1.25;
-      const cellSideToPx = ((76 - 23 * 1.4) / 24) * remUnitToPx;
-      const gapToPx = remUnitToPx * 1.4;
+      if (window.innerWidth > 1023) {
+        const remUnitToPx = (document.body.clientWidth / 100) * 1.25;
+        const cellSideToPx = ((76 - 23 * 1.4) / 24) * remUnitToPx;
+        const gapToPx = remUnitToPx * 1.4;
 
-      updateComponentRow(
-        Math.ceil((inerComponent.current.offsetHeight + gapToPx) / (cellSideToPx + gapToPx))
-      );
+        updateComponentRow(
+          Math.ceil((inerComponent.current.offsetHeight + gapToPx) / (cellSideToPx + gapToPx))
+        );
 
-      const endRow = Math.ceil(
-        (inerComponent.current.offsetHeight + gapToPx) / (cellSideToPx + gapToPx)
-      );
+        const endRow = Math.ceil(
+          (inerComponent.current.offsetHeight + gapToPx) / (cellSideToPx + gapToPx)
+        );
+        rowRef.current = endRow;
+        updateComponentRow(endRow);
 
-      updateComponentRow(endRow);
-
-      if (endRowCallback) {
-        endRowCallback(deskPos.rowStart + endRow);
+        if (endRowCallback) {
+          endRowCallback(deskPos.rowStart + endRow);
+        }
+      } else {
+        window.addEventListener('resize', handleResize);
       }
     }
-
-    window.addEventListener('resize', handleResize);
 
     return (): void => {
       window.removeEventListener('resize', handleResize);

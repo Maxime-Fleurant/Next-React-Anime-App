@@ -80,7 +80,7 @@ export const AnimeDetail: TAnimeDetail = ({ anime }) => {
           tabPos={{ rowStart: 4, rowEnd: 6, columnStart: 1, columnEnd: 9 }}
           extraCss={[imgBorder]}
           backgroundImg={anime.xLargeCoverImage}
-          ratio={0.7}
+          ratio={1.3}
         />
 
         <Cell
@@ -127,7 +127,7 @@ export const AnimeDetail: TAnimeDetail = ({ anime }) => {
         <Cell
           deskPos={{ rowStart: 4, rowEnd: 10, columnStart: 15, columnEnd: 25 }}
           tabPos={{ rowStart: 7, rowEnd: 8, columnStart: 1, columnEnd: 25 }}
-          ratio={1.77}
+          ratio={0.56}
           extraCss={[imgBorder, cellVideo, css({ display: videoState ? 'none' : 'block' })]}
           backgroundImg={anime.bannerImage}
         />
@@ -135,7 +135,7 @@ export const AnimeDetail: TAnimeDetail = ({ anime }) => {
         <Cell
           deskPos={{ rowStart: 4, rowEnd: 10, columnStart: 15, columnEnd: 25 }}
           tabPos={{ rowStart: 7, rowEnd: 8, columnStart: 1, columnEnd: 25 }}
-          ratio={1.77}
+          ratio={0.56}
           extraCss={[imgBorder, cellButton, css({ display: videoState ? 'none' : 'flex' })]}
           onClick={click}
         >
@@ -145,7 +145,7 @@ export const AnimeDetail: TAnimeDetail = ({ anime }) => {
         <Cell
           deskPos={{ rowStart: 4, rowEnd: 10, columnStart: 15, columnEnd: 25 }}
           tabPos={{ rowStart: 7, rowEnd: 8, columnStart: 1, columnEnd: 25 }}
-          ratio={1.77}
+          ratio={0.56}
           extraCss={[imgBorder, youtubeContainer]}
         >
           <Youtube
@@ -154,11 +154,6 @@ export const AnimeDetail: TAnimeDetail = ({ anime }) => {
             onReady={playerReady}
           />
         </Cell>
-
-        {/* <Cell
-          deskPos={{ rowStart: endRow + 1, rowEnd: endRow + 3, columnStart: 1, columnEnd: 25 }}
-          extraCss={[footer]}
-        /> */}
       </>
     );
 
