@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { updateFormSelection } from '../redux/animeListSlice';
 
 import GlobalForm from '../component/GlobalForm';
-import { TStore } from '../../../../app/store';
+import { TStore } from '../../../../app/redux';
 
 // TYPE DEFINITION
 type TListContainer = FunctionComponent;

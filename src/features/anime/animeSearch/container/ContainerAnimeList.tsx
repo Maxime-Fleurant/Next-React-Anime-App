@@ -9,16 +9,26 @@ export const ContainerAnimeList = () => {
     return state.animeListPageReducers.formSelection;
   });
 
-  const { loading, error, data: animes } = useQuery(SEARCH_ANIME, {
-    variables: stateFormSelection,
+  const { loading, error, data: animes, fetchMore } = useQuery(SEARCH_ANIME, {
+    variables: { ...stateFormSelection, skip: 0 },
+    fetchPolicy: 'network-only',
   });
   console.log(animes);
+  const fetchMoreHandler = (): void => {
+    fetchMore({
+      variables: { skip: animes.searchAnime.length as number },
+      updateQuery: (prev, { fetchMoreResult }) => {
+        return { searchAnime: [...prev.searchAnime, ...fetchMoreResult.searchAnime] };
+      },
+    });
+  };
+
   if (animes) {
     const formatedAnime = animes.searchAnime.map((anime: any) => {
       return { label: anime.romajiTitle, img: anime.xLargeCoverImage, id: anime.id };
     });
 
-    return <GenericList entityList={formatedAnime} />;
+    return <GenericList fetchMore={fetchMoreHandler} entityList={formatedAnime} />;
   }
 
   return <div>loading</div>;

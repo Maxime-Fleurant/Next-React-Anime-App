@@ -1,10 +1,8 @@
 // IMPORT
+import React, { FunctionComponent, useState, useEffect } from 'react';
+import { Form } from 'antd';
 
-import React, { FunctionComponent, ChangeEventHandler, useState, useRef, useEffect } from 'react';
-import { Select, Input, Form } from 'antd';
-import { FormProps } from 'antd/lib/form/Form';
-import _ from 'lodash';
-import { css, Global } from '@emotion/core';
+import { css } from '@emotion/core';
 
 import {
   tags as constTags,
@@ -13,23 +11,8 @@ import {
   status as statusConst,
 } from '../../../../common/const';
 import { Cell } from '../../../../common/components/cell';
-import { gridCss, subGrid } from '../../../layout/style';
-import {
-  fontRegular,
-  pointSize24,
-  baseHelveticaRegular,
-  backgroundColor400,
-  baseColor400,
-  baseColor200,
-  pointSize1,
-  pointSize4,
-  font40,
-  titleLineHeight,
-  helveticaMedium,
-  font20,
-  helveticaRegular,
-  font32,
-} from '../../../../common/globalStyle';
+import { subGrid } from '../../../layout/style';
+import { titleLineHeight, font20, helveticaRegular } from '../../../../common/globalStyle';
 import { inputText, selectStyle, inputLabel } from './style';
 
 // TYPE DEFINITION
@@ -39,9 +22,9 @@ type TsearchAnimeForm = FunctionComponent<{
 }>;
 
 interface IFormState {
-  title?: string;
-  genres?: string;
-  tags?: string;
+  text?: string;
+  genresIn?: string[];
+  tagsIn?: string[];
   format?: string;
   status?: string;
 }
@@ -57,15 +40,19 @@ const GlobalForm: TsearchAnimeForm = ({ changeHandler, initialForm }) => {
   }, [formState]);
 
   const inputHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    const targetVal = e.target.value;
-    if (!targetVal) {
-      const { title, ...newFormState } = formState;
+    clearTimeout(timeOut);
+    e.persist();
+    timeOut = setTimeout(() => {
+      const targetVal = e.target.value;
+      if (!targetVal) {
+        const { text, ...newFormState } = formState;
 
-      updateFormState(newFormState);
-      return;
-    }
+        updateFormState(newFormState);
+        return;
+      }
 
-    updateFormState({ ...formState, title: targetVal });
+      updateFormState({ ...formState, text: targetVal });
+    }, 1000);
   };
 
   const selectHandler = (e: React.ChangeEvent<HTMLSelectElement>): void => {
@@ -74,13 +61,16 @@ const GlobalForm: TsearchAnimeForm = ({ changeHandler, initialForm }) => {
         const targetVal = e.target.options[e.target.selectedIndex].value;
 
         if (!targetVal) {
-          const { genres, ...newFormState } = formState;
+          const { genresIn, ...newFormState } = formState;
 
           updateFormState(newFormState);
           return;
         }
 
-        updateFormState({ ...formState, genres: e.target.options[e.target.selectedIndex].value });
+        updateFormState({
+          ...formState,
+          genresIn: [e.target.options[e.target.selectedIndex].value],
+        });
         return;
       }
 
@@ -88,13 +78,13 @@ const GlobalForm: TsearchAnimeForm = ({ changeHandler, initialForm }) => {
         const targetVal = e.target.options[e.target.selectedIndex].value;
 
         if (!targetVal) {
-          const { tags, ...newFormState } = formState;
+          const { tagsIn, ...newFormState } = formState;
 
           updateFormState(newFormState);
           return;
         }
 
-        updateFormState({ ...formState, tags: e.target.options[e.target.selectedIndex].value });
+        updateFormState({ ...formState, tagsIn: [e.target.options[e.target.selectedIndex].value] });
         return;
       }
 
@@ -162,7 +152,6 @@ const GlobalForm: TsearchAnimeForm = ({ changeHandler, initialForm }) => {
             tabPos={{ rowStart: 2, rowEnd: 3, columnStart: 1, columnEnd: 25 }}
           >
             <input
-              value={formState.format}
               name="title"
               onChange={inputHandler}
               type="text"
@@ -256,61 +245,3 @@ const GlobalForm: TsearchAnimeForm = ({ changeHandler, initialForm }) => {
   );
 };
 export default GlobalForm;
-
-// <Form form={form} name="animeSearchForm" onValuesChange={change} layout="inline">
-//       <Item name="text" style={{ width: '18%' }} initialValue={initialForm.text}>
-//         <Input.Search placeholder="Search" />
-//       </Item>
-//       <Item name="genre_in" style={{ width: '18%' }} initialValue={initialForm.genre_in}>
-//         <Select
-//           mode="multiple"
-//           placeholder="Genres"
-//           allowClear
-//           maxTagCount={1}
-//           maxTagTextLength={3}
-//           showArrow
-//         >
-//           {selectOptionsHelper(genres)}
-//         </Select>
-//       </Item>
-//       <Item name="tag_in" style={{ width: '18%' }} initialValue={initialForm.tag_in}>
-//         <Select
-//           mode="multiple"
-//           placeholder="Tags"
-//           allowClear
-//           maxTagCount={1}
-//           maxTagTextLength={3}
-//           showArrow
-//         >
-//           {tags.map((tag) => {
-//             return (
-//               <Option value={tag.name} key={tag.name}>
-//                 {tag.name}
-//               </Option>
-//             );
-//           })}
-//         </Select>
-//       </Item>
-//       <Item name="format" style={{ width: '18%' }} initialValue={initialForm.format}>
-//         <Select placeholder="Format" allowClear>
-//           {selectOptionsHelper(formats)}
-//         </Select>
-//       </Item>
-//       <Item name="status" style={{ width: '18%' }} initialValue={initialForm.status}>
-//         <Select placeholder="Status" allowClear>
-//           {selectOptionsHelper(status)}
-//         </Select>
-//       </Item>
-//     </Form>
-
-// const change: FormProps['onValuesChange'] = (changedValue, allVallues) => {
-//   console.log('change');
-//   if (changedValue.text) {
-//     clearTimeout(timeOut);
-//     timeOut = setTimeout(() => {
-//       changeHandler(allVallues);
-//     }, 1000);
-//   } else {
-//     changeHandler(allVallues);
-//   }
-// };

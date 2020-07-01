@@ -1,9 +1,10 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import { animeListPageReducers } from '../features/anime/animeSearch/redux/animeListSlice';
+import { lightReducer } from '../features/layout/redux/themeSlice';
 
 let store: any;
 
-const reducer = combineReducers({ animeListPageReducers });
+const reducer = combineReducers({ animeListPageReducers, lightReducer });
 export type TStore = ReturnType<typeof reducer>;
 
 function initStore() {

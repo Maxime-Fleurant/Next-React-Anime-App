@@ -16,7 +16,7 @@ const Index: FunctionComponent = () => {
         deskPos={{ rowStart: 4, rowEnd: 12, columnStart: 1, columnEnd: 7 }}
         tabPos={{ rowStart: 4, rowEnd: 8, columnStart: 1, columnEnd: 13 }}
         extraCss={[imgBorder]}
-        ratio={0.7}
+        ratio={1.3}
         backgroundImg="/img/akira.jpg"
       />
 
@@ -61,7 +61,7 @@ const Index: FunctionComponent = () => {
         tabPos={{ rowStart: 9, rowEnd: 10, columnStart: 1, columnEnd: 7 }}
         extraCss={[imgBorder]}
         backgroundImg="/img/girl2.jpg"
-        ratio={0.7}
+        ratio={1.3}
       />
 
       <Cell
@@ -69,7 +69,6 @@ const Index: FunctionComponent = () => {
         tabPos={{ rowStart: 9, rowEnd: 10, columnStart: 7, columnEnd: 13 }}
         extraCss={[imgBorder]}
         backgroundImg="/img/girl3.png"
-        ratio={0.7}
       />
 
       <Cell
@@ -77,7 +76,6 @@ const Index: FunctionComponent = () => {
         tabPos={{ rowStart: 9, rowEnd: 10, columnStart: 13, columnEnd: 19 }}
         extraCss={[imgBorder]}
         backgroundImg="/img/girl4.jpg"
-        ratio={0.7}
       />
 
       <Cell
@@ -85,15 +83,14 @@ const Index: FunctionComponent = () => {
         tabPos={{ rowStart: 9, rowEnd: 10, columnStart: 19, columnEnd: 25 }}
         extraCss={[imgBorder]}
         backgroundImg="/img/girl5.png"
-        ratio={0.7}
       />
 
       <Cell
         deskPos={{ rowStart: 12, rowEnd: 16, columnStart: 1, columnEnd: 4 }}
         tabPos={{ rowStart: 10, rowEnd: 14, columnStart: 1, columnEnd: 7 }}
         extraCss={[imgBorder]}
+        ratio={1.3}
         backgroundImg="/img/cover2.jpg"
-        ratio={0.7}
       />
 
       <Cell
@@ -101,7 +98,7 @@ const Index: FunctionComponent = () => {
         tabPos={{ rowStart: 14, rowEnd: 18, columnStart: 1, columnEnd: 7 }}
         extraCss={[imgBorder]}
         backgroundImg="/img/cover3.jpg"
-        ratio={0.7}
+        ratio={1.3}
       />
 
       <Cell
@@ -123,8 +120,8 @@ const Index: FunctionComponent = () => {
         deskPos={{ rowStart: 12, rowEnd: 20, columnStart: 19, columnEnd: 25 }}
         tabPos={{ rowStart: 18, rowEnd: 22, columnStart: 13, columnEnd: 25 }}
         extraCss={[imgBorder]}
+        ratio={1.3}
         backgroundImg="/img/cover4.jpg"
-        ratio={0.7}
       />
 
       <Cell
@@ -160,7 +157,7 @@ const Index: FunctionComponent = () => {
         tabPos={{ rowStart: 22, rowEnd: 23, columnStart: 1, columnEnd: 25 }}
         extraCss={[imgBorder]}
         backgroundImg="/img/banner6.jpg"
-        ratio={3.2}
+        ratio={0.3}
       />
 
       <Cell
@@ -168,7 +165,7 @@ const Index: FunctionComponent = () => {
         tabPos={{ rowStart: 23, rowEnd: 24, columnStart: 1, columnEnd: 25 }}
         extraCss={[imgBorder]}
         backgroundImg="/img/banner7.jpg"
-        ratio={3.2}
+        ratio={0.3}
       />
 
       <Cell
@@ -176,7 +173,7 @@ const Index: FunctionComponent = () => {
         tabPos={{ rowStart: 24, rowEnd: 25, columnStart: 1, columnEnd: 13 }}
         extraCss={[imgBorder]}
         backgroundImg="/img/cover5.png"
-        ratio={0.7}
+        ratio={1.3}
       />
 
       <Cell

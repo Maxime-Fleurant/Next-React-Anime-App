@@ -1,6 +1,8 @@
 import { FunctionComponent, useRef, useState, MouseEventHandler, useEffect } from 'react';
 import { css, SerializedStyles } from '@emotion/core';
 import useIsomorphicLayoutEffect from '../hooks/isomorphUseLayout';
+import { relativeCell, relativeChildren } from './cellStyle';
+import { useTheme } from 'emotion-theming';
 
 // TYPE
 interface IPos {
@@ -19,6 +21,7 @@ type TCell = FunctionComponent<{
   backgroundImg?: string | null;
   onClick?: MouseEventHandler;
   autoRow?: boolean;
+  relative?: boolean;
   endRowCallback?: (endRow: number) => void;
 }>;
 
@@ -34,6 +37,7 @@ export const Cell: TCell = ({
   onClick,
   autoRow,
   endRowCallback,
+  relative,
 }) => {
   const component = useRef<HTMLDivElement>(null);
   const inerComponent = useRef<HTMLDivElement>(null);
@@ -134,6 +138,18 @@ export const Cell: TCell = ({
       window.removeEventListener('resize', handleResize);
     };
   }, []);
+
+  if (relative) {
+    return (
+      <div
+        onClick={onClick}
+        ref={component}
+        css={[relativeCell, componentCss, withRatioCss, withtabPos, withBackground, ...extraCss]}
+      >
+        <div css={relativeChildren}>{children}</div>
+      </div>
+    );
+  }
 
   if (autoRow) {
     return (

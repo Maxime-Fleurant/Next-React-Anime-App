@@ -128,24 +128,7 @@ export const AnimeDetail: TAnimeDetail = ({ anime }) => {
           deskPos={{ rowStart: 4, rowEnd: 10, columnStart: 15, columnEnd: 25 }}
           tabPos={{ rowStart: 7, rowEnd: 8, columnStart: 1, columnEnd: 25 }}
           ratio={0.56}
-          extraCss={[imgBorder, cellVideo, css({ display: videoState ? 'none' : 'block' })]}
-          backgroundImg={anime.bannerImage}
-        />
-
-        <Cell
-          deskPos={{ rowStart: 4, rowEnd: 10, columnStart: 15, columnEnd: 25 }}
-          tabPos={{ rowStart: 7, rowEnd: 8, columnStart: 1, columnEnd: 25 }}
-          ratio={0.56}
-          extraCss={[imgBorder, cellButton, css({ display: videoState ? 'none' : 'flex' })]}
-          onClick={click}
-        >
-          <PlayButton css={svgButton} />
-        </Cell>
-
-        <Cell
-          deskPos={{ rowStart: 4, rowEnd: 10, columnStart: 15, columnEnd: 25 }}
-          tabPos={{ rowStart: 7, rowEnd: 8, columnStart: 1, columnEnd: 25 }}
-          ratio={0.56}
+          relative
           extraCss={[imgBorder, youtubeContainer]}
         >
           <Youtube

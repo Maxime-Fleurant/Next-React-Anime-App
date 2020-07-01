@@ -1,6 +1,8 @@
-import { FunctionComponent } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { FunctionComponent, useEffect } from 'react';
 import Link from 'next/link';
-import { css, Global } from '@emotion/core';
+import { css } from '@emotion/core';
+import { ThemeProvider, useTheme } from 'emotion-theming';
 
 import { gridCss, navCss, nav, navTab, logo } from './style';
 import {
@@ -15,13 +17,23 @@ import {
   footer,
 } from '../../common/globalStyle';
 
+import { updateLight } from './redux/themeSlice';
+import { ITheme } from './theme';
+
 const Layout: FunctionComponent = ({ children }) => {
+  const dispacth = useDispatch();
+  const changeHandler = () => {
+    dispacth(updateLight());
+  };
+
+  const theme = useTheme<ITheme>();
+
   return (
     <>
       <div css={gridCss}>
         <div css={[nav]}>
           <Link href="/">
-            <span css={[font64, helveticaMedium, textColor900, titleLineHeight, logo]}>
+            <span css={[font64, helveticaMedium, theme.colors.primary, titleLineHeight, logo]}>
               {'Anime '}
               <span css={font20}>アニメ</span>
             </span>
@@ -36,7 +48,7 @@ const Layout: FunctionComponent = ({ children }) => {
             </Link>
 
             <label css={switchButton}>
-              <input type="checkbox" id="fldk" />
+              <input onChange={changeHandler} type="checkbox" id="fldk" />
               <div className="tt" />
             </label>
           </span>

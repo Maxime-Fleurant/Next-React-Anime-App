@@ -10,6 +10,7 @@ import Layout from '../features/layout';
 import { useApollo } from '../app/apolloClient';
 import { useStore } from '../app/redux';
 import { normalize } from '../features/splash/normalize';
+import { Theme } from '../features/layout/theme';
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   const apolloClient = useApollo(pageProps.initialApolloState);
@@ -24,9 +25,11 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
               ${normalize}
             `}
           />
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
+          <Theme>
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
+          </Theme>
         </CacheProvider>
       </ApolloProvider>
     </Provider>

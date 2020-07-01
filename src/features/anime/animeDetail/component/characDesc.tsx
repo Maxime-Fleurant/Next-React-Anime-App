@@ -45,7 +45,7 @@ export const CharacDesc: TCharacDesc = ({ character, onClick, endRowCallback }) 
         }}
         extraCss={[imgBorder]}
         backgroundImg={character.largeImg}
-        ratio={0.7}
+        ratio={1.3}
       />
 
       <Cell
@@ -61,7 +61,6 @@ export const CharacDesc: TCharacDesc = ({ character, onClick, endRowCallback }) 
           columnStart: 15,
           columnEnd: 25,
         }}
-        endRowCallback={endRowCallback}
         extraCss={[font32, helveticaMedium, textColor900, textLineHeight]}
       >
         {character.name}
