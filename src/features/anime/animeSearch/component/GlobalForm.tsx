@@ -14,6 +14,8 @@ import { Cell } from '../../../../common/components/cell';
 import { subGrid } from '../../../layout/style';
 import { titleLineHeight, font20, helveticaRegular } from '../../../../common/globalStyle';
 import { inputText, selectStyle, inputLabel } from './style';
+import { useTheme } from 'emotion-theming';
+import { ITheme } from '../../../layout/theme';
 
 // TYPE DEFINITION
 type TsearchAnimeForm = FunctionComponent<{
@@ -32,6 +34,8 @@ interface IFormState {
 // REACT
 const GlobalForm: TsearchAnimeForm = ({ changeHandler, initialForm }) => {
   let timeOut: any;
+
+  const theme = useTheme<ITheme>();
 
   const [formState, updateFormState] = useState<IFormState>({});
 
@@ -141,7 +145,7 @@ const GlobalForm: TsearchAnimeForm = ({ changeHandler, initialForm }) => {
           <Cell
             deskPos={{ rowStart: 1, rowEnd: 2, columnStart: 1, columnEnd: 5 }}
             tabPos={{ rowStart: 1, rowEnd: 2, columnStart: 1, columnEnd: 25 }}
-            extraCss={[inputLabel]}
+            extraCss={[inputLabel, theme.text.textColor900]}
           >
             Title&nbsp;
             <span css={css([font20, titleLineHeight, helveticaRegular])}>題名</span>
@@ -156,14 +160,14 @@ const GlobalForm: TsearchAnimeForm = ({ changeHandler, initialForm }) => {
               onChange={inputHandler}
               type="text"
               placeholder="Search Title"
-              css={inputText}
+              css={[inputText(theme), theme.background.backgroundColor100, theme.text.textColor900]}
             />
           </Cell>
 
           <Cell
             deskPos={{ rowStart: 1, rowEnd: 2, columnStart: 6, columnEnd: 10 }}
             tabPos={{ rowStart: 3, rowEnd: 4, columnStart: 1, columnEnd: 25 }}
-            extraCss={[inputLabel]}
+            extraCss={[inputLabel, theme.text.textColor900]}
           >
             Genre&nbsp;
             <span css={css([font20, titleLineHeight, helveticaRegular])}>カテゴリ</span>
@@ -182,7 +186,7 @@ const GlobalForm: TsearchAnimeForm = ({ changeHandler, initialForm }) => {
           <Cell
             deskPos={{ rowStart: 1, rowEnd: 2, columnStart: 11, columnEnd: 15 }}
             tabPos={{ rowStart: 5, rowEnd: 6, columnStart: 1, columnEnd: 25 }}
-            extraCss={[inputLabel]}
+            extraCss={[inputLabel, theme.text.textColor900]}
           >
             Tag&nbsp;
             <span css={css([font20, titleLineHeight, helveticaRegular])}>付箋</span>
@@ -205,7 +209,7 @@ const GlobalForm: TsearchAnimeForm = ({ changeHandler, initialForm }) => {
           <Cell
             deskPos={{ rowStart: 1, rowEnd: 2, columnStart: 16, columnEnd: 20 }}
             tabPos={{ rowStart: 7, rowEnd: 8, columnStart: 1, columnEnd: 25 }}
-            extraCss={[inputLabel]}
+            extraCss={[inputLabel, theme.text.textColor900]}
           >
             Format&nbsp;
             <span css={css([font20, titleLineHeight, helveticaRegular])}>体裁</span>
@@ -224,7 +228,7 @@ const GlobalForm: TsearchAnimeForm = ({ changeHandler, initialForm }) => {
           <Cell
             deskPos={{ rowStart: 1, rowEnd: 2, columnStart: 21, columnEnd: 25 }}
             tabPos={{ rowStart: 9, rowEnd: 10, columnStart: 1, columnEnd: 25 }}
-            extraCss={[inputLabel]}
+            extraCss={[inputLabel, theme.text.textColor900]}
           >
             Status&nbsp;
             <span css={css([font20, titleLineHeight, helveticaRegular])}>分</span>

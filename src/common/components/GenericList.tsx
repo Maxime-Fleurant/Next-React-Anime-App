@@ -7,6 +7,7 @@ import React, {
   Fragment,
   useRef,
   useState,
+  Profiler,
 } from 'react';
 import Link from 'next/link';
 import { Cell } from './cell';
@@ -18,6 +19,9 @@ import {
   textColor900,
 } from '../globalStyle';
 import { imgLink, aLink } from './genericListStyle';
+
+import { ITheme } from '../../features/layout/theme';
+import { useTheme } from 'emotion-theming';
 
 // TYPE DEFINITION
 export interface IEntity {
@@ -42,7 +46,12 @@ const GenericList: TGenericList = ({ entityList = [], fetchMore }) => {
   let deskRowStart = 7;
   let deskColStart = 1;
 
+  let tabRowStart = 7;
+  let tabColStart = 1;
+
   const lastElem = useRef<HTMLDivElement>(null);
+
+  const theme = useTheme<ITheme>();
 
   const handleScroll = (): void => {
     if (lastElem && lastElem.current) {
@@ -71,6 +80,11 @@ const GenericList: TGenericList = ({ entityList = [], fetchMore }) => {
       deskRowStart += 7;
     }
 
+    if (tabColStart === 25) {
+      tabColStart = 1;
+      tabRowStart += 2;
+    }
+
     const singleEntity = (
       <Fragment key={entity.id}>
         <Cell
@@ -80,7 +94,12 @@ const GenericList: TGenericList = ({ entityList = [], fetchMore }) => {
             columnStart: deskColStart,
             columnEnd: deskColStart + 4,
           }}
-          tabPos={{ rowStart: 7, rowEnd: 8, columnStart: 9, columnEnd: 17 }}
+          tabPos={{
+            rowStart: tabRowStart,
+            rowEnd: tabRowStart + 1,
+            columnStart: tabColStart,
+            columnEnd: tabColStart + 6,
+          }}
           extraCss={[imgBorder]}
           ratio={1.3}
           backgroundImg={entity.img}
@@ -97,8 +116,13 @@ const GenericList: TGenericList = ({ entityList = [], fetchMore }) => {
             columnStart: deskColStart,
             columnEnd: deskColStart + 4,
           }}
-          tabPos={{ rowStart: 8, rowEnd: 9, columnStart: 9, columnEnd: 17 }}
-          extraCss={[fontRegular, helveticaRegular, textLineHeight, textColor900]}
+          tabPos={{
+            rowStart: tabRowStart + 1,
+            rowEnd: tabRowStart + 2,
+            columnStart: tabColStart,
+            columnEnd: tabColStart + 6,
+          }}
+          extraCss={[fontRegular, helveticaRegular, textLineHeight, theme.text.textColor900]}
         >
           <Link href="/animes/[id]" as={`/animes/${entity.id}`}>
             <a css={aLink}>{entity.label}</a>
@@ -108,6 +132,7 @@ const GenericList: TGenericList = ({ entityList = [], fetchMore }) => {
     );
 
     deskColStart += 4;
+    tabColStart += 6;
 
     return singleEntity;
   });

@@ -19,6 +19,7 @@ import {
   baseColor100,
   pointSize120,
 } from '../../../common/globalStyle';
+import { ITheme } from '../../layout/theme';
 
 export const titleMargin = css({ marginTop: pointSize16 });
 
@@ -30,10 +31,11 @@ export const youtubeContainer = css`
   }
 `;
 
-export const descBlock = css({
-  paddingTop: pointSize16,
-  borderTop: `${pointSize8} solid ${baseColor900}`,
-});
+export const descBlock = (theme: ITheme) =>
+  css({
+    paddingTop: pointSize16,
+    borderTop: `${pointSize8} solid ${theme.base.baseColor900}`,
+  });
 
 export const cellButton = css({
   zIndex: 200,
@@ -69,7 +71,7 @@ export const studioCell = css([
   { textAlign: 'right' },
   textLineHeight,
   font32,
-  textColor900,
+
   helveticaMedium,
   css`
     @media (max-width: 1023px) {
@@ -78,28 +80,29 @@ export const studioCell = css([
   `,
 ]);
 
-export const studioQu = css([font20, textLineHeight, textColor600]);
+export const studioQu = css([font20, textLineHeight]);
 
-export const externalLinkButton = css([
-  fontRegular,
-  titleLineHeight,
-  {
-    padding: `${pointSize16} 0`,
-    textAlign: 'center',
-    marginTop: pointSize16,
-    border: `${pointSize1} solid ${baseColor900}`,
-    display: 'block',
-    textDecoration: 'none',
-  },
-  css`
-    &:hover {
-      color: ${baseColor100};
-      background-color: ${baseColor900};
-    }
-  `,
-  helveticaRegular,
-  textColor900,
-]);
+export const externalLinkButton = (theme: ITheme) =>
+  css([
+    fontRegular,
+    titleLineHeight,
+    {
+      padding: `${pointSize16} 0`,
+      textAlign: 'center',
+      marginTop: pointSize16,
+      border: `${pointSize1} solid ${theme.base.baseColor900}`,
+      display: 'block',
+      textDecoration: 'none',
+    },
+    css`
+      &:hover {
+        color: ${theme.base.baseColor100};
+        background-color: ${theme.base.baseColor900};
+      }
+    `,
+    helveticaRegular,
+    theme.text.textColor900,
+  ]);
 
 export const sideCat = css([
   font32,

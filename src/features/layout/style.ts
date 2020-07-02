@@ -1,5 +1,6 @@
 import { css } from '@emotion/core';
 import { baseColor900 } from '../../common/globalStyle';
+import { ITheme } from './theme';
 
 export const gridCss = css`
   display: grid;
@@ -8,7 +9,8 @@ export const gridCss = css`
   grid-auto-rows: ${(76 - 23 * 1.4) / 24}rem;
 
   font-family: helvetica neue;
-  margin: 1rem 2rem;
+  margin: 0 2rem;
+  padding: 1rem 0;
 
   @media (max-width: 1023px) {
     grid-auto-rows: auto;
@@ -28,13 +30,14 @@ export const subGrid = css`
   }
 `;
 
-export const nav = css({
-  gridArea: '1 / 1 / 3 / 25',
-  display: 'flex',
-  alignItems: 'baseline',
-  justifyContent: 'space-between',
-  borderBottom: `0.08rem solid ${baseColor900}`,
-});
+export const nav = (theme: ITheme) =>
+  css({
+    gridArea: '1 / 1 / 3 / 25',
+    display: 'flex',
+    alignItems: 'baseline',
+    justifyContent: 'space-between',
+    borderBottom: `0.08rem solid ${theme.base.baseColor900}`,
+  });
 
 export const logo = css({
   margin: '1rem 0',

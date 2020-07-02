@@ -1,8 +1,7 @@
-import { FunctionComponent, useRef, useState, MouseEventHandler, useEffect } from 'react';
+import { FunctionComponent, useRef, useState, MouseEventHandler, useEffect, Profiler } from 'react';
 import { css, SerializedStyles } from '@emotion/core';
 import useIsomorphicLayoutEffect from '../hooks/isomorphUseLayout';
 import { relativeCell, relativeChildren } from './cellStyle';
-import { useTheme } from 'emotion-theming';
 
 // TYPE
 interface IPos {
@@ -109,7 +108,7 @@ export const Cell: TCell = ({
     });
   }
 
-  useIsomorphicLayoutEffect(() => {
+  useEffect(() => {
     if (autoRow && inerComponent && inerComponent.current) {
       if (window.innerWidth > 1023) {
         const remUnitToPx = (document.body.clientWidth / 100) * 1.25;

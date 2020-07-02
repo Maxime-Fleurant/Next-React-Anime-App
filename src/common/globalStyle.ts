@@ -1,4 +1,5 @@
 import { css } from '@emotion/core';
+import { ITheme } from '../features/layout/theme';
 
 export const baseColor1000 = '#16191D';
 export const baseColor900 = '#2D3239';
@@ -25,6 +26,7 @@ export const pointSize40 = '1.666rem';
 export const pointSize48 = '2rem';
 export const pointSize56 = '2.333rem';
 export const pointSize64 = '2.666rem';
+export const pointSize80 = '3.2rem';
 export const pointSize120 = '5rem';
 
 export const textColor1000 = css({ color: baseColor1000 });
@@ -67,6 +69,10 @@ export const helveticaMedium = css({
     'HelveticaNeueMedium, HelveticaNeue-Medium, Helvetica Neue Medium, HelveticaNeue, Helvetica Neue, TeXGyreHerosRegular, Helvetica, Tahoma, Geneva, Arial, sans-serif; font-weight:500; font-stretch:normal',
 });
 
+export const helveticaCondensedBold = css({
+  fontFamily: `HelveticaNeueBlackCondensed, HelveticaNeue-Black-Condensed, Helvetica Neue Black Condensed, HelveticaNeueBlack, HelveticaNeue-Black, Helvetica Neue Black, HelveticaNeue, Helvetica Neue, 'TeXGyreHerosCnBold', Arial Narrow, Arial, sans-serif; font-weight:800; font-stretch:condensed`,
+});
+
 export const helveticaRegular = css({
   fontFamily: baseHelveticaRegular,
 });
@@ -81,51 +87,54 @@ export const imgFit = css({
 });
 
 export const imgBorder = css({
-  border: `0.04rem solid ${baseColor600}`,
+  border: `0.04rem solid black`,
 });
 
-export const switchButton = css`
-  position: relative;
-  display: inline-block;
-  width: 2.5rem;
-  height: 1.333rem;
+export const switchButton = (theme: ITheme) => {
+  return css`
+    position: relative;
+    display: inline-block;
+    width: 2.5rem;
+    height: 1.333rem;
 
-  input {
-    opacity: 0;
-    height: 0;
-    width: 0;
-  }
-
-  input:checked + div:before {
-    transform: translateX(1.15rem);
-  }
-
-  div {
-    display: flex;
-    border-radius: 1rem;
-    align-items: center;
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #9198a1;
-
-    &:before {
-      position: absolute;
-      content: '';
-      height: 0.85rem;
-      width: 0.85rem;
-      margin-left: 0.25rem;
-      background-color: #f0f2f4;
-      border-radius: 1rem;
-      transition: 0.2s;
+    input {
+      opacity: 0;
+      height: 0;
+      width: 0;
     }
-  }
-`;
 
-export const footer = css({
-  borderBottom: `${pointSize1} solid ${baseColor900}`,
-  margin: '6rem 2rem',
-});
+    input:checked + div:before {
+      transform: translateX(1.15rem);
+    }
+
+    div {
+      display: flex;
+      border-radius: 1rem;
+      align-items: center;
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      ${theme.background.backgroundColor500};
+
+      &:before {
+        position: absolute;
+        content: '';
+        height: 0.85rem;
+        width: 0.85rem;
+        margin-left: 0.25rem;
+        ${theme.background.backgroundColor100};
+        border-radius: 1rem;
+        transition: 0.2s;
+      }
+    }
+  `;
+};
+
+export const footer = (theme: ITheme) =>
+  css({
+    borderBottom: `${pointSize1} solid ${theme.base.baseColor900}`,
+    margin: '6rem 2rem',
+  });

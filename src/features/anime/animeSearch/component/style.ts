@@ -16,6 +16,7 @@ import {
   titleLineHeight,
   helveticaMedium,
 } from '../../../../common/globalStyle';
+import { ITheme } from '../../../layout/theme';
 
 export const itemSelect = css`
   width: 100%;
@@ -38,7 +39,7 @@ export const selectAnt = css`
   }
 `;
 
-export const inputText = [
+export const inputText = (theme: ITheme) => [
   css({
     fontSize: '1rem',
     outline: 'none',
@@ -48,13 +49,13 @@ export const inputText = [
     height: '100%',
     padding: `0  `,
     boxSizing: 'border-box',
-    borderBottom: `${pointSize1} solid ${baseColor900}`,
+    borderBottom: `${pointSize1} solid ${theme.base.baseColor900}`,
   }),
-  backgroundColor100,
-  textColor900,
+  theme.background.backgroundColor100,
+  theme.text.textColor900,
 ];
 
-export const selectStyle = [
+export const selectStyle = (theme: ITheme) => [
   css({
     fontSize: '1rem',
     height: '100%',
@@ -63,8 +64,8 @@ export const selectStyle = [
     width: '100%',
     fontFamily: baseHelveticaRegular,
   }),
-  backgroundColor100,
-  textColor900,
+  theme.background.backgroundColor100,
+  theme.text.textColor900,
 ];
 
-export const inputLabel = css([[font32, titleLineHeight, helveticaMedium, textColor900]]);
+export const inputLabel = css([[font32, titleLineHeight, helveticaMedium]]);

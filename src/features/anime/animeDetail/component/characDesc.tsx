@@ -15,6 +15,8 @@ import {
   textColor600,
 } from '../../../../common/globalStyle';
 import { descBack, charDesc, characterSecondName, returnButton } from './characterListStyle';
+import { useTheme } from 'emotion-theming';
+import { ITheme } from '../../../layout/theme';
 
 // TYPE
 type TCharacDesc = FunctionComponent<{
@@ -27,6 +29,8 @@ type TCharacDesc = FunctionComponent<{
 export const CharacDesc: TCharacDesc = ({ character, onClick, endRowCallback }) => {
   const regex = /\\n|<br>|<br \/>/g;
   const formatedText = character.description.replace(regex, '');
+
+  const theme = useTheme<ITheme>();
 
   return (
     <>
@@ -43,7 +47,7 @@ export const CharacDesc: TCharacDesc = ({ character, onClick, endRowCallback }) 
           columnStart: 10,
           columnEnd: 15,
         }}
-        extraCss={[imgBorder]}
+        extraCss={[theme.imgBorder]}
         backgroundImg={character.largeImg}
         ratio={1.3}
       />
@@ -61,12 +65,14 @@ export const CharacDesc: TCharacDesc = ({ character, onClick, endRowCallback }) 
           columnStart: 15,
           columnEnd: 25,
         }}
-        extraCss={[font32, helveticaMedium, textColor900, textLineHeight]}
+        extraCss={[font32, helveticaMedium, theme.text.textColor900, textLineHeight]}
       >
         {character.name}
-        <div css={[characterSecondName, fontRegular, textColor600]}>{character.nativeName}</div>
+        <div css={[characterSecondName, fontRegular, theme.text.textColor600]}>
+          {character.nativeName}
+        </div>
         <div
-          css={[...regularText, charDesc, helveticaRegular]}
+          css={[...regularText, charDesc, helveticaRegular, theme.text.textColor900]}
           dangerouslySetInnerHTML={{ __html: formatedText }}
         />
       </Cell>
@@ -84,10 +90,10 @@ export const CharacDesc: TCharacDesc = ({ character, onClick, endRowCallback }) 
           columnStart: 10,
           columnEnd: 15,
         }}
-        extraCss={[fontRegular, helveticaMedium, textColor900, descBack]}
+        extraCss={[fontRegular, helveticaMedium, theme.text.textColor900, descBack]}
         onClick={onClick}
       >
-        <div css={returnButton}>Return</div>
+        <div css={returnButton(theme)}>Return</div>
       </Cell>
     </>
   );

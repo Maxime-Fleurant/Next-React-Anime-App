@@ -6,6 +6,7 @@ import {
   baseColor200,
   baseColor100,
 } from '../../../../common/globalStyle';
+import { ITheme } from '../../../layout/theme';
 
 export const charDesc = css([
   { overflowY: 'scroll' },
@@ -24,15 +25,16 @@ export const descBack = css({ textAlign: 'center', cursor: 'pointer' });
 
 export const picCharact = css({ cursor: 'pointer' });
 
-export const returnButton = css(
-  {
-    padding: `${pointSize16} 0`,
-    border: `${pointSize1} solid ${baseColor900}`,
-  },
-  css`
-    &:hover {
-      color: ${baseColor100};
-      background-color: ${baseColor900};
-    }
-  `
-);
+export const returnButton = (theme: ITheme) =>
+  css(
+    {
+      padding: `${pointSize16} 0`,
+      border: `${pointSize1} solid ${theme.base.baseColor900}`,
+    },
+    css`
+      &:hover {
+        color: ${theme.base.baseColor100};
+        background-color: ${theme.base.baseColor900};
+      }
+    `
+  );

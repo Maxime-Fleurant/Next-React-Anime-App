@@ -20,11 +20,6 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
     <Provider store={reduxStore}>
       <ApolloProvider client={apolloClient}>
         <CacheProvider value={cache}>
-          <Global
-            styles={css`
-              ${normalize}
-            `}
-          />
           <Theme>
             <Layout>
               <Component {...pageProps} />

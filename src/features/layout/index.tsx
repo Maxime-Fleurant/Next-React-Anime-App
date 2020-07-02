@@ -1,16 +1,15 @@
-import { useSelector, useDispatch } from 'react-redux';
-import { FunctionComponent, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { FunctionComponent } from 'react';
 import Link from 'next/link';
-import { css } from '@emotion/core';
-import { ThemeProvider, useTheme } from 'emotion-theming';
+import { css, Global } from '@emotion/core';
+import { useTheme } from 'emotion-theming';
 
-import { gridCss, navCss, nav, navTab, logo } from './style';
+import { gridCss, navCss, nav, logo } from './style';
 import {
   font64,
   font20,
   font40,
   helveticaMedium,
-  textColor900,
   switchButton,
   helveticaRegular,
   titleLineHeight,
@@ -19,6 +18,7 @@ import {
 
 import { updateLight } from './redux/themeSlice';
 import { ITheme } from './theme';
+import { normalize } from '../splash/normalize';
 
 const Layout: FunctionComponent = ({ children }) => {
   const dispacth = useDispatch();
@@ -30,33 +30,50 @@ const Layout: FunctionComponent = ({ children }) => {
 
   return (
     <>
-      <div css={gridCss}>
-        <div css={[nav]}>
-          <Link href="/">
-            <span css={[font64, helveticaMedium, theme.colors.primary, titleLineHeight, logo]}>
-              {'Anime '}
-              <span css={font20}>アニメ</span>
-            </span>
-          </Link>
-
-          <span css={navCss}>
-            <Link href="/animes">
-              <span css={[font40, helveticaRegular, textColor900, css({ marginRight: '2rem' })]}>
-                {'Browse '}
-                <span css={font20}>ブラウズ</span>
+      <Global
+        styles={css`
+          ${normalize}
+          body {
+            ${theme.background.backgroundColor100}
+          }
+        `}
+      />
+      <div css={theme.background.backgroundColor100}>
+        <div css={gridCss}>
+          <div css={[nav(theme)]}>
+            <Link href="/">
+              <span css={[font64, helveticaMedium, theme.text.textColor900, titleLineHeight, logo]}>
+                {'Anime '}
+                <span css={font20}>アニメ</span>
               </span>
             </Link>
 
-            <label css={switchButton}>
-              <input onChange={changeHandler} type="checkbox" id="fldk" />
-              <div className="tt" />
-            </label>
-          </span>
-        </div>
+            <span css={navCss}>
+              <Link href="/animes">
+                <span
+                  css={[
+                    font40,
+                    helveticaRegular,
+                    theme.text.textColor900,
+                    css({ marginRight: '2rem' }),
+                  ]}
+                >
+                  {'Browse '}
+                  <span css={font20}>ブラウズ</span>
+                </span>
+              </Link>
 
-        {children}
+              <label css={switchButton(theme)}>
+                <input onChange={changeHandler} type="checkbox" id="fldk" />
+                <div className="tt" />
+              </label>
+            </span>
+          </div>
+
+          {children}
+        </div>
+        <div css={footer(theme)} />
       </div>
-      <div css={footer} />
     </>
   );
 };
