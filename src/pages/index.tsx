@@ -1,4 +1,5 @@
 import { FunctionComponent } from 'react';
+import { css } from '@emotion/core';
 
 import { useTheme } from 'emotion-theming';
 import { Cell } from '../common/components/cell';
@@ -11,6 +12,13 @@ import {
   pointSize80,
   helveticaCondensedBold,
   titleLineHeight,
+  italic,
+  helveticaMedium,
+  helveticaThin,
+  font64,
+  font40,
+  font56,
+  font48,
 } from '../common/globalStyle';
 import { ITheme } from '../features/layout/theme';
 import {
@@ -19,8 +27,21 @@ import {
   animeReletive,
   finalAnime1,
   fillspan1,
+  dashDec,
+  fillspan3,
+  fillspan4,
+  dateleft,
+  rotateSingle,
+  rotate1,
+  rotate2,
+  rotate3,
+  rotateWrap,
+  rotate4,
+  rotate5,
+  rotate6,
+  rotate8,
+  rotate7,
 } from '../features/splash/splashStyle';
-import { css } from '@emotion/core';
 
 const Index: FunctionComponent = () => {
   const theme = useTheme<ITheme>();
@@ -68,21 +89,37 @@ const Index: FunctionComponent = () => {
         ]}
       >
         <div css={finalAnime1}>
-          <span css={css(fillspan1, helveticaCondensedBold, titleLineHeight)}>
-            ---&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ANIME
-          </span>
-          こちょこちょ 👁
-          <br />
-          ゲッソリ
+          <div css={css(fillspan1, helveticaCondensedBold, titleLineHeight)}>
+            ANIME こちょこちょ 👁
+          </div>
+
+          <div css={fillspan3(theme)}>
+            💎 ゲッソリ, 📀 こちょこ, 🌎
+            <span css={italic}> Brutalist</span>, ⌚️
+            <span css={helveticaCondensedBold}>Test-Set</span>, 🔫 チュウチュウ
+          </div>
+
+          <div css={fillspan4}>
+            <span css={css(helveticaThin, dateleft(theme))}>05-08</span>
+            <span css={helveticaCondensedBold}>2020</span>
+          </div>
         </div>
-        {/* 
+
         <div css={finalAnime2}>
-          ゲッソリ
-          <br />
-          &#129409;
-          <br />
-          &#8986;
-        </div> */}
+          <div css={css(fillspan1, helveticaCondensedBold, titleLineHeight)}>
+            ANIME こちょこちょ 👁
+          </div>
+
+          <div css={fillspan3(theme)}>
+            💎 ゲッソリ, 📀 こちょこ, 🌎<span css={italic}> Brutalist</span>, ⌚️{' '}
+            <span css={helveticaCondensedBold}>Test-Set</span>, 🔫 チュウチュウ
+          </div>
+
+          <div css={fillspan4}>
+            <span css={css(helveticaThin, dateleft(theme))}>05-08</span>
+            <span css={helveticaCondensedBold}>2020</span>
+          </div>
+        </div>
       </Cell>
 
       <Cell
@@ -112,7 +149,7 @@ const Index: FunctionComponent = () => {
         tabPos={{ rowStart: 10, rowEnd: 14, columnStart: 1, columnEnd: 7 }}
         extraCss={[theme.imgBorder]}
         ratio={1.3}
-        backgroundImg="/img/gif1.gif"
+        backgroundImg="/img/gif11.gif"
       />
 
       <Cell
@@ -126,9 +163,16 @@ const Index: FunctionComponent = () => {
       <Cell
         deskPos={{ rowStart: 12, rowEnd: 16, columnStart: 4, columnEnd: 13 }}
         tabPos={{ rowStart: 10, rowEnd: 14, columnStart: 7, columnEnd: 25 }}
-        extraCss={[...centerContent, font120, theme.text.textColor900, textLineHeight]}
+        extraCss={[...centerContent, font48, theme.text.textColor900, textLineHeight, rotateWrap]}
       >
-        バキッ
+        <span css={[rotateSingle, rotate1]}>A</span>
+        <span css={[rotateSingle, rotate2]}>N</span>
+        <span css={[rotateSingle, rotate3]}>I</span>
+        <span css={[rotateSingle, rotate4]}>M</span>
+        <span css={[rotateSingle, rotate5]}>E</span>
+        <span css={[rotateSingle, rotate6]}>ア</span>
+        <span css={[rotateSingle, rotate7]}>ニ</span>
+        <span css={[rotateSingle, rotate8]}>メ</span>
       </Cell>
 
       <Cell
@@ -153,18 +197,11 @@ const Index: FunctionComponent = () => {
         backgroundImg="/img/gif8.gif"
       />
 
-      {/* <Cell
-        deskPos={{ rowStart: 14, rowEnd: 16, columnStart: 13, columnEnd: 19 }}
-        tabPos={{ rowStart: 19, rowEnd: 20, columnStart: 1, columnEnd: 13 }}
-        extraCss={[theme.imgBorder]}
-        backgroundImg="/img/banner5.jpg"
-      /> */}
-
       <Cell
         deskPos={{ rowStart: 16, rowEnd: 20, columnStart: 13, columnEnd: 16 }}
         tabPos={{ rowStart: 20, rowEnd: 22, columnStart: 1, columnEnd: 7 }}
         extraCss={[theme.imgBorder]}
-        backgroundImg="/img/gif11.gif"
+        backgroundImg="/img/gif1.gif"
       />
 
       <Cell

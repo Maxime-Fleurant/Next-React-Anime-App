@@ -16,6 +16,8 @@ export const baseHelveticaRegular =
   ' HelveticaNeue, Helvetica Neue, HelveticaNeueRoman, HelveticaNeue-Roman, Helvetica Neue Roman, TeXGyreHerosRegular, Helvetica, Tahoma, Geneva, Arial, sans-serif; font-weight:400; font-stretch:normal;';
 
 export const pointSize1 = '0.04rem';
+export const pointSize2 = '0.08rem';
+export const pointSize3 = '0.12rem';
 export const pointSize4 = '0.16rem';
 export const pointSize8 = '0.32rem';
 export const pointSize16 = '0.64rem';
@@ -27,6 +29,7 @@ export const pointSize48 = '2rem';
 export const pointSize56 = '2.333rem';
 export const pointSize64 = '2.666rem';
 export const pointSize80 = '3.2rem';
+export const pointSize88 = '3.52rem';
 export const pointSize120 = '5rem';
 
 export const textColor1000 = css({ color: baseColor1000 });
@@ -71,6 +74,11 @@ export const helveticaMedium = css({
 
 export const helveticaCondensedBold = css({
   fontFamily: `HelveticaNeueBlackCondensed, HelveticaNeue-Black-Condensed, Helvetica Neue Black Condensed, HelveticaNeueBlack, HelveticaNeue-Black, Helvetica Neue Black, HelveticaNeue, Helvetica Neue, 'TeXGyreHerosCnBold', Arial Narrow, Arial, sans-serif; font-weight:800; font-stretch:condensed`,
+});
+
+export const helveticaThin = css({
+  fontFamily:
+    'HelveticaNeueThin, HelveticaNeue-Thin, Helvetica Neue Thin, HelveticaNeue, Helvetica Neue, TeXGyreHerosRegular, Arial, sans-serif; font-weight:200; font-stretch:normal',
 });
 
 export const helveticaRegular = css({
@@ -138,3 +146,5 @@ export const footer = (theme: ITheme) =>
     borderBottom: `${pointSize1} solid ${theme.base.baseColor900}`,
     margin: '6rem 2rem',
   });
+
+export const italic = css({ fontStyle: 'italic' });
