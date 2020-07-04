@@ -41,6 +41,20 @@ import {
   rotate6,
   rotate8,
   rotate7,
+  verticalCollumnWrapper,
+  commonVerticalCollum,
+  animateCenterCol1,
+  animateCenterCol2,
+  animateCenterCol3,
+  animateCenterCol4,
+  animateCenterCol5,
+  animateCenterCol6,
+  horiWrapper,
+  middleHori,
+  middleHori2,
+  middleHori3,
+  middleHori4,
+  middleHori5,
 } from '../features/splash/splashStyle';
 
 const Index: FunctionComponent = () => {
@@ -145,7 +159,197 @@ const Index: FunctionComponent = () => {
       />
 
       <Cell
-        deskPos={{ rowStart: 12, rowEnd: 16, columnStart: 1, columnEnd: 4 }}
+        deskPos={{ rowStart: 12, rowEnd: 24, columnStart: 1, columnEnd: 4 }}
+        tabPos={{ rowStart: 10, rowEnd: 14, columnStart: 7, columnEnd: 25 }}
+        extraCss={[
+          ...centerContent,
+          font48,
+          theme.text.textColor900,
+          textLineHeight,
+          verticalCollumnWrapper,
+        ]}
+      >
+        <div css={[commonVerticalCollum, animateCenterCol1]}>
+          <div css={[]}>い</div>
+          <div css={[]}>い</div>
+          <div css={[]}>か</div>
+          <div css={[]}>げ</div>
+          <div css={[]}>ん</div>
+          <div css={[]}>に</div>
+          <div css={[]}>ニ</div>
+          <div css={[]}>し</div>
+          <div css={[]}>な</div>
+          <div css={[]}>さ</div>
+          <div css={[]}>い</div>
+          <div css={[]}>)</div>
+          <div css={[]}>ふ</div>
+          <div css={[]}>ざ</div>
+          <div css={[]}>け</div>
+          <div css={[]}>ん</div>
+        </div>
+
+        <div css={[commonVerticalCollum, animateCenterCol2]}>
+          <div css={[]}>い</div>
+          <div css={[]}>い</div>
+          <div css={[]}>か</div>
+          <div css={[]}>げ</div>
+          <div css={[]}>ん</div>
+          <div css={[]}>に</div>
+          <div css={[]}>ニ</div>
+          <div css={[]}>し</div>
+          <div css={[]}>な</div>
+          <div css={[]}>さ</div>
+          <div css={[]}>い</div>
+          <div css={[]}>)</div>
+          <div css={[]}>ふ</div>
+          <div css={[]}>ざ</div>
+          <div css={[]}>け</div>
+          <div css={[]}>ん</div>
+        </div>
+
+        <div css={[commonVerticalCollum, animateCenterCol3]}>
+          <div css={[]}>い</div>
+          <div css={[]}>い</div>
+          <div css={[]}>か</div>
+          <div css={[]}>げ</div>
+          <div css={[]}>ん</div>
+          <div css={[]}>に</div>
+          <div css={[]}>ニ</div>
+          <div css={[]}>し</div>
+          <div css={[]}>な</div>
+          <div css={[]}>さ</div>
+          <div css={[]}>い</div>
+          <div css={[]}>)</div>
+          <div css={[]}>ふ</div>
+          <div css={[]}>ざ</div>
+          <div css={[]}>け</div>
+          <div css={[]}>ん</div>
+          <div css={[]}>い</div>
+          <div css={[]}>い</div>
+          <div css={[]}>か</div>
+          <div css={[]}>げ</div>
+          <div css={[]}>ん</div>
+          <div css={[]}>に</div>
+          <div css={[]}>ニ</div>
+          <div css={[]}>し</div>
+          <div css={[]}>な</div>
+          <div css={[]}>さ</div>
+          <div css={[]}>い</div>
+          <div css={[]}>)</div>
+          <div css={[]}>ふ</div>
+          <div css={[]}>ざ</div>
+          <div css={[]}>け</div>
+          <div css={[]}>ん</div>
+        </div>
+
+        <div css={[commonVerticalCollum, animateCenterCol4]}>
+          <div css={[]}>い</div>
+          <div css={[]}>い</div>
+          <div css={[]}>か</div>
+          <div css={[]}>げ</div>
+          <div css={[]}>ん</div>
+          <div css={[]}>に</div>
+          <div css={[]}>ニ</div>
+          <div css={[]}>し</div>
+          <div css={[]}>な</div>
+          <div css={[]}>さ</div>
+          <div css={[]}>い</div>
+          <div css={[]}>)</div>
+          <div css={[]}>ふ</div>
+          <div css={[]}>ざ</div>
+          <div css={[]}>け</div>
+          <div css={[]}>ん</div>
+          <div css={[]}>い</div>
+          <div css={[]}>い</div>
+          <div css={[]}>か</div>
+          <div css={[]}>げ</div>
+          <div css={[]}>ん</div>
+          <div css={[]}>に</div>
+          <div css={[]}>ニ</div>
+          <div css={[]}>し</div>
+          <div css={[]}>な</div>
+          <div css={[]}>さ</div>
+          <div css={[]}>い</div>
+          <div css={[]}>)</div>
+          <div css={[]}>ふ</div>
+          <div css={[]}>ざ</div>
+          <div css={[]}>け</div>
+          <div css={[]}>ん</div>
+        </div>
+
+        <div css={[commonVerticalCollum, animateCenterCol5]}>
+          <div css={[]}>い</div>
+          <div css={[]}>い</div>
+          <div css={[]}>か</div>
+          <div css={[]}>げ</div>
+          <div css={[]}>ん</div>
+          <div css={[]}>に</div>
+          <div css={[]}>ニ</div>
+          <div css={[]}>し</div>
+          <div css={[]}>な</div>
+          <div css={[]}>さ</div>
+          <div css={[]}>い</div>
+          <div css={[]}>)</div>
+          <div css={[]}>ふ</div>
+          <div css={[]}>ざ</div>
+          <div css={[]}>け</div>
+          <div css={[]}>ん</div>
+          <div css={[]}>い</div>
+          <div css={[]}>い</div>
+          <div css={[]}>か</div>
+          <div css={[]}>げ</div>
+          <div css={[]}>ん</div>
+          <div css={[]}>に</div>
+          <div css={[]}>ニ</div>
+          <div css={[]}>し</div>
+          <div css={[]}>な</div>
+          <div css={[]}>さ</div>
+          <div css={[]}>い</div>
+          <div css={[]}>)</div>
+          <div css={[]}>ふ</div>
+          <div css={[]}>ざ</div>
+          <div css={[]}>け</div>
+          <div css={[]}>ん</div>
+        </div>
+
+        <div css={[commonVerticalCollum, animateCenterCol6]}>
+          <div css={[]}>い</div>
+          <div css={[]}>い</div>
+          <div css={[]}>か</div>
+          <div css={[]}>げ</div>
+          <div css={[]}>ん</div>
+          <div css={[]}>に</div>
+          <div css={[]}>ニ</div>
+          <div css={[]}>し</div>
+          <div css={[]}>な</div>
+          <div css={[]}>さ</div>
+          <div css={[]}>い</div>
+          <div css={[]}>)</div>
+          <div css={[]}>ふ</div>
+          <div css={[]}>ざ</div>
+          <div css={[]}>け</div>
+          <div css={[]}>ん</div>
+          <div css={[]}>い</div>
+          <div css={[]}>い</div>
+          <div css={[]}>か</div>
+          <div css={[]}>げ</div>
+          <div css={[]}>ん</div>
+          <div css={[]}>に</div>
+          <div css={[]}>ニ</div>
+          <div css={[]}>し</div>
+          <div css={[]}>な</div>
+          <div css={[]}>さ</div>
+          <div css={[]}>い</div>
+          <div css={[]}>)</div>
+          <div css={[]}>ふ</div>
+          <div css={[]}>ざ</div>
+          <div css={[]}>け</div>
+          <div css={[]}>ん</div>
+        </div>
+      </Cell>
+
+      <Cell
+        deskPos={{ rowStart: 12, rowEnd: 16, columnStart: 4, columnEnd: 7 }}
         tabPos={{ rowStart: 10, rowEnd: 14, columnStart: 1, columnEnd: 7 }}
         extraCss={[theme.imgBorder]}
         ratio={1.3}
@@ -153,15 +357,28 @@ const Index: FunctionComponent = () => {
       />
 
       <Cell
-        deskPos={{ rowStart: 16, rowEnd: 20, columnStart: 1, columnEnd: 4 }}
-        tabPos={{ rowStart: 14, rowEnd: 18, columnStart: 1, columnEnd: 7 }}
-        extraCss={[theme.imgBorder]}
-        backgroundImg="/img/pin1.jpg"
-        ratio={1.3}
-      />
+        deskPos={{ rowStart: 20, rowEnd: 24, columnStart: 4, columnEnd: 25 }}
+        tabPos={{ rowStart: 10, rowEnd: 14, columnStart: 1, columnEnd: 7 }}
+        extraCss={[horiWrapper(theme)]}
+      >
+        <div css={middleHori3}>
+          Don Don 坊ちゃん Dekkai でっかい Hisashiburi Bijin 坊ちゃん Gaki 挑戦 Chousen ほら
+          Hora&nbsp; 一体どういう意味ですか Ittai dou iu imi desu ka &nbsp;&nbsp;
+        </div>
+        <div css={middleHori4}>
+          Don Don 坊ちゃん Dekkai でっかい Hisashiburi Bijin 坊ちゃん Gaki 挑戦 Chousen ほら
+          Hora&nbsp; 一体どういう意味ですか Ittai dou iu imi desu ka &nbsp;&nbsp;
+        </div>
+        <div css={middleHori}>こちょこちょ ズウウウウン こちょこちょ ズウウウウン</div>
+        <div css={middleHori2}>こちょこちょ ズウウウウン こちょこちょ ズウウウウン</div>
+        <div css={middleHori5}>
+          Don Don 坊ちゃん Dekkai でっかい Hisashiburi Bijin 坊ちゃん Gaki 挑戦 Chousen ほら
+          Hora&nbsp; 一体どういう意味ですか Ittai dou iu imi desu ka &nbsp;&nbsp;
+        </div>
+      </Cell>
 
       <Cell
-        deskPos={{ rowStart: 12, rowEnd: 16, columnStart: 4, columnEnd: 13 }}
+        deskPos={{ rowStart: 12, rowEnd: 16, columnStart: 7, columnEnd: 13 }}
         tabPos={{ rowStart: 10, rowEnd: 14, columnStart: 7, columnEnd: 25 }}
         extraCss={[...centerContent, font48, theme.text.textColor900, textLineHeight, rotateWrap]}
       >
@@ -187,77 +404,22 @@ const Index: FunctionComponent = () => {
         tabPos={{ rowStart: 18, rowEnd: 22, columnStart: 13, columnEnd: 25 }}
         extraCss={[theme.imgBorder]}
         ratio={1.3}
-        backgroundImg="/img/cover3.jpg"
+        backgroundImg="/img/ngif2.gif"
       />
 
       <Cell
         deskPos={{ rowStart: 12, rowEnd: 16, columnStart: 13, columnEnd: 19 }}
         tabPos={{ rowStart: 18, rowEnd: 19, columnStart: 1, columnEnd: 13 }}
         extraCss={[theme.imgBorder]}
-        backgroundImg="/img/gif8.gif"
+        backgroundImg="/img/ngif5.gif"
       />
 
       <Cell
-        deskPos={{ rowStart: 16, rowEnd: 20, columnStart: 13, columnEnd: 16 }}
-        tabPos={{ rowStart: 20, rowEnd: 22, columnStart: 1, columnEnd: 7 }}
-        extraCss={[theme.imgBorder]}
-        backgroundImg="/img/gif1.gif"
-      />
-
-      <Cell
-        deskPos={{ rowStart: 16, rowEnd: 20, columnStart: 16, columnEnd: 19 }}
+        deskPos={{ rowStart: 16, rowEnd: 20, columnStart: 13, columnEnd: 19 }}
         tabPos={{ rowStart: 20, rowEnd: 22, columnStart: 7, columnEnd: 13 }}
         extraCss={[theme.imgBorder]}
-        backgroundImg="/img/girl5.png"
+        backgroundImg="/img/ngif6.gif"
       />
-
-      <Cell
-        deskPos={{ rowStart: 20, rowEnd: 24, columnStart: 1, columnEnd: 7 }}
-        tabPos={{ rowStart: 22, rowEnd: 23, columnStart: 1, columnEnd: 25 }}
-        extraCss={[theme.imgBorder]}
-        backgroundImg="/img/gif13.gif"
-        ratio={0.3}
-      />
-
-      <Cell
-        deskPos={{ rowStart: 20, rowEnd: 24, columnStart: 7, columnEnd: 13 }}
-        tabPos={{ rowStart: 22, rowEnd: 23, columnStart: 1, columnEnd: 25 }}
-        extraCss={[theme.imgBorder]}
-        backgroundImg="/img/gif14.gif"
-        ratio={0.3}
-      />
-
-      <Cell
-        deskPos={{ rowStart: 24, rowEnd: 28, columnStart: 1, columnEnd: 4 }}
-        tabPos={{ rowStart: 22, rowEnd: 23, columnStart: 1, columnEnd: 25 }}
-        extraCss={[theme.imgBorder]}
-        backgroundImg="/img/cover2.jpg"
-        ratio={0.3}
-      />
-
-      <Cell
-        deskPos={{ rowStart: 24, rowEnd: 28, columnStart: 4, columnEnd: 13 }}
-        tabPos={{ rowStart: 22, rowEnd: 23, columnStart: 1, columnEnd: 25 }}
-        extraCss={[theme.imgBorder]}
-        backgroundImg="/img/gif44.gif"
-        ratio={0.3}
-      />
-
-      <Cell
-        deskPos={{ rowStart: 20, rowEnd: 28, columnStart: 13, columnEnd: 19 }}
-        tabPos={{ rowStart: 24, rowEnd: 25, columnStart: 1, columnEnd: 13 }}
-        extraCss={[theme.imgBorder]}
-        backgroundImg="/img/cover5.png"
-        ratio={1.3}
-      />
-
-      <Cell
-        deskPos={{ rowStart: 20, rowEnd: 28, columnStart: 19, columnEnd: 25 }}
-        tabPos={{ rowStart: 24, rowEnd: 25, columnStart: 13, columnEnd: 25 }}
-        extraCss={[...centerContent, font120, theme.text.textColor900, textLineHeight]}
-      >
-        バキッ
-      </Cell>
     </>
   );
 };

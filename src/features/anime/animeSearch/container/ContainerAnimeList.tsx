@@ -25,7 +25,7 @@ export const ContainerAnimeList = () => {
 
   if (animes) {
     const formatedAnime = animes.searchAnime.map((anime: any) => {
-      return { label: anime.romajiTitle, img: anime.xLargeCoverImage, id: anime.id };
+      return { label: anime.romajiTitle, img: anime.largeCoverImage, id: anime.id };
     });
 
     return <GenericList fetchMore={fetchMoreHandler} entityList={formatedAnime} />;

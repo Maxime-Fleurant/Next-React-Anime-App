@@ -21,7 +21,7 @@ export const SEARCH_ANIME = gql`
       }
     ) {
       id
-      xLargeCoverImage
+      largeCoverImage
       romajiTitle
     }
   }

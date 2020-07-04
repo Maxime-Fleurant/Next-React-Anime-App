@@ -12,6 +12,10 @@ import {
   pointSize4,
   pointSize2,
   pointSize3,
+  helveticaThin,
+  titleLineHeight,
+  pointSize120,
+  pointSize88,
 } from '../../common/globalStyle';
 import { ITheme } from '../layout/theme';
 
@@ -144,3 +148,187 @@ export const rotate8 = css({
   animation: `${rotateAnime} 3s linear infinite`,
   animationDelay: '-1.875s',
 });
+
+// vertical column
+export const verticalCollumnWrapper = css({ position: 'relative', overflow: 'hidden' });
+
+export const commonVerticalCollum = css(
+  { textAlign: 'center', width: '33%', position: 'absolute' },
+  helveticaCondensedBold,
+  font64,
+  textLineHeight
+);
+
+export const verticalCol1 = keyframes({
+  '0%': {
+    transform: `translateY(-100%)`,
+  },
+
+  '100%': {
+    transform: `translateY(100%)`,
+  },
+});
+
+export const animateCenterCol1 = css({
+  animation: `${verticalCol1} 6s linear infinite`,
+});
+
+export const animateCenterCol2 = css({
+  animation: `${verticalCol1} 6s linear infinite`,
+  animationDelay: '-3s',
+});
+
+export const animateCenterCol3 = css(
+  {
+    left: '70%',
+    animation: `${verticalCol1} 16s linear infinite`,
+  },
+  helveticaThin,
+  font32,
+  textLineHeight
+);
+
+export const animateCenterCol4 = css(
+  {
+    left: '70%',
+    animation: `${verticalCol1} 16s linear infinite`,
+    animationDelay: '-8s',
+  },
+  helveticaThin,
+  font32,
+  textLineHeight
+);
+
+export const animateCenterCol5 = css(
+  {
+    right: '70%',
+    animation: `${verticalCol1} 12s linear infinite`,
+    animationDirection: 'reverse',
+  },
+
+  helveticaThin,
+  font32,
+  textLineHeight
+);
+
+export const animateCenterCol6 = css(
+  {
+    right: '70%',
+    animation: `${verticalCol1} 12s linear infinite`,
+    animationDirection: 'reverse',
+    animationDelay: '-6s',
+  },
+
+  helveticaThin,
+  font32,
+  textLineHeight
+);
+
+// Horizontal anime
+
+export const horiWrapper = (theme: ITheme) =>
+  css(
+    {
+      position: 'relative',
+      overflow: 'hidden',
+    },
+    theme.text.textColor900
+  );
+
+export const horiAnime = keyframes({
+  '0%': {
+    transform: `translate(-100%, -50%)`,
+  },
+
+  '100%': {
+    transform: `translate(100%, -50%)`,
+  },
+});
+
+export const middleHori = css(
+  {
+    position: 'absolute',
+    animation: `${horiAnime} 12s linear infinite`,
+    top: '50%',
+    fontSize: pointSize88,
+    whiteSpace: 'nowrap',
+  },
+  helveticaCondensedBold,
+
+  titleLineHeight
+);
+
+export const middleHori2 = css(
+  {
+    position: 'absolute',
+    animation: `${horiAnime} 12s linear infinite`,
+    top: '50%',
+    animationDelay: '-6s',
+    fontSize: pointSize88,
+    whiteSpace: 'nowrap',
+  },
+  helveticaCondensedBold,
+
+  titleLineHeight
+);
+
+export const middleHori3 = css(
+  {
+    position: 'absolute',
+    animation: `${horiAnime} 8s linear infinite`,
+    top: '15%',
+    animationDelay: '-4s',
+    fontSize: pointSize32,
+    whiteSpace: 'nowrap',
+    fontStyle: 'italic',
+  },
+  helveticaThin,
+
+  titleLineHeight
+);
+
+export const middleHori4 = css(
+  {
+    position: 'absolute',
+    animation: `${horiAnime} 8s linear infinite`,
+    top: '15%',
+
+    fontSize: pointSize32,
+    whiteSpace: 'nowrap',
+    fontStyle: 'italic',
+  },
+  helveticaThin,
+
+  titleLineHeight
+);
+
+export const middleHori5 = css(
+  {
+    position: 'absolute',
+    animation: `${horiAnime} 8s linear infinite`,
+    bottom: '5%',
+    animationDelay: '-4s',
+    animationDirection: 'reverse',
+    fontSize: pointSize32,
+    whiteSpace: 'nowrap',
+    fontStyle: 'italic',
+  },
+  helveticaThin,
+
+  titleLineHeight
+);
+
+export const middleHori6 = css(
+  {
+    position: 'absolute',
+    animation: `${horiAnime} 8s linear infinite`,
+    top: '15%',
+
+    fontSize: pointSize32,
+    whiteSpace: 'nowrap',
+    fontStyle: 'italic',
+  },
+  helveticaThin,
+
+  titleLineHeight
+);
