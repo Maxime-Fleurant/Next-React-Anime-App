@@ -13,7 +13,7 @@ export const ContainerAnimeList = () => {
     variables: { ...stateFormSelection, skip: 0 },
     fetchPolicy: 'network-only',
   });
-  console.log(animes);
+
   const fetchMoreHandler = (): void => {
     fetchMore({
       variables: { skip: animes.searchAnime.length as number },
@@ -31,5 +31,5 @@ export const ContainerAnimeList = () => {
     return <GenericList fetchMore={fetchMoreHandler} entityList={formatedAnime} />;
   }
 
-  return <div>loading</div>;
+  return <div />;
 };

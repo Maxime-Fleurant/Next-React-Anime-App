@@ -1,6 +1,5 @@
 import { keyframes, css } from '@emotion/core';
 import {
-  pointSize80,
   helveticaCondensedBold,
   pointSize32,
   font32,
@@ -9,23 +8,34 @@ import {
   pointSize40,
   pointSize56,
   pointSize1,
-  pointSize4,
-  pointSize2,
   pointSize3,
   helveticaThin,
   titleLineHeight,
-  pointSize120,
   pointSize88,
+  font56,
+  fontRegular,
+  font40,
+  font48,
 } from '../../common/globalStyle';
 import { ITheme } from '../layout/theme';
 
 export const item1Anime = keyframes({
   '0%': {
-    transform: `translateY(130%)`,
+    transform: `translateY(100%)`,
   },
 
   '100%': {
-    transform: `translateY(-130%)`,
+    transform: `translateY(-100%)`,
+  },
+});
+
+export const resItem1Anime = keyframes({
+  '0%': {
+    transform: `translateY(125%)`,
+  },
+
+  '100%': {
+    transform: `translateY(-125%)`,
   },
 });
 
@@ -38,7 +48,13 @@ export const finalAnime1 = css(
   {
     animation: `${item1Anime} 6s linear infinite`,
   },
-  finalAnime
+  finalAnime,
+  css`
+    @media (max-width: 1023px) {
+      ${font56};
+      animation: ${resItem1Anime} 6s linear infinite;
+    }
+  `
 );
 
 export const finalAnime2 = css(
@@ -46,7 +62,14 @@ export const finalAnime2 = css(
     animation: `${item1Anime} 6s linear infinite`,
     animationDelay: '-3s',
   },
-  finalAnime
+  finalAnime,
+  css`
+    @media (max-width: 1023px) {
+      ${font56};
+      animation: ${resItem1Anime} 6s linear infinite;
+      animation-delay: -3s;
+    }
+  `
 );
 
 export const animeReletive = css({
@@ -54,7 +77,15 @@ export const animeReletive = css({
   overflow: 'hidden',
 });
 
-export const fillspan1 = css({ textAlign: 'center', margin: '0 3rem' }, font64);
+export const fillspan1 = css(
+  { textAlign: 'center', margin: '0 3rem' },
+  font64,
+  css`
+    @media (max-width: 1023px) {
+      ${font56}
+    }
+  `
+);
 export const dashDec = css({ marginRight: '16rem' });
 
 export const fillspan3 = (theme: ITheme) =>
@@ -67,7 +98,12 @@ export const fillspan3 = (theme: ITheme) =>
       border: `${pointSize1} solid ${theme.base.baseColor900}`,
     },
     font32,
-    textLineHeight
+    textLineHeight,
+    css`
+      @media (max-width: 1023px) {
+        ${fontRegular}
+      }
+    `
   );
 
 export const fillspan4 = css(
@@ -75,8 +111,18 @@ export const fillspan4 = css(
     textAlign: 'center',
     margin: '0 4rem',
     marginTop: pointSize56,
+    marginBottom: pointSize56,
   },
-  font64
+  font64,
+  css`
+    @media (max-width: 1023px) {
+      ${font56}
+    }
+
+    @media (max-width: 767px) {
+      ${font48}
+    }
+  `
 );
 
 export const dateleft = (theme: ITheme) =>
@@ -87,9 +133,17 @@ export const dateleft = (theme: ITheme) =>
     marginRight: pointSize40,
   });
 
-export const rotateWrap = css({
-  position: 'relative',
-});
+// Rotate
+export const rotateWrap = css(
+  {
+    position: 'relative',
+  },
+  css`
+    @media (max-width: 767px) {
+      ${font40};
+    }
+  `
+);
 
 export const rotateSingle = css({
   height: '50%',
@@ -332,3 +386,9 @@ export const middleHori6 = css(
 
   titleLineHeight
 );
+
+export const girlRes = css`
+  @media (max-width: 1023px) {
+    display: none;
+  }
+`;

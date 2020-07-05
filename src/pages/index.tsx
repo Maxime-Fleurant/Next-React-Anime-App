@@ -4,30 +4,21 @@ import { css } from '@emotion/core';
 import { useTheme } from 'emotion-theming';
 import { Cell } from '../common/components/cell';
 import {
-  imgBorder,
   centerContent,
   font120,
-  textColor900,
   textLineHeight,
-  pointSize80,
   helveticaCondensedBold,
   titleLineHeight,
   italic,
-  helveticaMedium,
   helveticaThin,
-  font64,
-  font40,
-  font56,
   font48,
 } from '../common/globalStyle';
 import { ITheme } from '../features/layout/theme';
 import {
-  finalAnime,
   finalAnime2,
   animeReletive,
   finalAnime1,
   fillspan1,
-  dashDec,
   fillspan3,
   fillspan4,
   dateleft,
@@ -55,6 +46,7 @@ import {
   middleHori3,
   middleHori4,
   middleHori5,
+  girlRes,
 } from '../features/splash/splashStyle';
 
 const Index: FunctionComponent = () => {
@@ -74,6 +66,7 @@ const Index: FunctionComponent = () => {
         deskPos={{ rowStart: 4, rowEnd: 8, columnStart: 7, columnEnd: 10 }}
         tabPos={{ rowStart: 4, rowEnd: 6, columnStart: 13, columnEnd: 19 }}
         extraCss={[theme.imgBorder]}
+        ratio={1.3}
         backgroundImg="/img/boy1.png"
       />
 
@@ -81,13 +74,15 @@ const Index: FunctionComponent = () => {
         deskPos={{ rowStart: 4, rowEnd: 8, columnStart: 10, columnEnd: 13 }}
         tabPos={{ rowStart: 4, rowEnd: 6, columnStart: 19, columnEnd: 25 }}
         extraCss={[theme.imgBorder]}
+        ratio={1.3}
         backgroundImg="/img/girl1.jpg"
       />
 
       <Cell
         deskPos={{ rowStart: 8, rowEnd: 12, columnStart: 7, columnEnd: 13 }}
-        tabPos={{ rowStart: 7, rowEnd: 8, columnStart: 13, columnEnd: 25 }}
+        tabPos={{ rowStart: 6, rowEnd: 8, columnStart: 13, columnEnd: 25 }}
         extraCss={[theme.imgBorder]}
+        ratio={0.64}
         backgroundImg="/img/gif4.gif"
       />
 
@@ -101,9 +96,10 @@ const Index: FunctionComponent = () => {
           textLineHeight,
           animeReletive,
         ]}
+        ratio={0.3}
       >
         <div css={finalAnime1}>
-          <div css={css(fillspan1, helveticaCondensedBold, titleLineHeight)}>
+          <div css={css(fillspan1, helveticaCondensedBold, textLineHeight)}>
             ANIME こちょこちょ 👁
           </div>
 
@@ -120,7 +116,7 @@ const Index: FunctionComponent = () => {
         </div>
 
         <div css={finalAnime2}>
-          <div css={css(fillspan1, helveticaCondensedBold, titleLineHeight)}>
+          <div css={css(fillspan1, helveticaCondensedBold, textLineHeight)}>
             ANIME こちょこちょ 👁
           </div>
 
@@ -139,7 +135,7 @@ const Index: FunctionComponent = () => {
       <Cell
         deskPos={{ rowStart: 8, rowEnd: 12, columnStart: 13, columnEnd: 16 }}
         tabPos={{ rowStart: 9, rowEnd: 10, columnStart: 1, columnEnd: 7 }}
-        extraCss={[theme.imgBorder]}
+        extraCss={[theme.imgBorder, girlRes]}
         backgroundImg="/img/girl2.jpg"
         ratio={1.3}
       />
@@ -149,18 +145,19 @@ const Index: FunctionComponent = () => {
         tabPos={{ rowStart: 9, rowEnd: 10, columnStart: 7, columnEnd: 13 }}
         extraCss={[theme.imgBorder]}
         backgroundImg="/img/gif6.gif"
+        ratio={1.3}
       />
 
       <Cell
         deskPos={{ rowStart: 8, rowEnd: 12, columnStart: 19, columnEnd: 25 }}
-        tabPos={{ rowStart: 9, rowEnd: 10, columnStart: 13, columnEnd: 19 }}
+        tabPos={{ rowStart: 9, rowEnd: 10, columnStart: 13, columnEnd: 25 }}
         extraCss={[theme.imgBorder]}
         backgroundImg="/img/gif9.gif"
       />
 
       <Cell
         deskPos={{ rowStart: 12, rowEnd: 24, columnStart: 1, columnEnd: 4 }}
-        tabPos={{ rowStart: 10, rowEnd: 14, columnStart: 7, columnEnd: 25 }}
+        tabPos={{ rowStart: 9, rowEnd: 18, columnStart: 1, columnEnd: 7 }}
         extraCss={[
           ...centerContent,
           font48,
@@ -350,7 +347,7 @@ const Index: FunctionComponent = () => {
 
       <Cell
         deskPos={{ rowStart: 12, rowEnd: 16, columnStart: 4, columnEnd: 7 }}
-        tabPos={{ rowStart: 10, rowEnd: 14, columnStart: 1, columnEnd: 7 }}
+        tabPos={{ rowStart: 10, rowEnd: 14, columnStart: 7, columnEnd: 13 }}
         extraCss={[theme.imgBorder]}
         ratio={1.3}
         backgroundImg="/img/gif11.gif"
@@ -358,7 +355,8 @@ const Index: FunctionComponent = () => {
 
       <Cell
         deskPos={{ rowStart: 20, rowEnd: 24, columnStart: 4, columnEnd: 25 }}
-        tabPos={{ rowStart: 10, rowEnd: 14, columnStart: 1, columnEnd: 7 }}
+        tabPos={{ rowStart: 18, rowEnd: 19, columnStart: 1, columnEnd: 25 }}
+        ratio={0.3}
         extraCss={[horiWrapper(theme)]}
       >
         <div css={middleHori3}>
@@ -379,7 +377,7 @@ const Index: FunctionComponent = () => {
 
       <Cell
         deskPos={{ rowStart: 12, rowEnd: 16, columnStart: 7, columnEnd: 13 }}
-        tabPos={{ rowStart: 10, rowEnd: 14, columnStart: 7, columnEnd: 25 }}
+        tabPos={{ rowStart: 10, rowEnd: 14, columnStart: 13, columnEnd: 25 }}
         extraCss={[...centerContent, font48, theme.text.textColor900, textLineHeight, rotateWrap]}
       >
         <span css={[rotateSingle, rotate1]}>A</span>
@@ -397,11 +395,12 @@ const Index: FunctionComponent = () => {
         tabPos={{ rowStart: 14, rowEnd: 18, columnStart: 7, columnEnd: 25 }}
         extraCss={[theme.imgBorder]}
         backgroundImg="/img/gif3.gif"
+        ratio={0.65}
       />
 
       <Cell
         deskPos={{ rowStart: 12, rowEnd: 20, columnStart: 19, columnEnd: 25 }}
-        tabPos={{ rowStart: 18, rowEnd: 22, columnStart: 13, columnEnd: 25 }}
+        tabPos={{ rowStart: 19, rowEnd: 21, columnStart: 13, columnEnd: 25 }}
         extraCss={[theme.imgBorder]}
         ratio={1.3}
         backgroundImg="/img/ngif2.gif"
@@ -409,14 +408,14 @@ const Index: FunctionComponent = () => {
 
       <Cell
         deskPos={{ rowStart: 12, rowEnd: 16, columnStart: 13, columnEnd: 19 }}
-        tabPos={{ rowStart: 18, rowEnd: 19, columnStart: 1, columnEnd: 13 }}
+        tabPos={{ rowStart: 19, rowEnd: 20, columnStart: 1, columnEnd: 13 }}
         extraCss={[theme.imgBorder]}
         backgroundImg="/img/ngif5.gif"
       />
 
       <Cell
         deskPos={{ rowStart: 16, rowEnd: 20, columnStart: 13, columnEnd: 19 }}
-        tabPos={{ rowStart: 20, rowEnd: 22, columnStart: 7, columnEnd: 13 }}
+        tabPos={{ rowStart: 20, rowEnd: 21, columnStart: 1, columnEnd: 13 }}
         extraCss={[theme.imgBorder]}
         backgroundImg="/img/ngif6.gif"
       />

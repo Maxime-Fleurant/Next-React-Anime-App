@@ -2,9 +2,10 @@ import { FunctionComponent } from 'react';
 import { GetStaticProps, GetStaticPaths } from 'next';
 import { initializeApollo } from '../../app/apolloClient';
 
-import { ANIME } from '../../features/anime/animeDetail/graphql/anime';
 import { AnimeDetail } from '../../features/anime/animeDetail';
 import { Anime } from '../../common/graphqlType';
+import { ANIME } from '../../features/anime/animeDetail/graphql/anime';
+import { ALLANIMES } from '../../features/anime/animeDetail/graphql/allAnime';
 
 // TYPE
 type IndexComponent = FunctionComponent<{ anime: Anime }>;
@@ -18,7 +19,6 @@ export default Index;
 
 // SSR
 export const getStaticProps: GetStaticProps<{ anime: Anime } | {}> = async ({ params }) => {
-  console.log('serverside');
   const apolloClient = initializeApollo();
 
   const anime = await apolloClient.query<{ Anime: Anime }>({
@@ -34,5 +34,15 @@ export const getStaticProps: GetStaticProps<{ anime: Anime } | {}> = async ({ pa
 };
 
 export const getStaticPaths: GetStaticPaths<{ id: string }> = async () => {
-  return { paths: [{ params: { id: '65' } }], fallback: true };
+  const apolloClient = initializeApollo();
+
+  const animes = await apolloClient.query<{ Animes: Anime[] }>({
+    query: ALLANIMES,
+  });
+
+  const paths = animes.data.Animes.map((anime) => {
+    return { params: { id: anime.id } };
+  });
+
+  return { paths, fallback: true };
 };

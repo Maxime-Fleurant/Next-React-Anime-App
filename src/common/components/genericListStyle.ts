@@ -4,7 +4,7 @@ import { textLineHeight, helveticaRegular } from '../globalStyle';
 export const imgLink = css({ height: '100%', cursor: 'pointer' });
 
 export const aLink = css(
-  { textDecoration: 'none', cursor: 'pointer' },
+  { textDecoration: 'none', cursor: 'pointer', wordBreak: 'break-word' },
 
   textLineHeight,
   helveticaRegular

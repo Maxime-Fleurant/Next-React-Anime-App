@@ -1,7 +1,6 @@
 // IMPORT
 import React, { FunctionComponent, useState, useEffect } from 'react';
-import { Form } from 'antd';
-
+import { useTheme } from 'emotion-theming';
 import { css } from '@emotion/core';
 
 import {
@@ -14,16 +13,15 @@ import { Cell } from '../../../../common/components/cell';
 import { subGrid } from '../../../layout/style';
 import { titleLineHeight, font20, helveticaRegular } from '../../../../common/globalStyle';
 import { inputText, selectStyle, inputLabel } from './style';
-import { useTheme } from 'emotion-theming';
+
 import { ITheme } from '../../../layout/theme';
 
 // TYPE DEFINITION
 type TsearchAnimeForm = FunctionComponent<{
-  changeHandler: (values: any) => void;
-  initialForm?: any;
+  changeHandler: (values: IFormState) => void;
 }>;
 
-interface IFormState {
+export interface IFormState {
   text?: string;
   genresIn?: string[];
   tagsIn?: string[];
@@ -32,7 +30,7 @@ interface IFormState {
 }
 
 // REACT
-const GlobalForm: TsearchAnimeForm = ({ changeHandler, initialForm }) => {
+const GlobalForm: TsearchAnimeForm = ({ changeHandler }) => {
   let timeOut: any;
 
   const theme = useTheme<ITheme>();
@@ -56,7 +54,7 @@ const GlobalForm: TsearchAnimeForm = ({ changeHandler, initialForm }) => {
       }
 
       updateFormState({ ...formState, text: targetVal });
-    }, 1000);
+    }, 500);
   };
 
   const selectHandler = (e: React.ChangeEvent<HTMLSelectElement>): void => {
@@ -141,7 +139,7 @@ const GlobalForm: TsearchAnimeForm = ({ changeHandler, initialForm }) => {
         deskPos={{ rowStart: 4, rowEnd: 6, columnStart: 1, columnEnd: 25 }}
         tabPos={{ rowStart: 4, rowEnd: 6, columnStart: 1, columnEnd: 25 }}
       >
-        <Form name="animeSearchForm" css={subGrid}>
+        <div css={subGrid}>
           <Cell
             deskPos={{ rowStart: 1, rowEnd: 2, columnStart: 1, columnEnd: 5 }}
             tabPos={{ rowStart: 1, rowEnd: 2, columnStart: 1, columnEnd: 25 }}
@@ -243,7 +241,7 @@ const GlobalForm: TsearchAnimeForm = ({ changeHandler, initialForm }) => {
               {selectOptionsHelper(statusConst)}
             </select>
           </Cell>
-        </Form>
+        </div>
       </Cell>
     </>
   );

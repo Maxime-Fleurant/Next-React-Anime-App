@@ -15,6 +15,9 @@ export const gridCss = css`
   @media (max-width: 1023px) {
     grid-auto-rows: auto;
   }
+  @media (max-width: 767px) {
+    grid-gap: 0.7rem;
+  }
 `;
 
 export const subGrid = css`
@@ -28,6 +31,9 @@ export const subGrid = css`
   @media (max-width: 1023px) {
     grid-auto-rows: auto;
   }
+  @media (max-width: 767px) {
+    grid-gap: 0.7rem;
+  }
 `;
 
 export const nav = (theme: ITheme) =>
@@ -39,9 +45,28 @@ export const nav = (theme: ITheme) =>
     borderBottom: `0.08rem solid ${theme.base.baseColor900}`,
   });
 
-export const logo = css({
-  margin: '1rem 0',
-});
+export const logo = css(
+  {
+    margin: '1rem 0',
+  },
+  css`
+    @media (max-width: 767px) {
+      display: none;
+    }
+  `
+);
+
+export const logoRes = css(
+  {
+    display: 'none',
+    margin: '1rem 0',
+  },
+  css`
+    @media (max-width: 767px) {
+      display: block;
+    }
+  `
+);
 
 export const navTab = css`
   @media (max-width: 1023px) {

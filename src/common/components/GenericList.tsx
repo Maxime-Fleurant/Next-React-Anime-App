@@ -1,23 +1,8 @@
 // IMPORT
-import React, {
-  ReactElement,
-  PropsWithChildren,
-  memo,
-  useEffect,
-  Fragment,
-  useRef,
-  useState,
-  Profiler,
-} from 'react';
+import React, { ReactElement, PropsWithChildren, memo, useEffect, Fragment, useRef } from 'react';
 import Link from 'next/link';
 import { Cell } from './cell';
-import {
-  imgBorder,
-  fontRegular,
-  helveticaRegular,
-  textLineHeight,
-  textColor900,
-} from '../globalStyle';
+import { imgBorder, fontRegular, helveticaRegular, textLineHeight } from '../globalStyle';
 import { imgLink, aLink } from './genericListStyle';
 
 import { ITheme } from '../../features/layout/theme';

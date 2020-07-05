@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { css, Global } from '@emotion/core';
 import { useTheme } from 'emotion-theming';
 
-import { gridCss, navCss, nav, logo } from './style';
+import { gridCss, navCss, nav, logo, logoRes } from './style';
 import {
   font64,
   font20,
@@ -44,6 +44,15 @@ const Layout: FunctionComponent = ({ children }) => {
             <Link href="/">
               <span css={[font64, helveticaMedium, theme.text.textColor900, titleLineHeight, logo]}>
                 {'Anime '}
+                <span css={font20}>アニメ</span>
+              </span>
+            </Link>
+
+            <Link href="/">
+              <span
+                css={[font64, helveticaMedium, theme.text.textColor900, titleLineHeight, logoRes]}
+              >
+                {'A '}
                 <span css={font20}>アニメ</span>
               </span>
             </Link>

@@ -66,6 +66,15 @@ export const selectStyle = (theme: ITheme) => [
   }),
   theme.background.backgroundColor100,
   theme.text.textColor900,
+  css`
+    input {
+      border-radius: 0;
+    }
+
+    input[type='search'] {
+      -webkit-appearance: none;
+    }
+  `,
 ];
 
 export const inputLabel = css([[font32, titleLineHeight, helveticaMedium]]);
