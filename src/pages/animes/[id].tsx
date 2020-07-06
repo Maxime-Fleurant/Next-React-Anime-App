@@ -16,7 +16,7 @@ const Index: IndexComponent = ({ anime }) => {
   return (
     <>
       <Head>
-        <title>{anime.romajiTitle}</title>
+        <title>{anime ? anime.romajiTitle : 'anime'}</title>
         <meta property="og:anime" content="{anime.romajiTitle}" key="anime" />
       </Head>
       <AnimeDetail anime={anime} />
