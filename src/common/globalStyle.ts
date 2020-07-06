@@ -1,4 +1,4 @@
-import { css } from '@emotion/core';
+import { css, SerializedStyles } from '@emotion/core';
 import { ITheme } from '../features/layout/theme';
 
 export const baseColor1000 = '#16191D';
@@ -98,7 +98,7 @@ export const imgBorder = css({
   border: `0.04rem solid black`,
 });
 
-export const switchButton = (theme: ITheme) => {
+export const switchButton = (theme: ITheme): SerializedStyles => {
   return css`
     position: relative;
     display: inline-block;
@@ -141,7 +141,7 @@ export const switchButton = (theme: ITheme) => {
   `;
 };
 
-export const footer = (theme: ITheme) =>
+export const footer = (theme: ITheme): SerializedStyles =>
   css({
     borderBottom: `${pointSize1} solid ${theme.base.baseColor900}`,
     margin: '6rem 2rem',

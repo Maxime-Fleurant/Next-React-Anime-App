@@ -8,7 +8,6 @@ const reducer = combineReducers({ animeListPageReducers, lightReducer });
 export type TStore = ReturnType<typeof reducer>;
 
 function initStore() {
-  console.log('create store');
   const storeInit = configureStore({
     reducer,
   });
@@ -27,7 +26,6 @@ export const initializeStore = () => {
 };
 
 export function useStore() {
-  console.log('init Store');
   const hookStore = initializeStore();
   return hookStore;
 }

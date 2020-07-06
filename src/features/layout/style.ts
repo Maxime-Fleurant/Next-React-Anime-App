@@ -1,5 +1,4 @@
-import { css } from '@emotion/core';
-import { baseColor900 } from '../../common/globalStyle';
+import { css, SerializedStyles } from '@emotion/core';
 import { ITheme } from './theme';
 
 export const gridCss = css`
@@ -36,7 +35,7 @@ export const subGrid = css`
   }
 `;
 
-export const nav = (theme: ITheme) =>
+export const nav = (theme: ITheme): SerializedStyles =>
   css({
     gridArea: '1 / 1 / 3 / 25',
     display: 'flex',

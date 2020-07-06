@@ -60,21 +60,13 @@ export const selectStyle = (theme: ITheme) => [
     fontSize: '1rem',
     height: '100%',
     outline: 'none',
-    border: 'none',
+
     width: '100%',
     fontFamily: baseHelveticaRegular,
+    border: `${pointSize1} solid ${theme.base.baseColor900}`,
   }),
   theme.background.backgroundColor100,
   theme.text.textColor900,
-  css`
-    input {
-      border-radius: 0;
-    }
-
-    input[type='search'] {
-      -webkit-appearance: none;
-    }
-  `,
 ];
 
 export const inputLabel = css([[font32, titleLineHeight, helveticaMedium]]);

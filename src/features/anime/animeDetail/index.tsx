@@ -1,28 +1,21 @@
-import { FunctionComponent, useState, SyntheticEvent, useEffect } from 'react';
+import { FunctionComponent } from 'react';
 import Youtube from 'react-youtube';
-import { css } from '@emotion/core';
 
 import { useTheme } from 'emotion-theming';
 import {
-  imgBorder,
-  titleLineHeight,
   font40,
   helveticaMedium,
-  textColor900,
   helveticaRegular,
   regularText,
-  font48,
   fontRegular,
   textLineHeight,
-  textColor600,
-  textColor400,
 } from '../../../common/globalStyle';
 import { Cell } from '../../../common/components/cell';
 import { titleMargin, youtubeContainer, desc, descBlock, studioCell, studioQu } from './style';
 import { Anime } from '../../../common/graphqlType';
 import { DetailCharacterList } from './component/characterList';
 import { ExternalLinkList } from './component/externalLinkList';
-import PlayButton from '../../../common/icons/play-button.svg';
+
 import { ITheme } from '../../layout/theme';
 
 // TYPE

@@ -1,4 +1,4 @@
-import { css } from '@emotion/core';
+import { css, SerializedStyles } from '@emotion/core';
 import {
   pointSize32,
   baseColor900,
@@ -16,7 +16,6 @@ import {
   font32,
   titleLineHeight,
   helveticaRegular,
-  baseColor100,
   pointSize120,
 } from '../../../common/globalStyle';
 import { ITheme } from '../../layout/theme';
@@ -31,7 +30,7 @@ export const youtubeContainer = css`
   }
 `;
 
-export const descBlock = (theme: ITheme) =>
+export const descBlock = (theme: ITheme): SerializedStyles =>
   css({
     paddingTop: pointSize16,
     borderTop: `${pointSize8} solid ${theme.base.baseColor900}`,
@@ -82,7 +81,7 @@ export const studioCell = css([
 
 export const studioQu = css([font20, textLineHeight]);
 
-export const externalLinkButton = (theme: ITheme) =>
+export const externalLinkButton = (theme: ITheme): SerializedStyles =>
   css([
     fontRegular,
     titleLineHeight,

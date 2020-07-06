@@ -1,18 +1,17 @@
 // IMPORT
 import React, { ReactElement, PropsWithChildren, memo, useEffect, Fragment, useRef } from 'react';
+import { useTheme } from 'emotion-theming';
 import Link from 'next/link';
 import { Cell } from './cell';
 import { imgBorder, fontRegular, helveticaRegular, textLineHeight } from '../globalStyle';
-import { imgLink, aLink } from './genericListStyle';
-
+import { imgLink, aLink, imgWrapp } from './genericListStyle';
 import { ITheme } from '../../features/layout/theme';
-import { useTheme } from 'emotion-theming';
 
 // TYPE DEFINITION
 export interface IEntity {
   label: string | null | undefined;
   img: string | null | undefined;
-  id: number;
+  id: string;
 }
 
 type TGenericList = (
@@ -54,7 +53,7 @@ const GenericList: TGenericList = ({ entityList = [], fetchMore }) => {
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
 
-    return () => {
+    return (): void => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, [entityList]);
@@ -85,7 +84,7 @@ const GenericList: TGenericList = ({ entityList = [], fetchMore }) => {
             columnStart: tabColStart,
             columnEnd: tabColStart + 6,
           }}
-          extraCss={[imgBorder]}
+          extraCss={[imgBorder, imgWrapp]}
           ratio={1.3}
           backgroundImg={entity.img}
         >

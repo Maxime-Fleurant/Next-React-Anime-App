@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import { FunctionComponent } from 'react';
 import { GetStaticProps, GetStaticPaths } from 'next';
 import { initializeApollo } from '../../app/apolloClient';
@@ -12,7 +13,15 @@ type IndexComponent = FunctionComponent<{ anime: Anime }>;
 
 // REACT
 const Index: IndexComponent = ({ anime }) => {
-  return <AnimeDetail anime={anime} />;
+  return (
+    <>
+      <Head>
+        <title>{anime.romajiTitle}</title>
+        <meta property="og:anime" content="{anime.romajiTitle}" key="anime" />
+      </Head>
+      <AnimeDetail anime={anime} />
+    </>
+  );
 };
 
 export default Index;

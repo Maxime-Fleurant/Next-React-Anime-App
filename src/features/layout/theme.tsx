@@ -1,5 +1,5 @@
 import { css, SerializedStyles } from '@emotion/core';
-import { FunctionComponent, useEffect } from 'react';
+import { FunctionComponent } from 'react';
 import { ThemeProvider } from 'emotion-theming';
 import { useSelector } from 'react-redux';
 import { TStore } from '../../app/redux';
@@ -59,6 +59,7 @@ export interface ITheme {
   imgBorder: SerializedStyles;
 }
 
+// HELPER
 const base = {
   baseColor1000: '#16191D',
   baseColor900: '#2D3239',

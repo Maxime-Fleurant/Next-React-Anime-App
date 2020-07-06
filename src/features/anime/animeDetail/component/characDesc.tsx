@@ -1,21 +1,17 @@
 import { FunctionComponent } from 'react';
+import { useTheme } from 'emotion-theming';
 import { Character } from '../../../../common/graphqlType';
 import { Cell } from '../../../../common/components/cell';
 import {
-  imgBorder,
-  font40,
   helveticaMedium,
-  textColor900,
   fontRegular,
   font32,
   helveticaRegular,
-  textColor500,
   regularText,
   textLineHeight,
-  textColor600,
 } from '../../../../common/globalStyle';
 import { descBack, charDesc, characterSecondName, returnButton } from './characterListStyle';
-import { useTheme } from 'emotion-theming';
+
 import { ITheme } from '../../../layout/theme';
 
 // TYPE
@@ -26,7 +22,7 @@ type TCharacDesc = FunctionComponent<{
 }>;
 
 // REACT
-export const CharacDesc: TCharacDesc = ({ character, onClick, endRowCallback }) => {
+export const CharacDesc: TCharacDesc = ({ character, onClick }) => {
   const regex = /\\n|<br>|<br \/>/g;
   const formatedText = character.description.replace(regex, '');
 
@@ -72,7 +68,7 @@ export const CharacDesc: TCharacDesc = ({ character, onClick, endRowCallback }) 
           {character.nativeName}
         </div>
         <div
-          css={[...regularText, charDesc, helveticaRegular, theme.text.textColor900]}
+          css={[...regularText, charDesc(theme), helveticaRegular, theme.text.textColor900]}
           dangerouslySetInnerHTML={{ __html: formatedText }}
         />
       </Cell>

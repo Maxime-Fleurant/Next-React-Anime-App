@@ -11,74 +11,75 @@ export type Scalars = {
 
 export type Anime = {
   __typename?: 'Anime';
-  id: Scalars['ID'];
-  englishTitle?: Maybe<Scalars['String']>;
-  romajiTitle?: Maybe<Scalars['String']>;
-  nativeTitle?: Maybe<Scalars['String']>;
-  desciption?: Maybe<Scalars['String']>;
   bannerImage?: Maybe<Scalars['String']>;
-  xLargeCoverImage?: Maybe<Scalars['String']>;
-  largeCoverImage?: Maybe<Scalars['String']>;
-  trailer: Scalars['String'];
-  status: Scalars['String'];
-  format: Scalars['String'];
-  popularity: Scalars['Float'];
-  studio: Studio;
   characters: Array<Maybe<Character>>;
-  reviews: Array<Maybe<Review>>;
+  desciption?: Maybe<Scalars['String']>;
+  englishTitle?: Maybe<Scalars['String']>;
   externalLinks: Array<Maybe<ExternalLink>>;
+  format: Scalars['String'];
   genres: Array<Maybe<Genre>>;
+  id: Scalars['ID'];
+  largeCoverImage?: Maybe<Scalars['String']>;
+  mediumCoverImage?: Maybe<Scalars['String']>;
+  nativeTitle?: Maybe<Scalars['String']>;
+  popularity: Scalars['Float'];
+  reviews: Array<Maybe<Review>>;
+  romajiTitle?: Maybe<Scalars['String']>;
+  status: Scalars['String'];
+  studio: Studio;
   tags: Array<Maybe<Tag>>;
+  trailer: Scalars['String'];
+  xLargeCoverImage?: Maybe<Scalars['String']>;
 };
 
 export type BaseAnimeInput = {
-  englishTitle?: Maybe<Scalars['String']>;
-  romajiTitle?: Maybe<Scalars['String']>;
-  nativeTitle?: Maybe<Scalars['String']>;
-  desciption?: Maybe<Scalars['String']>;
   bannerImage?: Maybe<Scalars['String']>;
-  xLargeCoverImage?: Maybe<Scalars['String']>;
-  largeCoverImage?: Maybe<Scalars['String']>;
-  trailer: Scalars['String'];
-  popularity: Scalars['Float'];
-  status: Scalars['String'];
+  desciption?: Maybe<Scalars['String']>;
+  englishTitle?: Maybe<Scalars['String']>;
   format: Scalars['String'];
-  studioId: Scalars['Float'];
   genreIds?: Maybe<Array<Maybe<Scalars['Float']>>>;
+  largeCoverImage?: Maybe<Scalars['String']>;
+  nativeTitle?: Maybe<Scalars['String']>;
+  popularity: Scalars['Float'];
+  romajiTitle?: Maybe<Scalars['String']>;
+  status: Scalars['String'];
+  studioId: Scalars['Float'];
   tagIds?: Maybe<Array<Maybe<Scalars['Float']>>>;
+  trailer: Scalars['String'];
+  xLargeCoverImage?: Maybe<Scalars['String']>;
 };
 
 export type BaseCharacterInput = {
-  name: Scalars['String'];
   description: Scalars['String'];
   largeImg: Scalars['String'];
   mediumImg: Scalars['String'];
+  name: Scalars['String'];
 };
 
 export type Character = {
   __typename?: 'Character';
+  anime: Anime;
+  description: Scalars['String'];
   id: Scalars['ID'];
-  name: Scalars['String'];
-  nativeName: Scalars['String'];
   largeImg: Scalars['String'];
   mediumImg: Scalars['String'];
-  description: Scalars['String'];
-  anime: Anime;
+  name: Scalars['String'];
+  nativeName?: Maybe<Scalars['String']>;
 };
 
 export type CharacterInput = {
-  name: Scalars['String'];
+  animeId: Scalars['Float'];
   description: Scalars['String'];
   largeImg: Scalars['String'];
   mediumImg: Scalars['String'];
-  animeId: Scalars['Float'];
+  name: Scalars['String'];
 };
 
 export type CreateReviewInput = {
-  summary: Scalars['String'];
+  animeId: Scalars['Float'];
   body: Scalars['String'];
   score: Scalars['Float'];
-  animeId: Scalars['Float'];
+  summary: Scalars['String'];
   userId: Scalars['Float'];
 };
 
@@ -94,9 +95,9 @@ export type ExternalLink = {
 };
 
 export type ExternalLinkInput = {
+  animeId?: Maybe<Scalars['Float']>;
   site: Scalars['String'];
   url: Scalars['String'];
-  animeId?: Maybe<Scalars['Float']>;
 };
 
 export type Genre = {
@@ -112,54 +113,78 @@ export type LoginResult = {
 
 export type Mutation = {
   __typename?: 'Mutation';
-  deleteAnime: Scalars['String'];
-  createAnime: Anime;
   addGenreFromAnime: Anime;
+  createAnime: Anime;
+  createCharacter: Character;
+  createReview: Review;
+  createStudio: Studio;
+  createUser: User;
+  deleteAnime: Scalars['String'];
+  deleteCharacter: Scalars['String'];
+  deleteReview: Scalars['String'];
+  deleteStudio: Scalars['String'];
+  deleteUser: Scalars['String'];
   removeGenreFromAnime: Anime;
   updateAnime: Anime;
-  deleteCharacter: Scalars['String'];
-  createCharacter: Character;
   updateCharacter: Character;
-  deleteStudio: Scalars['String'];
-  createStudio: Studio;
-  deleteUser: Scalars['String'];
-  createUser: User;
-  deleteReview: Scalars['String'];
-  createReview: Review;
   updateReview: Review;
+};
+
+export type MutationAddGenreFromAnimeArgs = {
+  animeId: Scalars['Float'];
+  genreIds: Array<Scalars['Float']>;
+};
+
+export type MutationCreateAnimeArgs = {
+  animeData: BaseAnimeInput;
+  charactersData?: Maybe<Array<BaseCharacterInput>>;
+  externalLinkData?: Maybe<Array<ExternalLinkInput>>;
+};
+
+export type MutationCreateCharacterArgs = {
+  characterData: CharacterInput;
+};
+
+export type MutationCreateReviewArgs = {
+  input: CreateReviewInput;
+};
+
+export type MutationCreateStudioArgs = {
+  studioName: Scalars['String'];
+};
+
+export type MutationCreateUserArgs = {
+  input: CreateUserInput;
 };
 
 export type MutationDeleteAnimeArgs = {
   id: Scalars['String'];
 };
 
-export type MutationCreateAnimeArgs = {
-  externalLinkData?: Maybe<Array<ExternalLinkInput>>;
-  charactersData?: Maybe<Array<BaseCharacterInput>>;
-  animeData: BaseAnimeInput;
-};
-
-export type MutationAddGenreFromAnimeArgs = {
-  genreIds: Array<Scalars['Float']>;
-  animeId: Scalars['Float'];
-};
-
-export type MutationRemoveGenreFromAnimeArgs = {
-  genreIds: Array<Scalars['Float']>;
-  animeId: Scalars['Float'];
-};
-
-export type MutationUpdateAnimeArgs = {
-  updateData: UpdateAnimeInput;
-  animeId: Scalars['Float'];
-};
-
 export type MutationDeleteCharacterArgs = {
   id: Scalars['String'];
 };
 
-export type MutationCreateCharacterArgs = {
-  characterData: CharacterInput;
+export type MutationDeleteReviewArgs = {
+  id: Scalars['String'];
+};
+
+export type MutationDeleteStudioArgs = {
+  id: Scalars['String'];
+};
+
+export type MutationDeleteUserArgs = {
+  id: Scalars['String'];
+};
+
+export type MutationRemoveGenreFromAnimeArgs = {
+  animeId: Scalars['Float'];
+  genreIds: Array<Scalars['Float']>;
+};
+
+export type MutationUpdateAnimeArgs = {
+  animeId: Scalars['Float'];
+  updateData: UpdateAnimeInput;
 };
 
 export type MutationUpdateCharacterArgs = {
@@ -167,61 +192,46 @@ export type MutationUpdateCharacterArgs = {
   characterId: Scalars['Float'];
 };
 
-export type MutationDeleteStudioArgs = {
-  id: Scalars['String'];
-};
-
-export type MutationCreateStudioArgs = {
-  studioName: Scalars['String'];
-};
-
-export type MutationDeleteUserArgs = {
-  id: Scalars['String'];
-};
-
-export type MutationCreateUserArgs = {
-  input: CreateUserInput;
-};
-
-export type MutationDeleteReviewArgs = {
-  id: Scalars['String'];
-};
-
-export type MutationCreateReviewArgs = {
-  input: CreateReviewInput;
-};
-
 export type MutationUpdateReviewArgs = {
-  input: UpdateReviewInput;
   id: Scalars['Float'];
+  input: UpdateReviewInput;
 };
 
 export type Query = {
   __typename?: 'Query';
-  Animes: Array<Anime>;
   Anime: Anime;
-  searchAnime: Array<Anime>;
-  Characters: Array<Character>;
+  Animes: Array<Anime>;
   Character: Character;
-  Studios: Array<Studio>;
-  Studio: Studio;
-  Users: Array<User>;
-  User: User;
+  Characters: Array<Character>;
   login: LoginResult;
-  Reviews: Array<Review>;
   Review: Review;
+  Reviews: Array<Review>;
+  searchAnime: Array<Anime>;
+  Studio: Studio;
+  Studios: Array<Studio>;
+  User: User;
+  Users: Array<User>;
 };
 
 export type QueryAnimeArgs = {
   id: Scalars['ID'];
 };
 
-export type QuerySearchAnimeArgs = {
-  searchInput: SearchAnimeInput;
-};
-
 export type QueryCharacterArgs = {
   id: Scalars['ID'];
+};
+
+export type QueryLoginArgs = {
+  name: Scalars['String'];
+  password: Scalars['String'];
+};
+
+export type QueryReviewArgs = {
+  id: Scalars['ID'];
+};
+
+export type QuerySearchAnimeArgs = {
+  searchInput: SearchAnimeInput;
 };
 
 export type QueryStudioArgs = {
@@ -232,30 +242,22 @@ export type QueryUserArgs = {
   id: Scalars['ID'];
 };
 
-export type QueryLoginArgs = {
-  password: Scalars['String'];
-  name: Scalars['String'];
-};
-
-export type QueryReviewArgs = {
-  id: Scalars['ID'];
-};
-
 export type Review = {
   __typename?: 'Review';
+  animeId: Scalars['ID'];
+  body: Scalars['String'];
   id: Scalars['ID'];
   summary: Scalars['String'];
-  body: Scalars['String'];
-  animeId: Scalars['ID'];
 };
 
 export type SearchAnimeInput = {
-  text?: Maybe<Scalars['String']>;
-  status?: Maybe<Scalars['String']>;
   format?: Maybe<Scalars['String']>;
-  tagsIn?: Maybe<Array<Scalars['Float']>>;
-  genresIn?: Maybe<Array<Scalars['Float']>>;
+  genresIn?: Maybe<Array<Scalars['String']>>;
   limit: Scalars['Float'];
+  skip: Scalars['Float'];
+  status?: Maybe<Scalars['String']>;
+  tagsIn?: Maybe<Array<Scalars['String']>>;
+  text?: Maybe<Scalars['String']>;
 };
 
 export type Studio = {
@@ -268,31 +270,30 @@ export type Tag = {
   __typename?: 'Tag';
   id: Scalars['ID'];
   name: Scalars['String'];
-  description: Scalars['String'];
 };
 
 export type UpdateAnimeInput = {
-  englishTitle?: Maybe<Scalars['String']>;
-  romajiTitle?: Maybe<Scalars['String']>;
-  nativeTitle?: Maybe<Scalars['String']>;
-  desciption?: Maybe<Scalars['String']>;
   bannerImage?: Maybe<Scalars['String']>;
-  xLargeCoverImage?: Maybe<Scalars['String']>;
+  desciption?: Maybe<Scalars['String']>;
+  englishTitle?: Maybe<Scalars['String']>;
   largeCoverImage?: Maybe<Scalars['String']>;
-  trailer?: Maybe<Scalars['String']>;
+  nativeTitle?: Maybe<Scalars['String']>;
   popularity?: Maybe<Scalars['Float']>;
+  romajiTitle?: Maybe<Scalars['String']>;
   studioId?: Maybe<Scalars['Float']>;
+  trailer?: Maybe<Scalars['String']>;
+  xLargeCoverImage?: Maybe<Scalars['String']>;
 };
 
 export type UpdateCharacterInput = {
-  name?: Maybe<Scalars['String']>;
   description?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
 };
 
 export type UpdateReviewInput = {
-  summary?: Maybe<Scalars['String']>;
   body?: Maybe<Scalars['String']>;
   score?: Maybe<Scalars['Float']>;
+  summary?: Maybe<Scalars['String']>;
 };
 
 export type User = {

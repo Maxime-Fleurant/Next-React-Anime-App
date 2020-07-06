@@ -2,6 +2,7 @@ import { FunctionComponent } from 'react';
 import { css } from '@emotion/core';
 
 import { useTheme } from 'emotion-theming';
+import Head from 'next/head';
 import { Cell } from '../common/components/cell';
 import {
   centerContent,
@@ -54,6 +55,10 @@ const Index: FunctionComponent = () => {
 
   return (
     <>
+      <Head>
+        <title>ANIME こちょこちょ 👁</title>
+        <meta property="og:title" content="My page title" key="title" />
+      </Head>
       <Cell
         deskPos={{ rowStart: 4, rowEnd: 12, columnStart: 1, columnEnd: 7 }}
         tabPos={{ rowStart: 4, rowEnd: 8, columnStart: 1, columnEnd: 13 }}

@@ -123,7 +123,7 @@ const GlobalForm: TsearchAnimeForm = ({ changeHandler }) => {
     }
   };
 
-  const selectOptionsHelper = (items: string[]) => {
+  const selectOptionsHelper = (items: string[]): JSX.Element[] => {
     return items.map((item) => {
       return (
         <option value={item} key={item}>

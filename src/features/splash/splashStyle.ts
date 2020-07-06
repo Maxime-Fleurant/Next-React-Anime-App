@@ -1,4 +1,4 @@
-import { keyframes, css } from '@emotion/core';
+import { keyframes, css, SerializedStyles } from '@emotion/core';
 import {
   helveticaCondensedBold,
   pointSize32,
@@ -88,7 +88,7 @@ export const fillspan1 = css(
 );
 export const dashDec = css({ marginRight: '16rem' });
 
-export const fillspan3 = (theme: ITheme) =>
+export const fillspan3 = (theme: ITheme): SerializedStyles =>
   css(
     {
       textAlign: 'center',
@@ -125,7 +125,7 @@ export const fillspan4 = css(
   `
 );
 
-export const dateleft = (theme: ITheme) =>
+export const dateleft = (theme: ITheme): SerializedStyles =>
   css({
     border: `${pointSize3} solid ${theme.base.baseColor900}`,
     padding: '1rem 2rem',
@@ -280,7 +280,7 @@ export const animateCenterCol6 = css(
 
 // Horizontal anime
 
-export const horiWrapper = (theme: ITheme) =>
+export const horiWrapper = (theme: ITheme): SerializedStyles =>
   css(
     {
       position: 'relative',

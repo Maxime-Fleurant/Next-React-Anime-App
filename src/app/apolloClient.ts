@@ -9,7 +9,7 @@ let apolloClient: any;
 function createApolloClient() {
   return new ApolloClient({
     ssrMode: typeof window === 'undefined',
-    connectToDevTools: true,
+    connectToDevTools: false,
     cache: new InMemoryCache({}),
     link: new HttpLink({ fetch, uri: 'http://localhost:4000/graphql' }),
   });
@@ -29,7 +29,7 @@ export function initializeApollo(initialState = null): ApolloClient<{}> {
   return _apolloClient;
 }
 
-export function useApollo(initialState: any) {
+export function useApollo(initialState: any): ApolloClient<{}> {
   const store = useMemo(() => initializeApollo(initialState), [initialState]);
   return store;
 }

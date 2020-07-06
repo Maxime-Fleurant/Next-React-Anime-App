@@ -3,6 +3,7 @@ import { FunctionComponent } from 'react';
 import Link from 'next/link';
 import { css, Global } from '@emotion/core';
 import { useTheme } from 'emotion-theming';
+import Head from 'next/head';
 
 import { gridCss, navCss, nav, logo, logoRes } from './style';
 import {
@@ -22,7 +23,7 @@ import { normalize } from '../splash/normalize';
 
 const Layout: FunctionComponent = ({ children }) => {
   const dispacth = useDispatch();
-  const changeHandler = () => {
+  const changeHandler = (): void => {
     dispacth(updateLight());
   };
 
@@ -30,6 +31,9 @@ const Layout: FunctionComponent = ({ children }) => {
 
   return (
     <>
+      <Head>
+        <link rel="shortcut icon" href="/favicon.ico" />
+      </Head>
       <Global
         styles={css`
           ${normalize}
@@ -73,8 +77,8 @@ const Layout: FunctionComponent = ({ children }) => {
               </Link>
 
               <label css={switchButton(theme)}>
-                <input onChange={changeHandler} type="checkbox" id="fldk" />
-                <div className="tt" />
+                <input onChange={changeHandler} type="checkbox" />
+                <div />
               </label>
             </span>
           </div>

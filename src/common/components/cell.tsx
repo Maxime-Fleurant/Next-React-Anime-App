@@ -1,6 +1,5 @@
-import { FunctionComponent, useRef, useState, MouseEventHandler, useEffect, Profiler } from 'react';
+import { FunctionComponent, useRef, useState, MouseEventHandler, useEffect } from 'react';
 import { css, SerializedStyles } from '@emotion/core';
-import useIsomorphicLayoutEffect from '../hooks/isomorphUseLayout';
 import { relativeCell, relativeChildren } from './cellStyle';
 
 // TYPE
@@ -28,7 +27,6 @@ type TCell = FunctionComponent<{
 export const Cell: TCell = ({
   deskPos,
   tabPos,
-  mobilPos,
   ratio,
   children,
   extraCss = [],
@@ -84,7 +82,7 @@ export const Cell: TCell = ({
     withtabPos = css`
       @media (max-width: 1023px) {
         grid-row-start: ${tabPos.rowStart};
-        grid-row-end: ${tabPos.rowEnd || 'initial'};
+        grid-row-end: ${tabPos.rowEnd};
         grid-column-start: ${tabPos.columnStart};
         grid-column-end: ${tabPos.columnEnd};
       }
