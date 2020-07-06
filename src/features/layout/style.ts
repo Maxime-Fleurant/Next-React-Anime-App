@@ -47,6 +47,7 @@ export const nav = (theme: ITheme): SerializedStyles =>
 export const logo = css(
   {
     margin: '1rem 0',
+    cursor: 'pointer',
   },
   css`
     @media (max-width: 767px) {
@@ -59,6 +60,7 @@ export const logoRes = css(
   {
     display: 'none',
     margin: '1rem 0',
+    cursor: 'pointer',
   },
   css`
     @media (max-width: 767px) {

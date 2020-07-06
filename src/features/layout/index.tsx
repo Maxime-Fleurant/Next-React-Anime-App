@@ -68,7 +68,7 @@ const Layout: FunctionComponent = ({ children }) => {
                     font40,
                     helveticaRegular,
                     theme.text.textColor900,
-                    css({ marginRight: '2rem' }),
+                    css({ marginRight: '2rem', cursor: 'pointer' }),
                   ]}
                 >
                   {'Browse '}
