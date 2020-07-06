@@ -149,7 +149,7 @@ const Index: FunctionComponent = () => {
         deskPos={{ rowStart: 8, rowEnd: 12, columnStart: 16, columnEnd: 19 }}
         tabPos={{ rowStart: 9, rowEnd: 10, columnStart: 7, columnEnd: 13 }}
         extraCss={[theme.imgBorder]}
-        backgroundImg="/img/gif6.gif"
+        backgroundImg="/img/gif66.gif"
         ratio={1.3}
       />
 
