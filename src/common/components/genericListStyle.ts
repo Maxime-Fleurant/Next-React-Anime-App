@@ -4,7 +4,7 @@ import { textLineHeight, helveticaRegular } from '../globalStyle';
 export const imgLink = css({
   height: '100%',
   cursor: 'pointer',
-  top: '0',
+
   width: '100%',
   position: 'absolute',
 });
@@ -17,5 +17,5 @@ export const aLink = css(
 );
 
 export const imgWrapp = css({
-  position: 'relative',
+  // position: 'relative',
 });

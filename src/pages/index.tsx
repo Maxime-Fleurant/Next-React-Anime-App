@@ -57,7 +57,8 @@ const Index: FunctionComponent = () => {
     <>
       <Head>
         <title>ANIME こちょこちょ 👁</title>
-        <meta property="og:title" content="My page title" key="title" />
+        <meta property="og:title" content="ANIME こちょこちょ 👁" key="title" />
+        <meta property="og:image" content="/img/akira.jpg" />
       </Head>
       <Cell
         deskPos={{ rowStart: 4, rowEnd: 12, columnStart: 1, columnEnd: 7 }}

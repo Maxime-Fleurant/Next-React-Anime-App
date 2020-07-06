@@ -39,14 +39,12 @@ const GenericList: TGenericList = ({ entityList = [], fetchMore }) => {
 
   const handleScroll = (): void => {
     if (lastElem && lastElem.current) {
-      if (
-        window.pageYOffset + window.innerHeight >
-        lastElem.current.offsetTop + lastElem.current.clientHeight
-      )
+      if (window.pageYOffset + window.innerHeight > lastElem.current.offsetTop) {
         if (fetchMore) {
           window.removeEventListener('scroll', handleScroll);
           fetchMore();
         }
+      }
     }
   };
 
