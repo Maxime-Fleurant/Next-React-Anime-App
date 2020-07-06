@@ -5,7 +5,6 @@ export const imgLink = css({
   height: '100%',
   cursor: 'pointer',
 
-  width: '100%',
   position: 'absolute',
 });
 
@@ -17,5 +16,5 @@ export const aLink = css(
 );
 
 export const imgWrapp = css({
-  // position: 'relative',
+  cursor: 'pointer',
 });

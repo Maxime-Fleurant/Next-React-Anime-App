@@ -33,7 +33,7 @@ const GenericList: TGenericList = ({ entityList = [], fetchMore }) => {
   let tabRowStart = 7;
   let tabColStart = 1;
 
-  const lastElem = useRef<HTMLDivElement>(null);
+  const lastElem = useRef<HTMLAnchorElement>(null);
 
   const theme = useTheme<ITheme>();
 
@@ -69,27 +69,25 @@ const GenericList: TGenericList = ({ entityList = [], fetchMore }) => {
 
     const singleEntity = (
       <Fragment key={entity.id}>
-        <Cell
-          deskPos={{
-            rowStart: deskRowStart,
-            rowEnd: deskRowStart + 5,
-            columnStart: deskColStart,
-            columnEnd: deskColStart + 4,
-          }}
-          tabPos={{
-            rowStart: tabRowStart,
-            rowEnd: tabRowStart + 1,
-            columnStart: tabColStart,
-            columnEnd: tabColStart + 6,
-          }}
-          extraCss={[imgBorder, imgWrapp]}
-          ratio={1.3}
-          backgroundImg={entity.img}
-        >
-          <Link href="/animes/[id]" as={`/animes/${entity.id}`}>
-            <div ref={index === length - 1 ? lastElem : null} css={imgLink} />
-          </Link>
-        </Cell>
+        <Link href="/animes/[id]" as={`/animes/${entity.id}`}>
+          <Cell
+            deskPos={{
+              rowStart: deskRowStart,
+              rowEnd: deskRowStart + 5,
+              columnStart: deskColStart,
+              columnEnd: deskColStart + 4,
+            }}
+            tabPos={{
+              rowStart: tabRowStart,
+              rowEnd: tabRowStart + 1,
+              columnStart: tabColStart,
+              columnEnd: tabColStart + 6,
+            }}
+            extraCss={[imgBorder, imgWrapp]}
+            ratio={1.3}
+            backgroundImg={entity.img}
+          />
+        </Link>
 
         <Cell
           deskPos={{
@@ -107,7 +105,9 @@ const GenericList: TGenericList = ({ entityList = [], fetchMore }) => {
           extraCss={[fontRegular, helveticaRegular, textLineHeight, theme.text.textColor900]}
         >
           <Link href="/animes/[id]" as={`/animes/${entity.id}`}>
-            <a css={aLink}>{entity.label}</a>
+            <a ref={index === length - 1 ? lastElem : null} css={aLink}>
+              {entity.label}
+            </a>
           </Link>
         </Cell>
       </Fragment>
