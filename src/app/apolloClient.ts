@@ -13,7 +13,7 @@ function createApolloClient() {
     cache: new InMemoryCache({}),
     link: new HttpLink({
       fetch,
-      uri: 'http://localhost:4000/graphql',
+      uri: 'https://api.maximefleurant.com/graphql',
     }),
   });
 }
