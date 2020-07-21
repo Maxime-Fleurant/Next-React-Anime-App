@@ -25,6 +25,7 @@ export default class MyDocument extends Document {
   render() {
     return (
       <html
+        lang="en"
         css={[
           css`
              {
@@ -40,7 +41,12 @@ export default class MyDocument extends Document {
           `,
         ]}
       >
-        <Head />
+        <Head>
+          <link rel="manifest" href="/manifest.json" />
+          <meta name="Description" content="Brutalist Anime Demo" />
+          <meta name="theme-color" content="#F0F2F4" />
+          <link rel="apple-touch-icon" href="/icons/90icon-.png" />
+        </Head>
         <body>
           <Main />
           <NextScript />

@@ -13,7 +13,7 @@ function createApolloClient() {
     cache: new InMemoryCache({}),
     link: new HttpLink({
       fetch,
-      uri: 'http://ec2-35-181-63-183.eu-west-3.compute.amazonaws.com/graphql',
+      uri: 'http://localhost:4000/graphql',
     }),
   });
 }
